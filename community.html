@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Community - Music Revolution Web App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta description="Join the Music Revolution community! Engage in discussions, share your music, and collaborate with fellow artists and enthusiasts.">
+    <meta name="description" content="Join the Music Revolution community! Engage in discussions, share your music, and collaborate with fellow artists and enthusiasts.">
 
     <!-- Link to external CSS file -->
     <link rel="stylesheet" href="styles.css">
@@ -101,8 +101,8 @@
         const postsContainer = document.getElementById('postsContainer');
 
         // JSONBin.io Configuration
-        const JSONBIN_API_KEY = 'YOUR_JSONBIN_API_KEY'; // Replace with your API Key
-        const JSONBIN_ID = 'YOUR_JSONBIN_ID'; // Replace with your Bin ID
+        const JSONBIN_API_KEY = 'YOUR_NEW_JSONBIN_API_KEY'; // Replace with your new API Key after regeneration
+        const JSONBIN_ID = '67602792e41b4d34e4664935'; // Your updated Bin ID
         const JSONBIN_URL = `https://api.jsonbin.io/v3/b/${JSONBIN_ID}/latest`;
 
         // Handle Subgroup Selection
@@ -146,7 +146,12 @@
                     'X-Master-Key': JSONBIN_API_KEY
                 }
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
             .then(data => {
                 let postsData = data.record;
                 if(!postsData[subgroup]) {
@@ -164,12 +169,19 @@
                     body: JSON.stringify(postsData)
                 });
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
             .then(data => {
                 // Clear form fields
                 messageForm.reset();
                 // Refresh posts display
                 fetchPosts(subgroup);
+                // Show success message
+                showTemporaryMessage('Your message has been posted successfully!');
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -184,7 +196,12 @@
                     'X-Master-Key': JSONBIN_API_KEY
                 }
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
             .then(data => {
                 const postsData = data.record;
                 const subgroupPosts = postsData[subgroup] || [];
@@ -225,6 +242,18 @@
                 "'": '&#039;'
             };
             return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+
+        // Function to show temporary messages
+        function showTemporaryMessage(message) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'temp-message';
+            msgDiv.textContent = message;
+            document.body.appendChild(msgDiv);
+            
+            setTimeout(() => {
+                msgDiv.remove();
+            }, 3000); // Message disappears after 3 seconds
         }
     </script>
 </body>
