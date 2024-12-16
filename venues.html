@@ -1,152 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <title>Venue Directory - Music Revolution Web App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Explore local music venues worldwide that support original music with capacities up to 500 people. Find venues by country, state, and city.">
     <meta name="keywords" content="Music Venues, Local Music, Venue Directory, Live Music, Concert Venues">
 
-    <meta charset="UTF-8">
-    <title>Venue Directory - Music Revolution Web App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- Link to external CSS file -->
     <link rel="stylesheet" href="styles.css">
-
-    <!-- Inline Styles for Dropdown Menus and Venue Cards -->
-    <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
-
-    /* Navigation Bar */
-    nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #264653;
-        color: #fff;
-        padding: 1rem 2rem;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 1000;
-    }
-
-    nav .logo a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 1.5rem;
-    }
-
-    nav .nav-links {
-        list-style: none;
-        display: flex;
-    }
-
-    nav .nav-links li {
-        margin-left: 1.5rem;
-    }
-
-    nav .nav-links a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 1rem;
-    }
-
-    nav .nav-links a:hover {
-        color: #e9c46a;
-    }
-
-    /* Main Content */
-    .venues {
-        padding: 100px 20px 60px 20px; /* Adjusted for fixed nav */
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .venues h2 {
-        font-size: 36px;
-        margin-bottom: 20px;
-        text-align: center;
-        color: #2a9d8f;
-    }
-
-    .venues p {
-        font-size: 18px;
-        margin-bottom: 40px;
-        text-align: center;
-        color: #264653;
-    }
-
-    .filters {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 30px;
-        flex-wrap: wrap;
-    }
-
-    .filters select {
-        padding: 10px;
-        margin: 10px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-
-    .venue-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 20px;
-    }
-
-    .venue-card {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        transition: transform 0.2s;
-    }
-
-    .venue-card:hover {
-        transform: scale(1.02);
-    }
-
-    .venue-card h3 {
-        margin-top: 0;
-        color: #2a9d8f;
-    }
-
-    .venue-card p {
-        margin: 5px 0;
-        font-size: 16px;
-        color: #264653;
-    }
-
-    .venue-card a {
-        color: #e76f51;
-        text-decoration: none;
-    }
-
-    .venue-card a:hover {
-        text-decoration: underline;
-    }
-
-    /* Footer */
-    footer {
-        background-color: #264653;
-        color: #fff;
-        text-align: center;
-        padding: 1rem 0;
-        position: relative;
-        bottom: 0;
-        width: 100%;
-    }
-    </style>
 </head>
 <body>
     <!-- Header Section -->
@@ -155,13 +17,25 @@
             <div class="logo">
                 <a href="index.html">MusicRevolution</a>
             </div>
-            <ul class="nav-links">
+            <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="venues.html">Venues</a></li>
+                <li><a href="resources.html">Resources</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Find Your Perfect Venue</h1>
+            <p>Discover local music venues worldwide that support original music with capacities up to 500 people. Filter by country, state, and city to find the ideal spot for your performances.</p>
+            <!-- Optional: Add a call-to-action button -->
+            <!-- <a href="#venue-filters" class="btn">Explore Venues</a> -->
+        </div>
+    </section>
 
     <!-- Main Content Section -->
     <main>
@@ -202,6 +76,18 @@
 
     <!-- JavaScript for Filters and Venue Display -->
     <script>
+    // Toggle Hamburger Menu
+    function toggleMenu() {
+        const navLinks = document.getElementById('navLinks');
+        if (navLinks.style.display === "flex") {
+            navLinks.style.display = "none";
+        } else {
+            navLinks.style.display = "flex";
+            navLinks.style.flexDirection = "column";
+        }
+    }
+
+    // Venue Data
     const venues = [
         // Australia Venues
         {
@@ -224,26 +110,26 @@
             website: "http://www.melbournemusichub.com.au/",
             email: "info@melbournemusichub.com.au"
         },
-{
-    country: "Australia",
-    state: "Queensland",
-    city: "Brisbane",
-    name: "The Triffid",
-    capacity: 300,
-    address: "55 Chelmer St, Paddington QLD 4064, Australia",
-    website: "https://thetriffid.com/",
-    email: "info@thetriffid.com/"
-},
-{
-    country: "Australia",
-    state: "Victoria",
-    city: "Melbourne",
-    name: "Corner Hotel",
-    capacity: 250,
-    address: "166 Chapel St, South Yarra VIC 3141, Australia",
-    website: "https://www.cornerhotel.com.au/",
-    email: "info@cornerhotel.com.au"
-},
+        {
+            country: "Australia",
+            state: "Queensland",
+            city: "Brisbane",
+            name: "The Triffid",
+            capacity: 300,
+            address: "55 Chelmer St, Paddington QLD 4064, Australia",
+            website: "https://thetriffid.com/",
+            email: "info@thetriffid.com/"
+        },
+        {
+            country: "Australia",
+            state: "Victoria",
+            city: "Melbourne",
+            name: "Corner Hotel",
+            capacity: 250,
+            address: "166 Chapel St, South Yarra VIC 3141, Australia",
+            website: "https://www.cornerhotel.com.au/",
+            email: "info@cornerhotel.com.au"
+        },
 
         // United States Venues
         {
@@ -350,6 +236,7 @@
         "North Rhine-Westphalia": ["Cologne", "Düsseldorf", "Dortmund", "Essen", "Bonn"]
     };
 
+    // Event Listener for Country Selection
     countrySelect.addEventListener('change', function() {
         const selectedCountry = this.value;
         stateSelect.innerHTML = '<option value="">Select State/Province</option>';
@@ -371,6 +258,7 @@
         }
     });
 
+    // Event Listener for State Selection
     stateSelect.addEventListener('change', function() {
         const selectedState = this.value;
         citySelect.innerHTML = '<option value="">Select City</option>';
@@ -389,6 +277,7 @@
         }
     });
 
+    // Event Listener for City Selection
     citySelect.addEventListener('change', function() {
         const selectedCountry = countrySelect.value;
         const selectedState = stateSelect.value;
@@ -402,6 +291,7 @@
         }
     });
 
+    // Function to Display Venues
     function displayVenues(venuesToDisplay) {
         venueList.innerHTML = '';
         if(venuesToDisplay.length === 0) {
