@@ -2,7 +2,7 @@
 
 /* ================================
    General Styles
-================================ */
+=============================== */
 
 /* Reset some default styles */
 * {
@@ -20,7 +20,7 @@ body {
 
 /* ================================
    Navigation Bar
-================================ */
+=============================== */
 
 nav {
     display: flex;
@@ -51,7 +51,7 @@ nav .nav-links {
 }
 
 nav .nav-links li {
-    /* Removed individual margin-left; using gap instead */
+    /* No additional styles needed as gap handles spacing */
 }
 
 nav .nav-links a {
@@ -67,7 +67,7 @@ nav .nav-links a:hover {
 
 /* ================================
    Hero Section
-================================ */
+=============================== */
 
 .hero {
     background: url('hero-banner.jpg') no-repeat center center/cover;
@@ -126,7 +126,7 @@ nav .nav-links a:hover {
 
 /* ================================
    About Us Section
-================================ */
+=============================== */
 
 .about-us {
     padding: 60px 20px;
@@ -151,7 +151,7 @@ nav .nav-links a:hover {
 
 /* ================================
    Features Section
-================================ */
+=============================== */
 
 .features {
     padding: 60px 20px;
@@ -194,7 +194,7 @@ nav .nav-links a:hover {
 
 /* ================================
    Call to Action Section
-================================ */
+=============================== */
 
 .cta {
     background-color: #2a9d8f;
@@ -218,7 +218,7 @@ nav .nav-links a:hover {
 
 /* ================================
    Resources Page Styles
-================================ */
+=============================== */
 
 .resources {
     padding: 100px 20px 60px 20px; /* Adjusted for fixed nav */
@@ -292,11 +292,12 @@ nav .nav-links a:hover {
 
 /* ================================
    Contact Page Styles
-================================ */
+=============================== */
 
 .contact {
     padding: 60px 20px;
     background-color: #f4f4f4;
+    margin-top: 60px; /* Prevent overlap with fixed nav */
 }
 
 .contact h2 {
@@ -357,7 +358,7 @@ nav .nav-links a:hover {
 
 /* ================================
    Footer Styles
-================================ */
+=============================== */
 
 footer {
     background-color: #264653;
@@ -368,7 +369,7 @@ footer {
 
 /* ================================
    Responsive Design
-================================ */
+=============================== */
 
 @media (max-width: 768px) {
     nav .nav-links {
@@ -391,5 +392,10 @@ footer {
 
     .cta h2 {
         font-size: 24px;
+    }
+
+    /* Adjusting form elements for mobile */
+    .contact form {
+        padding: 0 10px;
     }
 }
