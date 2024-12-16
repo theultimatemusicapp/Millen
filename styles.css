@@ -70,7 +70,7 @@ nav .nav-links a:hover {
 ================================ */
 
 .hero {
-    background: url('images/hero-banner.jpg') no-repeat center center/cover;
+    background: url('hero-banner.jpg') no-repeat center center/cover;
     color: #fff;
     height: 100vh;
     display: flex;
@@ -146,6 +146,7 @@ nav .nav-links a:hover {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
+    color: #264653;
 }
 
 /* ================================
@@ -192,11 +193,37 @@ nav .nav-links a:hover {
 }
 
 /* ================================
-   Resources Section (resources.html)
+   Call to Action Section
+================================ */
+
+.cta {
+    background-color: #2a9d8f;
+    color: #fff;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.cta h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.cta .btn {
+    background-color: #e76f51;
+}
+
+.cta .btn:hover {
+    background-color: #d65a3c;
+}
+
+/* ================================
+   Resources Page Styles
 ================================ */
 
 .resources {
-    padding: 60px 20px;
+    padding: 100px 20px 60px 20px; /* Adjusted for fixed nav */
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .resources h2 {
@@ -210,6 +237,7 @@ nav .nav-links a:hover {
     font-size: 18px;
     margin-bottom: 40px;
     text-align: center;
+    color: #264653;
 }
 
 .resource-section {
@@ -221,21 +249,12 @@ nav .nav-links a:hover {
     color: #2a9d8f;
     cursor: pointer;
     position: relative;
-    padding: 10px;
-    border: 1px solid #2a9d8f;
-    border-radius: 5px;
-    background-color: #e9c46a;
-    transition: background-color 0.3s;
-}
-
-.resource-section h3:hover {
-    background-color: #d65a3c;
 }
 
 .resource-section h3::after {
-    content: '\25BC'; /* Down arrow */
+    content: '\25BC';
     position: absolute;
-    right: 15px;
+    right: 0;
     transition: transform 0.3s;
 }
 
@@ -265,7 +284,6 @@ nav .nav-links a:hover {
     text-decoration: none;
     border-radius: 4px;
     margin-top: 10px;
-    transition: background-color 0.3s;
 }
 
 .download-btn:hover {
@@ -273,23 +291,72 @@ nav .nav-links a:hover {
 }
 
 /* ================================
-   Call to Action Section
+   Contact Page Styles
 ================================ */
 
-.cta {
-    background-color: #2a9d8f;
-    color: #fff;
-    text-align: center;
+.contact {
     padding: 60px 20px;
+    background-color: #f4f4f4;
 }
 
-.cta h2 {
-    font-size: 32px;
+.contact h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #2a9d8f;
+}
+
+.contact p {
+    font-size: 18px;
+    margin-bottom: 40px;
+    text-align: center;
+    color: #264653;
+}
+
+.contact form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
     margin-bottom: 20px;
 }
 
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #264653;
+}
+
+.form-group label span {
+    color: #e76f51;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.contact .btn {
+    align-self: center;
+    background-color: #e76f51;
+    padding: 10px 20px;
+    font-size: 18px;
+}
+
+.contact .btn:hover {
+    background-color: #d65a3c;
+}
+
 /* ================================
-   Footer
+   Footer Styles
 ================================ */
 
 footer {
@@ -303,7 +370,6 @@ footer {
    Responsive Design
 ================================ */
 
-/* Adjust navigation for smaller screens */
 @media (max-width: 768px) {
     nav .nav-links {
         flex-direction: column;
@@ -311,7 +377,6 @@ footer {
         gap: 1rem;
     }
 
-    /* Adjust hero text sizes */
     .hero h1 {
         font-size: 32px;
     }
@@ -320,38 +385,11 @@ footer {
         font-size: 16px;
     }
 
-    /* Adjust section headings */
-    .features h2,
-    .about-us h2,
-    .resources h2 {
+    .features h2, .about-us h2, .resources h2 {
         font-size: 28px;
     }
 
     .cta h2 {
         font-size: 24px;
     }
-
-    /* Adjust feature items for better spacing */
-    .feature-list {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* ================================
-   Additional Utility Classes
-================================ */
-
-/* Button Styles (Reusable) */
-.btn {
-    padding: 15px 30px;
-    background-color: #e76f51;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 18px;
-    transition: background-color 0.3s;
-}
-
-.btn:hover {
-    background-color: #d65a3c;
 }
