@@ -1,7 +1,7 @@
 css
 /* ================================
    CSS Variables for Consistent Theming
-================================ */
+================================================ */
 :root {
     /* Color Palette */
     --color-primary: #1e1f26;
@@ -43,12 +43,12 @@ css
 
 /* ================================
    Import Fonts
-================================ */
+================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Roboto:wght@400;500;700&display=swap');
 
 /* ================================
    General Styles & Resets
-================================ */
+=============================== */
 *,
 *::before,
 *::after {
@@ -73,7 +73,7 @@ body {
 
 /* ================================
    Utility Classes
-================================ */
+=============================== */
 
 /* Container */
 .container {
@@ -100,7 +100,7 @@ body {
 }
 
 .btn-primary:hover {
-    background-color: darken(var(--color-secondary), 10%);
+    background-color: #e66d3b; /* Darker shade of var(--color-secondary) */
     transform: translateY(-2px);
 }
 
@@ -110,7 +110,7 @@ body {
 }
 
 .btn-secondary:hover {
-    background-color: darken(var(--color-accent), 10%);
+    background-color: #3ebcbc; /* Darker shade of var(--color-accent) */
     transform: translateY(-2px);
 }
 
@@ -124,12 +124,12 @@ body {
 }
 
 .btn-small:hover {
-    background-color: darken(var(--color-secondary), 10%);
+    background-color: #e66d3b; /* Darker shade of var(--color-secondary) */
 }
 
 /* ================================
    Navigation Bar
-================================ */
+=============================== */
 nav {
     position: fixed;
     top: 0;
@@ -217,7 +217,7 @@ nav {
 
 /* ================================
    Mobile Navigation
-================================ */
+=============================== */
 @media (max-width: 768px) {
     .nav-links {
         position: absolute;
@@ -250,7 +250,7 @@ nav {
 
 /* ================================
    Hero Section
-================================ */
+=============================== */
 .hero {
     position: relative;
     height: 100vh;
@@ -332,7 +332,7 @@ nav {
 
 /* ================================
    About Us Section
-================================ */
+=============================== */
 .about-us {
     background-color: var(--color-light);
     padding: var(--spacing-lg) 0;
@@ -366,7 +366,7 @@ nav {
 
 /* ================================
    Features Section
-================================ */
+=============================== */
 .features {
     padding: var(--spacing-lg) 0;
 }
@@ -428,7 +428,7 @@ nav {
 
 /* ================================
    Call to Action Section
-================================ */
+=============================== */
 .cta {
     background-color: var(--color-secondary);
     color: var(--color-text);
@@ -443,19 +443,19 @@ nav {
 }
 
 .cta .btn-primary {
-    background-color: var(--color-text);
+    background-color: #ffffff; /* Changed to white for better contrast */
     color: var(--color-secondary);
     transition: background-color var(--transition-speed) var(--transition-easing), color var(--transition-speed) var(--transition-easing);
 }
 
 .cta .btn-primary:hover {
-    background-color: darken(var(--color-text), 10%);
-    color: var(--color-secondary);
+    background-color: #e66d3b; /* Darker shade of var(--color-secondary) */
+    color: #ffffff;
 }
 
 /* ================================
    Footer Section
-================================ */
+=============================== */
 footer {
     background-color: var(--color-primary);
     color: var(--color-text);
@@ -488,7 +488,7 @@ footer p {
 
 /* ================================
    Media Queries for Responsiveness
-================================ */
+=============================== */
 
 /* Tablets and Small Desktops */
 @media (max-width: 992px) {
@@ -523,7 +523,7 @@ footer p {
 
 /* ================================
    Accessibility Enhancements
-================================ */
+=============================== */
 /* Screen Reader Only */
 .sr-only {
     position: absolute;
@@ -543,3 +543,32 @@ button:focus {
     outline: 2px solid var(--color-secondary);
     outline-offset: 2px;
 }
+```
+
+---
+
+## 🛠 Detailed Fixes and Enhancements
+
+### 1. **Hero Banner (`hero-banner.jpg`) Integration**
+
+- **File Placement:** Ensure that `hero-banner.jpg` is **exactly** in the root directory alongside `index.html` and `styles.css`. The structure should look like this:
+
+  ```
+  /your-project-folder/
+  ├── index.html
+  ├── styles.css
+  ├── hero-banner.jpg
+  └── favicon.ico (optional)
+  ```
+
+- **CSS Reference:** The `styles.css` references the hero banner correctly with:
+
+  ```css
+  .hero {
+      background: linear-gradient(
+              rgba(30, 31, 38, 0.7),
+              rgba(30, 31, 38, 0.7)
+          ),
+          url('hero-banner.jpg') center / cover no-repeat;
+      /* ... other styles ... */
+  }
