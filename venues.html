@@ -102,7 +102,8 @@
 
     <!-- External JavaScript Files -->
     <script src="venues.js"></script>
-    <script src="radioStations.js"></script> <!-- Assuming you have a similar JS file for radio stations -->
+    <!-- If you have a similar external script for radio stations, include it here -->
+    <!-- <script src="radioStations.js"></script> -->
 
     <!-- JavaScript for Filters and Listing Display -->
     <script>
@@ -152,6 +153,7 @@
         "North Rhine-Westphalia": ["Cologne", "Düsseldorf", "Dortmund", "Essen", "Bonn"]
     };
 
+    // Event Listeners for Venue Filters
     countrySelect.addEventListener('change', function() {
         const selectedCountry = this.value;
         stateSelect.innerHTML = '<option value="">Select State/Province</option>';
@@ -197,13 +199,18 @@
         const selectedCity = this.value;
 
         if(selectedCity) {
-            const filteredVenues = venues.filter(venue => venue.country === selectedCountry && venue.state === selectedState && venue.city === selectedCity);
+            const filteredVenues = venues.filter(venue => 
+                venue.country === selectedCountry && 
+                venue.state === selectedState && 
+                venue.city === selectedCity
+            );
             displayVenues(filteredVenues);
         } else {
             displayVenues([]);
         }
     });
 
+    // Function to Display Venues
     function displayVenues(venuesToDisplay) {
         venueList.innerHTML = '';
         if(venuesToDisplay.length === 0) {
@@ -242,6 +249,145 @@
     // Radio Stations Filters and Display
     const radioCountrySelect = document.getElementById('radioCountrySelect');
     const radioList = document.getElementById('radioList');
+
+    // Assuming radioStations are still hardcoded in the HTML script
+    const radioStations = [
+        {
+            country: "United Kingdom",
+            name: "BBC Radio 6 Music",
+            frequency: "Online",
+            location: "United Kingdom",
+            email: "6music@bbc.co.uk",
+            phone: "+44 03700 100 600",
+            website: "https://www.bbc.co.uk/6music"
+        },
+        {
+            country: "United Kingdom",
+            name: "NME Radio",
+            frequency: "Online",
+            location: "United Kingdom",
+            email: "radio@nme.com",
+            phone: "N/A",
+            website: "https://www.nme.com/radio"
+        },
+        {
+            country: "United Kingdom",
+            name: "Radio X 104.9 FM",
+            frequency: "104.9 FM",
+            location: "London, UK",
+            email: "contactus@radiox.co.uk",
+            phone: "+44 0330 333 149",
+            website: "https://www.radiox.co.uk"
+        },
+        {
+            country: "Germany",
+            name: "FluxFM 100.6 FM",
+            frequency: "100.6 FM",
+            location: "Berlin, Germany",
+            email: "info@fluxfm.de",
+            phone: "+49 30 2000 4160",
+            website: "https://www.fluxfm.de"
+        },
+        {
+            country: "Austria",
+            name: "FM4 103.8 FM",
+            frequency: "103.8 FM",
+            location: "Vienna, Austria",
+            email: "fm4@orf.at",
+            phone: "+43 1 501010",
+            website: "https://fm4.orf.at"
+        },
+        {
+            country: "France",
+            name: "Radio Nova",
+            frequency: "101.5 FM",
+            location: "Paris, France",
+            email: "contact@novaplanet.com",
+            phone: "+33 1 5333222",
+            website: "https://www.novaplanet.com"
+        },
+        {
+            country: "Netherlands",
+            name: "3FM 96.8 FM",
+            frequency: "96.8 FM",
+            location: "Hilversum, Netherlands",
+            email: "info@3fm.nl",
+            phone: "+31 35 677 777",
+            website: "https://www.3fm.nl"
+        },
+        {
+            country: "Germany",
+            name: "Radio Eins",
+            frequency: "95.8 FM",
+            location: "Berlin, Germany",
+            email: "info@radioeins.de",
+            phone: "+49 30 9799337711",
+            website: "https://www.radioeins.de"
+        },
+        {
+            country: "Germany",
+            name: "Radio Fritz",
+            frequency: "102.6 FM",
+            location: "Potsdam, Germany",
+            email: "fritz@rbb-online.de",
+            phone: "+49 30 9799333000",
+            website: "https://www.fritz.de"
+        },
+        {
+            country: "Spain",
+            name: "Radio 3",
+            frequency: "93.2 FM",
+            location: "Barcelona, Spain",
+            email: "radio3@rtve.es",
+            phone: "+34 91 346 7300",
+            website: "https://www.rtve.es/radio3"
+        },
+        {
+            country: "Italy",
+            name: "Radio 105",
+            frequency: "105.0 FM",
+            location: "Milan, Italy",
+            email: "info@105.net",
+            phone: "+39 02 655 1111",
+            website: "https://www.105.net"
+        },
+        {
+            country: "Italy",
+            name: "Radio Deejay",
+            frequency: "97.0 FM",
+            location: "Milan, Italy",
+            email: "info@deejay.it",
+            phone: "+39 02 342 9100",
+            website: "https://www.deejay.it"
+        },
+        {
+            country: "Belgium",
+            name: "Radio 2",
+            frequency: "88.8 FM",
+            location: "Brussels, Belgium",
+            email: "radio2@vrt.be",
+            phone: "+32 2 7413111",
+            website: "https://www.radio2.be"
+        },
+        {
+            country: "Belgium",
+            name: "Radio 1",
+            frequency: "98.8 FM",
+            location: "Brussels, Belgium",
+            email: "radio1@vrt.be",
+            phone: "+32 2 7413111",
+            website: "https://www.radio1.be"
+        },
+        {
+            country: "Germany",
+            name: "Radio X",
+            frequency: "97.7 FM",
+            location: "Frankfurt, Germany",
+            email: "info@radiox.de",
+            phone: "+49 69 29971222",
+            website: "https://www.radiox.de"
+        },
+    ];
 
     radioCountrySelect.addEventListener('change', function() {
         const selectedCountry = this.value;
