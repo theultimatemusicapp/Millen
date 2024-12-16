@@ -51,10 +51,6 @@ nav .nav-links {
     padding: 0;
 }
 
-nav .nav-links li {
-    /* Removed individual margin-left; using gap instead */
-}
-
 nav .nav-links a {
     color: #fff;
     text-decoration: none;
@@ -75,6 +71,7 @@ nav .nav-links a:hover {
     display: none;
     font-size: 24px;
     cursor: pointer;
+    color: #fff;
 }
 
 /* Show hamburger and hide nav-links on small screens */
@@ -100,7 +97,6 @@ nav .nav-links a:hover {
 
     .hamburger {
         display: block;
-        color: #fff;
     }
 }
 
@@ -377,6 +373,25 @@ footer {
 }
 
 /* ================================
+   Additional Utility Classes
+=============================== */
+
+/* Button Styles (Reusable) */
+.btn {
+    padding: 15px 30px;
+    background-color: #e76f51;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #d65a3c;
+}
+
+/* ================================
    Temporary Message Styling
 =============================== */
 
@@ -402,108 +417,8 @@ footer {
 }
 
 /* ================================
-   Additional Utility Classes
+   Posts Styling
 =============================== */
-
-/* Button Styles (Reusable) */
-.btn {
-    padding: 15px 30px;
-    background-color: #e76f51;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 18px;
-    transition: background-color 0.3s;
-}
-
-.btn:hover {
-    background-color: #d65a3c;
-}
-
-/* ================================
-   Forum Section Styles
-=============================== */
-
-.forum {
-    padding: 60px 20px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.forum h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #2a9d8f;
-}
-
-.forum-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 30px;
-    gap: 10px;
-}
-
-.forum-controls label {
-    font-size: 1rem;
-}
-
-.forum-controls select {
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.post-form {
-    margin-bottom: 40px;
-}
-
-.post-form h3 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #2a9d8f;
-    text-align: center;
-}
-
-.post-form form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.post-form label {
-    font-size: 1rem;
-}
-
-.post-form input[type="text"],
-.post-form textarea {
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: vertical;
-}
-
-.post-form textarea {
-    height: 100px;
-}
-
-.post-form button {
-    padding: 10px;
-    font-size: 1rem;
-    background-color: #2a9d8f;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
-
-.post-form button:hover {
-    background-color: #21867a;
-}
 
 .posts {
     margin-top: 20px;
