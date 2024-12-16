@@ -1,35 +1,17 @@
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* General Styles */
 body {
     font-family: 'Poppins', sans-serif;
-    color: #333;
+    margin: 0;
+    padding: 0;
     line-height: 1.6;
-    background-color: #f9f9f9;
-}
-
-/* Utility Classes */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
-
-.grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    color: #333;
 }
 
 /* Header Section */
-header {
-    background: #000;
-    padding: 1rem 0;
+.main-header {
+    background-color: #000;
     color: #fff;
+    padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -54,27 +36,24 @@ header {
 
 .nav-links {
     display: flex;
+    gap: 1rem;
     list-style: none;
-    gap: 1.5rem;
 }
 
 .nav-links a {
-    color: #fff;
     text-decoration: none;
+    color: #fff;
     font-weight: 600;
-    transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
     color: #ff6600;
 }
 
-/* Hamburger Menu */
 .hamburger {
     display: none;
     flex-direction: column;
     gap: 5px;
-    cursor: pointer;
 }
 
 .hamburger-bar {
@@ -85,15 +64,14 @@ header {
 
 /* Hero Section */
 .hero {
-    position: relative;
     background: url('images/hero-bg.jpg') no-repeat center center/cover;
-    color: #fff;
-    text-align: center;
-    padding: 6rem 1rem;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    color: #fff;
+    text-align: center;
 }
 
 .hero-overlay {
@@ -111,57 +89,16 @@ header {
     z-index: 2;
 }
 
-.hero h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.hero p {
-    margin-bottom: 2rem;
-    font-size: 1.2rem;
-}
-
-.btn-primary {
-    background: #ff6600;
-    color: #fff;
-    text-decoration: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 5px;
-    font-weight: 700;
-    transition: background 0.3s ease;
-}
-
-.btn-primary:hover {
-    background: #cc5200;
-}
-
-/* About Us Section */
-.about-us {
-    padding: 3rem 1rem;
-    background: #fff;
-    color: #333;
-}
-
-.about-us h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-}
-
-.about-image img {
-    width: 100%;
-    border-radius: 10px;
-}
-
 /* Features Section */
 .features {
-    background: #f9f9f9;
     padding: 3rem 1rem;
+    background-color: #f9f9f9;
 }
 
 .features h2 {
     text-align: center;
     margin-bottom: 2rem;
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 
 .feature-grid {
@@ -172,27 +109,17 @@ header {
 
 .feature-card {
     background: #fff;
-    padding: 1.5rem;
+    border: 1px solid #ddd;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
     text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.feature-card:hover {
-    transform: translateY(-10px);
-}
-
-.feature-icon {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: #ff6600;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .feature-card h3 {
-    font-size: 1.5rem;
     margin-bottom: 1rem;
-    color: #333;
+    color: #ff6600;
+    font-size: 1.5rem;
 }
 
 .feature-card p {
@@ -200,104 +127,18 @@ header {
 }
 
 .btn-secondary {
-    background: #000;
+    background-color: #000;
     color: #fff;
     text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 5px;
-    font-weight: 600;
 }
 
 .btn-secondary:hover {
-    background: #333;
+    background-color: #333;
 }
 
-/* Testimonials Section */
-.testimonials {
-    background: #fff;
-    padding: 3rem 1rem;
-    text-align: center;
-}
-
-.testimonials h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-}
-
-.testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.testimonial-card {
-    background: #f9f9f9;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.testimonial-card p {
-    margin-bottom: 1rem;
-    font-style: italic;
-    color: #555;
-}
-
-.testimonial-card h4 {
-    font-weight: bold;
-    color: #333;
-}
-
-/* Call to Action Section */
-.cta {
-    background: #000;
-    color: #fff;
-    text-align: center;
-    padding: 3rem 1rem;
-}
-
-.cta h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
-.cta .btn-primary {
-    background: #ff6600;
-}
-
-/* Footer */
-footer {
-    background: #222;
-    color: #ccc;
-    padding: 1.5rem 1rem;
-    text-align: center;
-}
-
-.footer-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.social-links {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-}
-
-.social-links a {
-    color: #ccc;
-    font-size: 1.2rem;
-    transition: color 0.3s ease;
-}
-
-.social-links a:hover {
-    color: #ff6600;
-}
-
-/* Media Queries */
+/* Responsive Toolbar */
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
@@ -308,10 +149,9 @@ footer {
         flex-direction: column;
         background: #000;
         position: absolute;
-        top: 100%;
         right: 0;
+        top: 60px;
         width: 100%;
-        text-align: center;
     }
 
     .nav-links.active {
