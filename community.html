@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Community - Music Revolution Web App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta description="Join the Music Revolution community! Engage in discussions, share your music, and collaborate with fellow artists and enthusiasts.">
+
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">MusicRevolution</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="venues.html">Venues</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="community.html">Community</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+        </nav>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Join the Music Revolution Community</h1>
+            <p>Connect, collaborate, and create with fellow music enthusiasts. Share your tracks, discuss industry trends, and find inspiration!</p>
+        </div>
+    </section>
+    
+    <!-- Main Content Section -->
+    <main>
+        <!-- Forum Section -->
+        <section class="forum">
+            <h2>Music Revolution Forum</h2>
+            
+            <!-- Subgroup Selection -->
+            <div class="forum-controls">
+                <label for="subgroupSelect">Select Subgroup:</label>
+                <select id="subgroupSelect">
+                    <option value="">-- Select a Subgroup --</option>
+                    <option value="General Chat">General Chat</option>
+                    <option value="Music Gear Sales">Music Gear Sales</option>
+                    <option value="Gig Listings">Gig Listings</option>
+                    <option value="Band Members">Band Members</option>
+                    <option value="Music Industry Insights">Music Industry Insights</option>
+                </select>
+            </div>
+            
+            <!-- Post Submission Form -->
+            <div class="post-form">
+                <h3>Leave a Message</h3>
+                <form id="messageForm">
+                    <input type="hidden" name="subgroup" id="formSubgroup" value="">
+                    
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" placeholder="Choose a username" required maxlength="50">
+                    
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
+                    
+                    <button type="submit">Post Message</button>
+                </form>
+            </div>
+            
+            <!-- Posts Display -->
+            <div class="posts">
+                <h3>Posts</h3>
+                <div id="postsContainer">
+                    <!-- Posts will be dynamically loaded here -->
+                    <p>Select a subgroup to view posts.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 MusicRevolution. All rights reserved.</p>
+    </footer>
+    
+    <!-- JavaScript for Forum Functionality -->
+    <script>
+        // Toggle Hamburger Menu for Mobile
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Forum Elements
+        const subgroupSelect = document.getElementById('subgroupSelect');
+        const formSubgroup = document.getElementById('formSubgroup');
+        const messageForm = document.getElementById('messageForm');
+        const postsContainer = document.getElementById('postsContainer');
+
+        // JSONBin.io Configuration
+        const JSONBIN_API_KEY = 'YOUR_JSONBIN_API_KEY'; // Replace with your API Key
+        const JSONBIN_ID = 'YOUR_JSONBIN_ID'; // Replace with your Bin ID
+        const JSONBIN_URL = `https://api.jsonbin.io/v3/b/${JSONBIN_ID}/latest`;
+
+        // Handle Subgroup Selection
+        subgroupSelect.addEventListener('change', function() {
+            const selectedSubgroup = this.value;
+            formSubgroup.value = selectedSubgroup;
+
+            if(selectedSubgroup) {
+                fetchPosts(selectedSubgroup);
+            } else {
+                postsContainer.innerHTML = '<p>Select a subgroup to view posts.</p>';
+            }
+        });
+
+        // Handle Form Submission
+        messageForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            const message = document.getElementById('message').value.trim();
+            const subgroup = formSubgroup.value;
+
+            if(!subgroup) {
+                alert('Please select a subgroup.');
+                return;
+            }
+
+            if(username === '' || message === '') {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            const newPost = {
+                username: escapeHtml(username),
+                message: escapeHtml(message),
+                timestamp: new Date().toLocaleString()
+            };
+
+            // Fetch existing posts from JSONBin
+            fetch(JSONBIN_URL, {
+                headers: {
+                    'X-Master-Key': JSONBIN_API_KEY
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                let postsData = data.record;
+                if(!postsData[subgroup]) {
+                    postsData[subgroup] = [];
+                }
+                postsData[subgroup].push(newPost);
+
+                // Update JSONBin with new posts
+                return fetch(JSONBIN_URL, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': JSONBIN_API_KEY
+                    },
+                    body: JSON.stringify(postsData)
+                });
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Clear form fields
+                messageForm.reset();
+                // Refresh posts display
+                fetchPosts(subgroup);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while posting your message.');
+            });
+        });
+
+        // Fetch and Display Posts
+        function fetchPosts(subgroup) {
+            fetch(JSONBIN_URL, {
+                headers: {
+                    'X-Master-Key': JSONBIN_API_KEY
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const postsData = data.record;
+                const subgroupPosts = postsData[subgroup] || [];
+
+                if(subgroupPosts.length === 0) {
+                    postsContainer.innerHTML = '<p>No posts in this subgroup yet. Be the first to post!</p>';
+                    return;
+                }
+
+                let output = '';
+                // Sort posts by timestamp descending
+                subgroupPosts.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+                subgroupPosts.forEach(post => {
+                    output += `
+                        <div class="post">
+                            <h4>${post.username} <span>${post.timestamp}</span></h4>
+                            <p>${post.message}</p>
+                        </div>
+                    `;
+                });
+
+                postsContainer.innerHTML = output;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                postsContainer.innerHTML = '<p>Error loading posts.</p>';
+            });
+        }
+
+        // Function to escape HTML to prevent XSS
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+    </script>
+</body>
+</html>
