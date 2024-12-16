@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="styles.css">
     <!-- Favicon (Optional) -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Font Awesome for Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <!-- Header Section -->
@@ -18,7 +20,7 @@
         <nav>
             <div class="container nav-container">
                 <div class="logo">
-                    <a href="index.html">MusicRevolution</a>
+                    <a href="index.html">Music<span>Revolution</span></a>
                 </div>
                 <ul class="nav-links" id="primary-navigation">
                     <li><a href="index.html">Home</a></li>
@@ -38,21 +40,27 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-overlay"></div>
         <div class="hero-content container">
             <h1>Revolutionize Your Music Journey</h1>
             <p>Empowering artists and venues by removing unnecessary barriers in the music industry.</p>
             <a href="#features" class="btn btn-primary">Discover How</a>
         </div>
+        <!-- Parallax Scrolling Background -->
+        <div class="parallax"></div>
     </section>
 
     <!-- About Us Section -->
     <section class="about-us" id="about-us">
-        <div class="container">
-            <h2>About Us</h2>
-            <p>
-                MusicRevolution was founded by two passionate individuals, <strong>Reuben Hester</strong>, a British-born artist, and <strong>Carl Tomich</strong>, a documentary filmmaker and DJ known for the film "Busking for Berlin". Both Reuben and Carl have extensive experience in various facets of the music industry—from performing in bands and DJing to creating music videos and being signed to labels. Witnessing firsthand the struggles that artists face, they joined forces to create a platform aimed at revitalizing a dying industry by empowering musicians and venues alike.
-            </p>
+        <div class="container grid-2">
+            <div class="about-image">
+                <img src="about-us.jpg" alt="About Us">
+            </div>
+            <div class="about-content">
+                <h2>About Us</h2>
+                <p>
+                    MusicRevolution was founded by two passionate individuals, <strong>Reuben Hester</strong>, a British-born artist, and <strong>Carl Tomich</strong>, a documentary filmmaker and DJ known for the film "Busking for Berlin". Both Reuben and Carl have extensive experience in various facets of the music industry—from performing in bands and DJing to creating music videos and being signed to labels. Witnessing firsthand the struggles that artists face, they joined forces to create a platform aimed at revitalizing a dying industry by empowering musicians and venues alike.
+                </p>
+            </div>
         </div>
     </section>
 
@@ -84,7 +92,7 @@
                     </div>
                     <h3>Global Venue Directory</h3>
                     <p>Access a comprehensive list of venues worldwide that support original music.</p>
-                    <a href="venues.html" class="btn btn-secondary">Explore Venues</a>
+                    <a href="venues.html" class="btn-small">Explore Venues</a>
                 </div>
                 <!-- Feature Card 4 -->
                 <div class="feature-card">
@@ -106,6 +114,23 @@
         </div>
     </section>
 
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>What Our Users Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"MusicRevolution has completely changed the way we book gigs. Direct connections with venues have made our tour planning so much easier!"</p>
+                    <h4>— The Soundwaves</h4>
+                </div>
+                <div class="testimonial-card">
+                    <p>"As a venue manager, finding talented bands has never been simpler. The mutual ratings system ensures we collaborate with reliable artists."</p>
+                    <h4>— Sarah L., Venue Manager</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Call to Action Section -->
     <section class="cta">
         <div class="container">
@@ -116,7 +141,7 @@
 
     <!-- Footer Section -->
     <footer>
-        <div class="container">
+        <div class="container footer-flex">
             <p>&copy; 2024 MusicRevolution. All rights reserved.</p>
             <ul class="social-links">
                 <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i><span class="sr-only">Facebook</span></a></li>
@@ -127,10 +152,7 @@
         </div>
     </footer>
 
-    <!-- Font Awesome for Icons -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
-    <!-- JavaScript for Hamburger Menu Functionality -->
+    <!-- JavaScript for Hamburger Menu and Parallax Effect -->
     <script>
         // Toggle Hamburger Menu
         const hamburger = document.querySelector('.hamburger');
@@ -140,6 +162,13 @@
             const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
             hamburger.setAttribute('aria-expanded', !expanded);
             navLinks.classList.toggle('active');
+        });
+
+        // Parallax Effect
+        window.addEventListener('scroll', function() {
+            const parallax = document.querySelector('.parallax');
+            let scrollPosition = window.pageYOffset;
+            parallax.style.transform = 'translateY(' + scrollPosition * 0.5 + 'px)';
         });
     </script>
 </body>
