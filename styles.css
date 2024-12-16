@@ -2,7 +2,7 @@
 
 /* ================================
    General Styles
-=============================== */
+============================== */
 
 /* Reset some default styles */
 * {
@@ -21,7 +21,7 @@ body {
 
 /* ================================
    Navigation Bar
-=============================== */
+============================== */
 
 nav {
     display: flex;
@@ -64,7 +64,7 @@ nav .nav-links a:hover {
 
 /* ================================
    Hamburger Menu (for Mobile)
-=============================== */
+============================== */
 
 /* Hamburger Menu */
 .hamburger {
@@ -102,7 +102,7 @@ nav .nav-links a:hover {
 
 /* ================================
    Hero Section
-=============================== */
+============================== */
 
 .hero {
     background: url('images/hero-banner.jpg') no-repeat center center/cover;
@@ -161,7 +161,7 @@ nav .nav-links a:hover {
 
 /* ================================
    About Us Section
-=============================== */
+============================== */
 
 .about-us {
     padding: 60px 20px;
@@ -181,11 +181,12 @@ nav .nav-links a:hover {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
+    color: #264653;
 }
 
 /* ================================
    Features Section
-=============================== */
+============================== */
 
 .features {
     padding: 60px 20px;
@@ -227,89 +228,8 @@ nav .nav-links a:hover {
 }
 
 /* ================================
-   Resources Section (resources.html)
-=============================== */
-
-.resources {
-    padding: 60px 20px;
-}
-
-.resources h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #2a9d8f;
-}
-
-.resources p {
-    font-size: 18px;
-    margin-bottom: 40px;
-    text-align: center;
-}
-
-.resource-section {
-    margin-bottom: 40px;
-}
-
-.resource-section h3 {
-    font-size: 24px;
-    color: #2a9d8f;
-    cursor: pointer;
-    position: relative;
-    padding: 10px;
-    border: 1px solid #2a9d8f;
-    border-radius: 5px;
-    background-color: #e9c46a;
-    transition: background-color 0.3s;
-}
-
-.resource-section h3:hover {
-    background-color: #d65a3c;
-}
-
-.resource-section h3::after {
-    content: '\25BC'; /* Down arrow */
-    position: absolute;
-    right: 15px;
-    transition: transform 0.3s;
-}
-
-.resource-section h3.active::after {
-    transform: rotate(180deg);
-}
-
-.resource-content {
-    display: none;
-    margin-top: 10px;
-    padding: 15px;
-    background-color: #f5f5f5;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.resource-content p {
-    margin-bottom: 10px;
-    color: #264653;
-}
-
-.download-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #e76f51;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 4px;
-    margin-top: 10px;
-    transition: background-color 0.3s;
-}
-
-.download-btn:hover {
-    background-color: #d65a3c;
-}
-
-/* ================================
    Call to Action Section
-=============================== */
+============================== */
 
 .cta {
     background-color: #2a9d8f;
@@ -325,7 +245,7 @@ nav .nav-links a:hover {
 
 /* ================================
    Footer
-=============================== */
+============================== */
 
 footer {
     background-color: #264653;
@@ -336,7 +256,7 @@ footer {
 
 /* ================================
    Responsive Design
-=============================== */
+============================== */
 
 /* Adjust navigation for smaller screens */
 @media (max-width: 768px) {
@@ -374,7 +294,7 @@ footer {
 
 /* ================================
    Additional Utility Classes
-=============================== */
+============================== */
 
 /* Button Styles (Reusable) */
 .btn {
@@ -393,7 +313,7 @@ footer {
 
 /* ================================
    Temporary Message Styling
-=============================== */
+============================== */
 
 /* Temporary Message Styling */
 .temp-message {
@@ -418,7 +338,7 @@ footer {
 
 /* ================================
    Posts Styling
-=============================== */
+============================== */
 
 .posts {
     margin-top: 20px;
