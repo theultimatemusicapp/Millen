@@ -66,6 +66,40 @@ nav .nav-links a:hover {
 }
 
 /* ================================
+   Hamburger Menu (for Mobile)
+=============================== */
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Show hamburger and hide nav-links on small screens */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #264653;
+        position: absolute;
+        top: 60px; /* Height of the nav */
+        left: 0;
+    }
+
+    .nav-links li {
+        text-align: center;
+        margin: 1rem 0;
+    }
+
+    .hamburger {
+        display: block;
+        color: #fff;
+    }
+}
+
+/* ================================
    Hero Section
 =============================== */
 
@@ -80,6 +114,7 @@ nav .nav-links a:hover {
     text-align: center;
     padding: 0 20px;
     position: relative;
+    margin-top: 60px; /* Height of the fixed nav */
 }
 
 .hero::before {
