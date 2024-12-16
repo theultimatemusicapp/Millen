@@ -2,8 +2,8 @@
 
 /* ================================
    General Styles
-=============================== */
-
+================================ */
+   
 /* Reset some default styles */
 * {
     margin: 0;
@@ -20,7 +20,7 @@ body {
 
 /* ================================
    Navigation Bar
-=============================== */
+================================ */
 
 nav {
     display: flex;
@@ -67,7 +67,7 @@ nav .nav-links a:hover {
 
 /* ================================
    Hamburger Menu (for Mobile)
-=============================== */
+================================ */
 
 /* Hamburger Menu */
 .hamburger {
@@ -101,7 +101,7 @@ nav .nav-links a:hover {
 
 /* ================================
    Hero Section
-=============================== */
+================================ */
 
 .hero {
     background: url('hero-banner.jpg') no-repeat center center/cover;
@@ -160,52 +160,52 @@ nav .nav-links a:hover {
 }
 
 /* ================================
-   About Us Section
-=============================== */
+   Venue Directory Section
+================================ */
 
-.about-us {
+.venues, .radio-stations {
     padding: 60px 20px;
-    background-color: #f4f4f4;
-    margin-top: 60px; /* Prevent overlap with fixed nav */
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.about-us h2 {
+.venues h2, .radio-stations h2 {
     font-size: 36px;
     margin-bottom: 20px;
     text-align: center;
     color: #2a9d8f;
 }
 
-.about-us p {
+.venues p, .radio-stations p {
     font-size: 18px;
-    max-width: 800px;
-    margin: 0 auto;
+    margin-bottom: 40px;
     text-align: center;
     color: #264653;
 }
 
-/* ================================
-   Features Section
-=============================== */
-
-.features {
-    padding: 60px 20px;
+.filters {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-.features h2 {
-    font-size: 36px;
-    margin-bottom: 40px;
-    text-align: center;
-    color: #2a9d8f;
+.filters select {
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-.feature-list {
+.listing-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
 }
 
-.feature-item {
+.listing-card {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -213,187 +213,33 @@ nav .nav-links a:hover {
     transition: transform 0.2s;
 }
 
-.feature-item:hover {
-    transform: scale(1.05);
+.listing-card:hover {
+    transform: scale(1.02);
 }
 
-.feature-item h3 {
+.listing-card h3 {
     color: #2a9d8f;
     margin-bottom: 10px;
 }
 
-.feature-item p {
-    color: #264653;
+.listing-card p {
+    margin: 5px 0;
     font-size: 16px;
-}
-
-/* ================================
-   Call to Action Section
-=============================== */
-
-.cta {
-    background-color: #2a9d8f;
-    color: #fff;
-    text-align: center;
-    padding: 60px 20px;
-}
-
-.cta h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
-}
-
-.cta .btn {
-    background-color: #e76f51;
-}
-
-.cta .btn:hover {
-    background-color: #d65a3c;
-}
-
-/* ================================
-   Resources Page Styles
-=============================== */
-
-.resources {
-    padding: 100px 20px 60px 20px; /* Adjusted for fixed nav */
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.resources h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #2a9d8f;
-}
-
-.resources p {
-    font-size: 18px;
-    margin-bottom: 40px;
-    text-align: center;
     color: #264653;
 }
 
-.resource-section {
-    margin-bottom: 40px;
-}
-
-.resource-section h3 {
-    font-size: 24px;
-    color: #2a9d8f;
-    cursor: pointer;
-    position: relative;
-}
-
-.resource-section h3::after {
-    content: '\25BC';
-    position: absolute;
-    right: 0;
-    transition: transform 0.3s;
-}
-
-.resource-section h3.active::after {
-    transform: rotate(180deg);
-}
-
-.resource-content {
-    display: none;
-    margin-top: 10px;
-    padding: 15px;
-    background-color: #f5f5f5;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.resource-content p {
-    margin-bottom: 10px;
-    color: #264653;
-}
-
-.download-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #e76f51;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 4px;
-    margin-top: 10px;
-}
-
-.download-btn:hover {
-    background-color: #d65a3c;
-}
-
-/* ================================
-   Contact Page Styles
-=============================== */
-
-.contact {
-    padding: 60px 20px;
-    background-color: #f4f4f4;
-    margin-top: 60px; /* Prevent overlap with fixed nav */
-}
-
-.contact h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #2a9d8f;
-}
-
-.contact p {
-    font-size: 18px;
-    margin-bottom: 40px;
-    text-align: center;
-    color: #264653;
-}
-
-.contact form {
-    max-width: 600px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #264653;
-}
-
-.form-group label span {
+.listing-card a {
     color: #e76f51;
+    text-decoration: none;
 }
 
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-.contact .btn {
-    align-self: center;
-    background-color: #e76f51;
-    padding: 10px 20px;
-    font-size: 18px;
-}
-
-.contact .btn:hover {
-    background-color: #d65a3c;
+.listing-card a:hover {
+    text-decoration: underline;
 }
 
 /* ================================
    Footer Styles
-=============================== */
+================================ */
 
 footer {
     background-color: #264653;
@@ -404,7 +250,7 @@ footer {
 
 /* ================================
    Responsive Design
-=============================== */
+================================ */
 
 @media (max-width: 768px) {
     nav .nav-links {
@@ -421,7 +267,7 @@ footer {
         font-size: 16px;
     }
 
-    .features h2, .about-us h2, .resources h2 {
+    .venues h2, .radio-stations h2 {
         font-size: 28px;
     }
 
