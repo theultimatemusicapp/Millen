@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resources - Music Revolution Web App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Inline Styles for Dropdown Menus and Resource Sections -->
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Navigation Bar */
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #264653;
+        color: #fff;
+        padding: 1rem 2rem;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
+
+    nav .logo a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.5rem;
+    }
+
+    nav .nav-links {
+        list-style: none;
+        display: flex;
+    }
+
+    nav .nav-links li {
+        margin-left: 1.5rem;
+    }
+
+    nav .nav-links a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1rem;
+    }
+
+    nav .nav-links a:hover {
+        color: #e9c46a;
+    }
+
+    /* Main Content */
+    .resources {
+        padding: 100px 20px 60px 20px; /* Adjusted for fixed nav */
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .resources h2 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #2a9d8f;
+    }
+
+    .resources p {
+        font-size: 18px;
+        margin-bottom: 40px;
+        text-align: center;
+        color: #264653;
+    }
+
+    .resource-section {
+        margin-bottom: 40px;
+    }
+
+    .resource-section h3 {
+        font-size: 24px;
+        color: #2a9d8f;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .resource-section h3::after {
+        content: '\25BC';
+        position: absolute;
+        right: 0;
+        transition: transform 0.3s;
+    }
+
+    .resource-section h3.active::after {
+        transform: rotate(180deg);
+    }
+
+    .resource-content {
+        display: none;
+        margin-top: 10px;
+        padding: 15px;
+        background-color: #f5f5f5;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .resource-content p {
+        margin-bottom: 10px;
+        color: #264653;
+    }
+
+    .download-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #e76f51;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 4px;
+        margin-top: 10px;
+    }
+
+    .download-btn:hover {
+        background-color: #d65a3c;
+    }
+
+    /* Footer */
+    footer {
+        background-color: #264653;
+        color: #fff;
+        text-align: center;
+        padding: 1rem 0;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        nav .nav-links {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        nav .nav-links li {
+            margin-left: 0;
+            margin-top: 10px;
+        }
+    }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">MusicRevolution</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="venues.html">Venues</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Section -->
+    <main>
+        <section class="resources">
+            <h2>Band Promotion Resources</h2>
+            <p>Access comprehensive guides and templates to effectively promote your band and reach new audiences.</p>
+
+            <!-- Resource Sections -->
+            <div class="resource-section">
+                <h3 onclick="toggleContent(this)">1. Optimise Your Spotify Profile</h3>
+                <div class="resource-content">
+                    <p><strong>Professional Profile:</strong> Use high-quality images, a compelling bio, and links to your socials.</p>
+                    <p><strong>Artist Pick:</strong> Highlight your best or newest track.</p>
+                    <p><strong>Playlists Section:</strong> Create and feature your own playlists, mixing your songs with others in your genre to attract similar audiences.</p>
+                    <a href="#" class="download-btn" onclick="downloadTemplate('optimise_spotify_profile')">Download Template</a>
+                </div>
+            </div>
+
+            <div class="resource-section">
+                <h3 onclick="toggleContent(this)">2. Leverage Spotify for Artists</h3>
+                <div class="resource-content">
+                    <p><strong>Claim Your Profile:</strong> If you haven’t already, claim your Spotify for Artists profile to access analytics and playlist submission tools.</p>
+                    <p><strong>Submit to Spotify Editorial Playlists:</strong> Use Spotify for Artists to pitch unreleased songs for playlist consideration.</p>
+                    <ul>
+                        <li>Focus on tracks that best represent your band.</li>
+                        <li>Include details like the mood, genre, instruments, and influences when submitting.</li>
+                    </ul>
+                    <a href="#" class="download-btn" onclick="downloadTemplate('spotify_for_artists')">Download Template</a>
+                </div>
+            </div>
+
+            <div class="resource-section">
+                <h3 onclick="toggleContent(this)">3. Reach Out to Playlist Curators</h3>
+                <div class="resource-content">
+                    <p><strong>Find Independent Curators:</strong></p>
+                    <ul>
+                        <li>Use platforms like SubmitHub, PlaylistPush, or Soundplate.</li>
+                        <li>Research playlist curators on Spotify and find their contact info (often available in playlist descriptions or through LinkedIn/social media).</li>
+                    </ul>
+                    <p><strong>Personalised Pitches:</strong></p>
+                    <ul>
+                        <li>Introduce your band, share a brief story about your song, and explain why it fits their playlist.</li>
+                        <li>Keep it short and respectful.</li>
+                    </ul>
+                    <a href="#" class="download-btn" onclick="downloadTemplate('playlist_curators')">Download Template</a>
+                </div>
+            </div>
+
+            <div class="resource-section">
+                <h3 onclick="toggleContent(this)">4. Promote Your Songs Organically</h3>
+                <div class="resource-content">
+                    <p><strong>Social Media Presence:</strong> Use Instagram, TikTok, or Facebook to share clips of your music, behind-the-scenes content, or even snippets of your life balancing work and music.</p>
+                    <p><strong>Engage Your Fans:</strong></p>
+                    <ul>
+                        <li>Ask them to share your songs and add them to their playlists.</li>
+                        <li>Create content encouraging fans to tag you in their stories while listening.</li>
+                    </ul>
+                    <p><strong>Collaborate with Local Artists:</strong> Feature or co-release tracks with other bands who have a following.</p>
+                    <a href="#" class="download-btn" onclick="downloadTemplate('promote_songs_organically')">Download Template</a>
+                </div>
+            </div>
+
+            <div class="resource-section">
+                <h3 onclick="toggleContent(this)">5. Leverage Your Existing Network</h3>
+                <div class="resource-content">
+                    <p><strong>Ask friends, family, and fans to add your music to their playlists, which helps with Spotify’s algorithm.</strong></p>
+                    <p><strong>Tap into any local radio stations or music blogs to promote your music; they might know curators who can help.</strong></p>
+                    <a href="#" class="download-btn" onclick="downloadTemplate('leverage_network')">Download Template</a>
+                </div>
+            </div>
+
+            <div class="resource-section">
+                <h3 onclick="toggleContent(this)">6. Use Paid Promotion Wisely</h3>
+                <div class="resource-content">
+                    <p><strong>Social Media Ads:</strong> Target specific audiences, such as rock fans in your region or those who follow similar bands.</p>
+                    <p><strong>Playlist Placement Services:</strong> Be cautious and only use reputable services, avoiding anything that seems too good to be true (fake streams can harm your profile).</p>
+                    <a href="#" class="download-btn" onclick="downloadTemplate('paid_promotion')">Download Template</a>
+                </div>
+            </div>
+
+            <div class="resource-section">
+                <h3 onclick="toggleContent(this)">7. Keep Releasing Music</h3>
+                <div class="resource-content">
+                    <p><strong>Regular releases keep you on Spotify’s radar and improve your chances of being added to playlists.</strong></p>
+                    <p><strong>Even if you’re busy, consider recording acoustic versions or releasing older live recordings.</strong></p>
+                    <a href="#" class="download-btn" onclick="downloadTemplate('keep_releasing_music')">Download Template</a>
+                </div>
+            </div>
+
+            <div class="resource-section">
+                <h3 onclick="toggleContent(this)">8. Focus on Your Story</h3>
+                <div class="resource-content">
+                    <p><strong>Highlight your busy lives—work, family, music—as part of your unique narrative. People connect with authenticity.</strong></p>
+                    <p><strong>Share short stories about your band’s journey in your song descriptions, social media posts, or even short videos.</strong></p>
+                    <a href="#" class="download-btn" onclick="downloadTemplate('focus_on_story')">Download Template</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 MusicRevolution. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Dropdown Toggles and Downloadable Templates -->
+    <script>
+    // Function to toggle visibility of resource content
+    function toggleContent(element) {
+        const content = element.nextElementSibling;
+        if(content.style.display === "block") {
+            content.style.display = "none";
+            element.classList.remove('active');
+        } else {
+            content.style.display = "block";
+            element.classList.add('active');
+        }
+    }
+
+    // Function to download template as a text file
+    function downloadTemplate(templateName) {
+        let content = "";
+        let filename = "";
+
+        switch(templateName) {
+            case 'optimise_spotify_profile':
+                content = `
+Optimise Your Spotify Profile Template
+
+1. Professional Profile:
+   - High-quality profile picture.
+   - Compelling bio: Describe your band's story, influences, and unique sound.
+   - Links to your social media platforms.
+
+2. Artist Pick:
+   - Select your best or newest track to feature at the top of your profile.
+   - Ensure it's representative of your current musical direction.
+
+3. Playlists Section:
+   - Create playlists that mix your songs with other tracks in your genre.
+   - Feature these playlists on your profile to attract similar audiences.
+
+Additional Tips:
+   - Regularly update your profile with new content.
+   - Engage with fans through Spotify's messaging tools.
+   `;
+                filename = "Optimise_Spotify_Profile_Template.txt";
+                break;
+
+            case 'spotify_for_artists':
+                content = `
+Spotify for Artists Guide Template
+
+1. Claim Your Profile:
+   - Visit Spotify for Artists.
+   - Log in with your Spotify account or create one.
+   - Follow the prompts to verify your artist status.
+
+2. Submit to Spotify Editorial Playlists:
+   - Navigate to the "Music" section.
+   - Select the unreleased track you want to pitch.
+   - Fill in the submission form with details:
+       - Mood: e.g., Energetic, Melancholic
+       - Genre: e.g., Rock, Indie
+       - Instruments: e.g., Electric Guitar, Drums
+       - Influences: e.g., Foo Fighters, Arctic Monkeys
+
+3. Follow Up:
+   - Monitor your submission status.
+   - Engage with Spotify's editorial team if necessary.
+
+Additional Tips:
+   - Submit at least 7 days before your release date.
+   - Focus on one track per submission for better consideration.
+   `;
+                filename = "Spotify_for_Artists_Guide_Template.txt";
+                break;
+
+            case 'playlist_curators':
+                content = `
+Reach Out to Playlist Curators Template
+
+1. Find Independent Curators:
+   - Platforms to use:
+       - SubmitHub
+       - PlaylistPush
+       - Soundplate
+
+2. Research Playlist Curators:
+   - Browse Spotify playlists in your genre.
+   - Note the curator's contact information from playlist descriptions or their social media profiles.
+
+3. Personalised Pitches:
+   - Introduction:
+       - Briefly introduce your band and your music style.
+   - Song Information:
+       - Share a short story or inspiration behind the track.
+   - Fit for Playlist:
+       - Explain why your song aligns with the playlist's theme or vibe.
+
+4. Follow-Up:
+   - Wait for a reasonable period before sending a polite follow-up if you don't receive a response.
+
+Additional Tips:
+   - Keep your pitch concise and to the point.
+   - Personalise each pitch to show genuine interest.
+   `;
+                filename = "Reach_Out_to_Playlist_Curators_Template.txt";
+                break;
+
+            case 'promote_songs_organically':
+                content = `
+Promote Your Songs Organically Template
+
+1. Social Media Presence:
+   - Platforms to use:
+       - Instagram
+       - TikTok
+       - Facebook
+   - Content Ideas:
+       - Share music clips.
+       - Behind-the-scenes videos.
+       - Snippets of your life balancing commitments.
+
+2. Engage Your Fans:
+   - Encourage fans to share your songs and add them to their playlists.
+   - Create interactive content like polls or challenges that involve your music.
+
+3. Collaborate with Local Artists:
+   - Reach out to other bands for collaborations.
+   - Co-release tracks to tap into each other's fan bases.
+
+Additional Tips:
+   - Schedule regular posts to maintain engagement.
+   - Use relevant hashtags to increase visibility.
+   `;
+                filename = "Promote_Songs_Organically_Template.txt";
+                break;
+
+            case 'leverage_network':
+                content = `
+Leverage Your Existing Network Template
+
+1. Engage Friends, Family, and Fans:
+   - Request them to add your music to their personal Spotify playlists.
+   - Share links to your songs and provide easy instructions on how to add them.
+
+2. Local Radio Stations and Music Blogs:
+   - Compile a list of local radio stations and music blogs.
+   - Reach out with your music and story, highlighting your unique aspects.
+
+3. Follow-Up:
+   - Send thank-you notes after successful placements.
+   - Keep them updated with your latest releases.
+
+Additional Tips:
+   - Offer exclusive content or early access to keep your network engaged.
+   - Attend local events to build personal connections.
+   `;
+                filename = "Leverage_Your_Existing_Network_Template.txt";
+                break;
+
+            case 'paid_promotion':
+                content = `
+Use Paid Promotion Wisely Template
+
+1. Social Media Ads:
+   - Platforms to use:
+       - Instagram Ads
+       - Facebook Ads
+   - Targeting Strategies:
+       - Rock music enthusiasts.
+       - Specific regions or demographics that align with your fan base.
+
+2. Playlist Placement Services:
+   - Reputable Services:
+       - SubmitHub
+       - PlaylistPush
+   - Cautions:
+       - Avoid services that offer fake streams or followers.
+       - Research and read reviews before committing.
+
+3. Budget Allocation:
+   - Allocate a specific budget for each promotional activity.
+   - Monitor the ROI and adjust strategies accordingly.
+
+Additional Tips:
+   - Start with a small budget to test effectiveness.
+   - Use analytics to track the performance of your ads.
+   `;
+                filename = "Use_Paid_Promotion_Wisely_Template.txt";
+                break;
+
+            case 'keep_releasing_music':
+                content = `
+Keep Releasing Music Template
+
+1. Regular Releases:
+   - Schedule releases consistently (e.g., monthly or bi-monthly).
+   - Plan a release calendar to stay organized.
+
+2. Alternative Versions:
+   - Record acoustic or unplugged versions of your songs.
+   - Release live recordings from gigs or sessions.
+
+3. Engagement:
+   - Announce upcoming releases on social media.
+   - Tease new tracks to build anticipation.
+
+Additional Tips:
+   - Collaborate with producers or other artists for fresh sounds.
+   - Gather feedback from fans to improve future releases.
+   `;
+                filename = "Keep_Releasing_Music_Template.txt";
+                break;
+
+            case 'focus_on_story':
+                content = `
+Focus on Your Story Template
+
+1. Highlight Your Busy Lives:
+   - Share stories about balancing work, family, and music.
+   - Create content that shows the authentic side of your band.
+
+2. Share Your Journey:
+   - Write short stories or blog posts about your band's formation, challenges, and milestones.
+   - Use social media to post updates and behind-the-scenes moments.
+
+3. Song Descriptions:
+   - Include narratives in your song descriptions on Spotify.
+   - Explain the inspiration and meaning behind each track.
+
+4. Visual Content:
+   - Create short videos or reels that tell your story.
+   - Use images that represent your band's journey and experiences.
+
+Additional Tips:
+   - Be genuine and transparent to build a deeper connection with your audience.
+   - Encourage fans to share their own stories related to your music.
+   `;
+                filename = "Focus_on_Your_Story_Template.txt";
+                break;
+
+            default:
+                alert("Template not found.");
+                return;
+        }
+
+        // Create a Blob with the content
+        const blob = new Blob([content], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+
+        // Create a temporary link to trigger download
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+
+        // Clean up
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+    </script>
+</body>
+</html>
