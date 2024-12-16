@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contact Us - Music Revolution Web App</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Link to external CSS file -->
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- Header Section -->
+<header>
+<nav>
+<div class="logo">
+<a href="index.html">MusicRevolution</a>
+</div>
+<ul class="nav-links">
+<li><a href="index.html">Home</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</nav>
+</header>
+
+<!-- Main Content Section -->
+<main>
+<!-- About Us Section -->
+<section class="about-us">
+<h2>About Us</h2>
+<p>
+MusicRevolution was founded by two passionate individuals, <strong>Reuben Hester</strong>, a British-born artist, and <strong>Carl Tomich</strong>, a documentary filmmaker and DJ known for the film "Busking for Berlin". Both Reuben and Carl have extensive experience in various facets of the music industry—from performing in bands and DJing to creating music videos and being signed to labels. Witnessing firsthand the struggles that artists face, they joined forces to create a platform aimed at revitalizing a dying industry by empowering musicians and venues alike.
+</p>
+</section>
+
+<!-- Contact Section -->
+<section class="contact">
+<h2>Contact Us</h2>
+<p>Have questions or want to get involved? We'd love to hear from you!</p>
+
+<!-- Contact Form -->
+<form action="https://formsubmit.co/carl@music-records.com.au" method="POST">
+<!-- Honeypot to prevent spam -->
+<input type="text" name="_honey" style="display:none">
+<!-- Disable CAPTCHA (optional) -->
+<input type="hidden" name="_captcha" value="false">
+<!-- Form Fields -->
+<div class="form-group">
+<label for="name">Name<span>*</span></label>
+<input type="text" id="name" name="name" required placeholder="Your Name">
+</div>
+
+<div class="form-group">
+<label for="email">Email<span>*</span></label>
+<input type="email" id="email" name="email" required placeholder="you@example.com">
+</div>
+
+<div class="form-group">
+<label for="message">Message<span>*</span></label>
+<textarea id="message" name="message" rows="5" required placeholder="Your message..."></textarea>
+</div>
+
+<button type="submit" class="btn">Send Message</button>
+</form>
+</section>
+</main>
+
+<!-- Footer Section -->
+<footer>
+<p>&copy; 2023 MusicRevolution. All rights reserved.</p>
+</footer>
+</body>
+</html>
