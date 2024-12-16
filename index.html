@@ -4,38 +4,45 @@
     <meta charset="UTF-8">
     <title>Music Revolution Web App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Link to external CSS file -->
-    <link rel="stylesheet" href="styles.css">
-
     <!-- SEO Meta Tags -->
     <meta name="description" content="MusicRevolution - Empowering artists and venues by connecting them directly and fostering a vibrant music community.">
     <meta name="author" content="Music Revolution">
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Favicon (Optional) -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
     <!-- Header Section -->
     <header>
         <nav>
-            <div class="logo">
-                <a href="index.html">MusicRevolution</a>
+            <div class="container nav-container">
+                <div class="logo">
+                    <a href="index.html">MusicRevolution</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="venues.html">Venues</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="community.html">Community</a></li>
+                </ul>
+                <button class="hamburger" aria-label="Toggle Navigation" aria-expanded="false" aria-controls="primary-navigation">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
             </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="venues.html">Venues</a></li>
-                <li><a href="resources.html">Resources</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="community.html">Community</a></li>
-            </ul>
-            <div class="hamburger" onclick="toggleMenu()" aria-label="Toggle Navigation">&#9776;</div>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
             <h1>Revolutionize Your Music Journey</h1>
             <p>Empowering artists and venues by removing unnecessary barriers in the music industry.</p>
-            <a href="#features" class="btn">Discover How</a>
+            <a href="#features" class="btn btn-primary">Discover How</a>
         </div>
     </section>
 
@@ -56,27 +63,42 @@
             <div class="feature-grid">
                 <!-- Feature Card 1 -->
                 <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
                     <h3>Direct Connections</h3>
                     <p>Eliminate middlemen by connecting bands and venues directly for gigs and collaborations.</p>
                 </div>
                 <!-- Feature Card 2 -->
                 <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
                     <h3>Mutual Ratings</h3>
                     <p>Bands and venues rate each other, fostering a trustworthy community built on real experiences.</p>
                 </div>
                 <!-- Feature Card 3 -->
                 <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
                     <h3>Global Venue Directory</h3>
                     <p>Access a comprehensive list of venues worldwide that support original music.</p>
-                    <a href="venues.html" class="btn-small">Explore Venues</a>
+                    <a href="venues.html" class="btn btn-secondary">Explore Venues</a>
                 </div>
                 <!-- Feature Card 4 -->
                 <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
                     <h3>Band Profiles</h3>
                     <p>Create and share your band's profile to showcase your music and grow your audience.</p>
                 </div>
                 <!-- Feature Card 5 -->
                 <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
                     <h3>Community Forums</h3>
                     <p>Engage with other artists and venues to share experiences, advice, and collaborate.</p>
                 </div>
@@ -88,22 +110,37 @@
     <section class="cta">
         <div class="container">
             <h2>Join Us in Transforming the Music Industry</h2>
-            <a href="contact.html" class="btn">Get Involved</a>
+            <a href="contact.html" class="btn btn-primary">Get Involved</a>
         </div>
     </section>
 
     <!-- Footer Section -->
     <footer>
-        <p>&copy; 2024 MusicRevolution. All rights reserved.</p>
+        <div class="container">
+            <p>&copy; 2024 MusicRevolution. All rights reserved.</p>
+            <ul class="social-links">
+                <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i><span class="sr-only">Facebook</span></a></li>
+                <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i><span class="sr-only">Twitter</span></a></li>
+                <li><a href="#"><i class="fab fa-instagram" aria-hidden="true"></i><span class="sr-only">Instagram</span></a></li>
+                <li><a href="#"><i class="fab fa-linkedin-in" aria-hidden="true"></i><span class="sr-only">LinkedIn</span></a></li>
+            </ul>
+        </div>
     </footer>
+
+    <!-- Font Awesome for Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
     <!-- JavaScript for Hamburger Menu Functionality -->
     <script>
         // Toggle Hamburger Menu
-        function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+            hamburger.setAttribute('aria-expanded', !expanded);
             navLinks.classList.toggle('active');
-        }
+        });
     </script>
 </body>
 </html>
