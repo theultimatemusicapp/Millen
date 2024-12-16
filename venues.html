@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Venue Directory - Music Revolution Web App</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Link to external CSS file -->
+<link rel="stylesheet" href="styles.css">
+
+<!-- Inline Styles for Dropdown Menus and Venue Cards -->
+<style>
+.venues {
+padding: 60px 20px;
+max-width: 1200px;
+margin: 0 auto;
+}
+
+.venues h2 {
+font-size: 36px;
+margin-bottom: 20px;
+text-align: center;
+}
+
+.venues p {
+font-size: 18px;
+margin-bottom: 40px;
+text-align: center;
+}
+
+.filters {
+display: flex;
+justify-content: center;
+margin-bottom: 30px;
+flex-wrap: wrap;
+}
+
+.filters select {
+padding: 10px;
+margin: 10px;
+font-size: 16px;
+border: 1px solid #ccc;
+border-radius: 4px;
+}
+
+.venue-list {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+gap: 20px;
+}
+
+.venue-card {
+background-color: #f5f5f5;
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.venue-card h3 {
+margin-top: 0;
+color: #264653;
+}
+
+.venue-card p {
+margin: 5px 0;
+font-size: 16px;
+}
+
+.venue-card a {
+color: #e76f51;
+text-decoration: none;
+}
+
+.venue-card a:hover {
+text-decoration: underline;
+}
+</style>
+</head>
+<body>
+<!-- Header Section -->
+<header>
+<nav>
+<div class="logo">
+<a href="index.html">MusicRevolution</a>
+</div>
+<ul class="nav-links">
+<li><a href="index.html">Home</a></li>
+<li><a href="venues.html">Venues</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</nav>
+</header>
+
+<!-- Main Content Section -->
+<main>
+<section class="venues">
+<h2>Global Venue Directory</h2>
+<p>Explore venues that support local original music with capacities ranging from 20 to 500 people.</p>
+
+<!-- Filters -->
+<div class="filters">
+<select id="countrySelect">
+<option value="">Select Country</option>
+<option value="Australia">Australia</option>
+<option value="United States">United States</option>
+<option value="United Kingdom">United Kingdom</option>
+<option value="Germany">Germany</option>
+<option value="France">France</option>
+</select>
+
+<select id="stateSelect" disabled>
+<option value="">Select State/Province</option>
+</select>
+
+<select id="citySelect" disabled>
+<option value="">Select City</option>
+</select>
+</div>
+
+<!-- Venue Listings -->
+<div class="venue-list" id="venueList">
+<!-- Venue Cards will be injected here -->
+</div>
+</section>
+</main>
+
+<!-- Footer Section -->
+<footer>
+<p>&copy; 2023 MusicRevolution. All rights reserved.</p>
+</footer>
+
+<!-- JavaScript for Filters -->
+<script>
+const venues = [
+// Example Venue Data Structure
+// Populate this array with real venue data
+{
+country: "Australia",
+state: "New South Wales",
+city: "Sydney",
+name: "The Small Stage",
+capacity: 100,
+address: "123 Music Lane, Sydney, NSW",
+website: "http://www.thesmallstage.com",
+email: "contact@thesmallstage.com"
+},
+// Add more venues here
+];
+
+const countrySelect = document.getElementById('countrySelect');
+const stateSelect = document.getElementById('stateSelect');
+const citySelect = document.getElementById('citySelect');
+const venueList = document.getElementById('venueList');
+
+const states = {
+"Australia": ["New South Wales", "Victoria", "Queensland", "Western Australia", "South Australia", "Tasmania", "Northern Territory"],
+"United States": ["New York", "California", "Illinois", "Texas", "Florida", "Arizona", "Nevada", "Massachusetts"],
+"United Kingdom": ["England", "Scotland", "Wales"],
+"Germany": ["Berlin", "Bavaria", "Hesse", "Saxony", "North Rhine-Westphalia"],
+"France": ["Île-de-France", "Provence-Alpes-Côte d'Azur", "Auvergne-Rhône-Alpes", "Nouvelle-Aquitaine", "Brittany", "Occitanie"]
+};
+
+const cities = {
+"New South Wales": ["Sydney", "Newcastle"],
+"Victoria": ["Melbourne", "Geelong"],
+"Queensland": ["Brisbane"],
+"Western Australia": ["Perth"],
+"South Australia": ["Adelaide"],
+"Tasmania": ["Hobart"],
+"Northern Territory": ["Darwin"],
+"New York": ["New York City"],
+"California": ["Los Angeles"],
+"Illinois": ["Chicago"],
+"Texas": ["Houston", "Austin"],
+"Florida": ["Miami", "Orlando"],
+"Arizona": ["Phoenix"],
+"Nevada": ["Las Vegas"],
+"Massachusetts": ["Boston"],
+"England": ["London", "Manchester", "Bristol", "Liverpool"],
+"Scotland": ["Edinburgh", "Glasgow"],
+"Wales": ["Cardiff"],
+"Berlin": ["Berlin"],
+"Bavaria": ["Munich"],
+"Hesse": ["Frankfurt", "Dresden", "Stuttgart"],
+"Saxony": ["Dresden"],
+"North Rhine-Westphalia": ["Cologne"],
+"Île-de-France": ["Paris"],
+"Provence-Alpes-Côte d'Azur": ["Marseille", "Nice"],
+"Auvergne-Rhône-Alpes": ["Lyon"],
+"Nouvelle-Aquitaine": ["Bordeaux"],
+"Brittany": ["Nantes"],
+"Occitanie": ["Toulouse", "Montpellier"]
+};
+
+countrySelect.addEventListener('change', function() {
+const selectedCountry = this.value;
+stateSelect.innerHTML = '<option value="">Select State/Province</option>';
+citySelect.innerHTML = '<option value="">Select City</option>';
+citySelect.disabled = true;
+
+if(selectedCountry) {
+states[selectedCountry].forEach(state => {
+const option = document.createElement('option');
+option.value = state;
+option.textContent = state;
+stateSelect.appendChild(option);
+});
+stateSelect.disabled = false;
+} else {
+stateSelect.disabled = true;
+citySelect.disabled = true;
+displayVenues([]);
+}
+});
+
+stateSelect.addEventListener('change', function() {
+const selectedState = this.value;
+citySelect.innerHTML = '<option value="">Select City</option>';
+
+if(selectedState) {
+cities[selectedState].forEach(city => {
+const option = document.createElement('option');
+option.value = city;
+option.textContent = city;
+citySelect.appendChild(option);
+});
+citySelect.disabled = false;
+} else {
+citySelect.disabled = true;
+displayVenues([]);
+}
+});
+
+citySelect.addEventListener('change', function() {
+const selectedCountry = countrySelect.value;
+const selectedState = stateSelect.value;
+const selectedCity = this.value;
+
+if(selectedCity) {
+const filteredVenues = venues.filter(venue => venue.country === selectedCountry && venue.state === selectedState && venue.city === selectedCity);
+displayVenues(filteredVenues);
+} else {
+displayVenues([]);
+}
+});
+
+function displayVenues(venuesToDisplay) {
+venueList.innerHTML = '';
+if(venuesToDisplay.length === 0) {
+venueList.innerHTML = '<p>No venues found for the selected criteria.</p>';
+return;
+}
+
+venuesToDisplay.forEach(venue => {
+const venueCard = document.createElement('div');
+venueCard.classList.add('venue-card');
+
+const venueName = document.createElement('h3');
+venueName.textContent = venue.name;
+venueCard.appendChild(venueName);
+
+const venueCapacity = document.createElement('p');
+venueCapacity.innerHTML = `<strong>Capacity:</strong> ${venue.capacity}`;
+venueCard.appendChild(venueCapacity);
+
+const venueAddress = document.createElement('p');
+venueAddress.innerHTML = `<strong>Address:</strong> ${venue.address}`;
+venueCard.appendChild(venueAddress);
+
+const venueWebsite = document.createElement('p');
+venueWebsite.innerHTML = `<strong>Website:</strong> <a href="${venue.website}" target="_blank">${venue.website}</a>`;
+venueCard.appendChild(venueWebsite);
+
+const venueEmail = document.createElement('p');
+venueEmail.innerHTML = `<strong>Email:</strong> <a href="mailto:${venue.email}">${venue.email}</a>`;
+venueCard.appendChild(venueEmail);
+
+venueList.appendChild(venueCard);
+});
+}
+</script>
+</body>
+</html>
