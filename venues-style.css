@@ -14,11 +14,10 @@ body {
     padding: 1rem;
 }
 
-/* Header and Navigation */
+/* Header & Navigation */
 .main-header {
-    background: #333;
+    background-color: #333;
     color: #fff;
-    padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -30,24 +29,32 @@ body {
     align-items: center;
 }
 
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Logo Styles */
 .logo a {
     font-size: 1.5rem;
     font-weight: 700;
     text-decoration: none;
-    color: #fff;
+    color: #fff; /* White for "Music" */
 }
 
-.nav-links {
-    display: flex;
-    gap: 1rem;
-    list-style: none;
+.logo a span {
+    color: #ff9800; /* Orange for "Revolution" */
 }
 
-.nav-links a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-}
+/* Additional sections and styles below... */
+
 
 .nav-links a.active {
     border-bottom: 2px solid #ff9800;
