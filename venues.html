@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore local music venues and radio stations worldwide that support original music.">
-    <title>Venue Directory - Music Revolution</title>
+    <meta name="description" content="Explore global music venues and radio stations to connect your music with the right audience.">
+    <title>Venues & Radio Directory - Music Revolution</title>
 
     <!-- External CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="venues-style.css">
+
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header Section -->
@@ -23,6 +29,11 @@
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="community.html">Community</a></li>
             </ul>
+            <button class="hamburger" aria-label="Toggle Navigation" aria-expanded="false" aria-controls="primary-navigation">
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+            </button>
         </nav>
     </header>
 
@@ -30,44 +41,62 @@
     <section class="hero">
         <div class="hero-overlay"></div>
         <div class="hero-content container">
-            <h1>Find Your Perfect Venue & Radio Station</h1>
-            <p>Discover local music venues and radio stations worldwide that support original music.</p>
+            <h1>Explore Music Venues & Radio Stations</h1>
+            <p>Find the perfect venues to perform and radio stations to broadcast your sound worldwide.</p>
         </div>
     </section>
 
-    <!-- Main Content Section -->
-    <main>
-        <!-- Venue Directory Section -->
-        <section class="venues container">
-            <h2>Global Venue Directory</h2>
-            <p>Explore venues that support local original music with capacities up to 500 people.</p>
+    <!-- Venues Directory Section -->
+    <section class="venues container">
+        <h2>Global Venue Directory</h2>
+        <p>Browse venues that support live, original music with capacities ranging from small grassroots spaces to mid-sized halls.</p>
 
-            <!-- Filters -->
-            <div class="filters">
-                <select id="countrySelect">
-                    <option value="">Select Country</option>
-                    <option value="Australia">Australia</option>
-                    <option value="United States">United States</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                </select>
+        <!-- Dropdown Filters -->
+        <div class="filters">
+            <select id="countrySelect">
+                <option value="">Select Country</option>
+                <option value="Australia">Australia</option>
+                <option value="United States">United States</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="Germany">Germany</option>
+                <option value="Canada">Canada</option>
+            </select>
+            <select id="stateSelect" disabled>
+                <option value="">Select State/Province</option>
+            </select>
+            <select id="citySelect" disabled>
+                <option value="">Select City</option>
+            </select>
+        </div>
 
-                <select id="stateSelect" disabled>
-                    <option value="">Select State</option>
-                </select>
+        <!-- Venue Listings -->
+        <div id="venueList" class="listing-grid">
+            <p>Select a country, state, and city to view venues.</p>
+        </div>
+    </section>
 
-                <select id="citySelect" disabled>
-                    <option value="">Select City</option>
-                </select>
-            </div>
-
-            <!-- Venue Listings -->
-            <div class="listing-list" id="venueList"></div>
-        </section>
-    </main>
+    <!-- Radio Station Directory -->
+    <section class="radio-stations container">
+        <h2>Global Radio Stations</h2>
+        <p>Connect with radio stations worldwide to expand your music’s reach.</p>
+        <select id="radioCountrySelect">
+            <option value="">Select Country</option>
+            <option value="United States">United States</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="Germany">Germany</option>
+            <option value="France">France</option>
+            <option value="Australia">Australia</option>
+        </select>
+        <div id="radioList" class="listing-grid">
+            <p>Select a country to view radio stations.</p>
+        </div>
+    </section>
 
     <!-- Footer Section -->
     <footer>
-        <p>&copy; 2024 MusicRevolution. All rights reserved.</p>
+        <div class="container footer-flex">
+            <p>&copy; 2024 MusicRevolution. All rights reserved.</p>
+        </div>
     </footer>
 
     <!-- JavaScript -->
