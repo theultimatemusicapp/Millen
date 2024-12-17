@@ -108,184 +108,189 @@
 
     <!-- JavaScript -->
     <script>
-        // Toggle Hamburger Menu
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
+    // Toggle Hamburger Menu
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
 
-        hamburger.addEventListener('click', () => {
-            const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
-            hamburger.setAttribute('aria-expanded', !expanded);
-            navLinks.classList.toggle('active');
+    hamburger.addEventListener('click', () => {
+        const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+        hamburger.setAttribute('aria-expanded', !expanded);
+        navLinks.classList.toggle('active');
+    });
+
+    // JSONbin credentials
+    const binId = '67602792e41b4d34e4664935';
+    const masterKey = '$2a$10$s48wzeUoG0hc6NH5glBFceETNDEmqqZF7sjS1YLHd.cz7QMqTpBcK';
+
+    // Elements
+    const subgroupSelect = document.getElementById('subgroupSelect');
+    const formSubgroup = document.getElementById('formSubgroup');
+    const messageForm = document.getElementById('messageForm');
+    const postsContainer = document.getElementById('postsContainer');
+
+    async function fetchCurrentData() {
+        const res = await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
+            headers: {
+                'X-Master-Key': masterKey
+            }
+        });
+        if (!res.ok) {
+            console.error('Error fetching data from JSONbin:', res.status, await res.text());
+            return { posts: [] };
+        }
+        const data = await res.json();
+        return data.record;
+    }
+
+    async function updateData(updatedRecord) {
+        const res = await fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Master-Key': masterKey,
+                'X-Bin-Versioning': 'false' // Disables versioning, always update same version
+            },
+            body: JSON.stringify(updatedRecord)
         });
 
-        // JSONbin credentials
-        const binId = '67602792e41b4d34e4664935';
-        const masterKey = '$2a$10$s48wzeUoG0hc6NH5glBFceETNDEmqqZF7sjS1YLHd.cz7QMqTpBcK';
+        if (!res.ok) {
+            console.error('Error updating data on JSONbin:', res.status, await res.text());
+        } else {
+            const responseData = await res.json();
+            console.log('Update successful:', responseData);
+        }
+    }
 
-        // Elements
-        const subgroupSelect = document.getElementById('subgroupSelect');
-        const formSubgroup = document.getElementById('formSubgroup');
-        const messageForm = document.getElementById('messageForm');
-        const postsContainer = document.getElementById('postsContainer');
+    async function loadPosts(subgroup) {
+        const allData = await fetchCurrentData();
+        const allPosts = allData.posts || [];
+        const posts = subgroup ? allPosts.filter(p => p.subgroup === subgroup) : [];
+        displayPosts(posts, subgroup);
+    }
 
-        // Fetch current data from JSONbin
-        async function fetchCurrentData() {
-            const res = await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
-                headers: {
-                    'X-Master-Key': masterKey
-                }
-            });
-            const data = await res.json();
-            return data.record;
+    function displayPosts(posts, subgroup) {
+        if (!subgroup) {
+            postsContainer.innerHTML = `<p>Select a subgroup to view posts.</p>`;
+            return;
         }
 
-        // Update data in JSONbin
-        async function updateData(updatedRecord) {
-            await fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-Master-Key': masterKey
-                },
-                body: JSON.stringify(updatedRecord)
-            });
+        if (posts.length === 0) {
+            postsContainer.innerHTML = `<p>Now displaying posts for <strong>${subgroup}</strong>. No posts yet!</p>`;
+            return;
         }
 
-        // Load posts for a particular subgroup
-        async function loadPosts(subgroup) {
-            const allData = await fetchCurrentData();
-            const allPosts = allData.posts || [];
-            const posts = subgroup ? allPosts.filter(p => p.subgroup === subgroup) : [];
-            displayPosts(posts, subgroup);
-        }
+        postsContainer.innerHTML = `<p>Now displaying posts for <strong>${subgroup}</strong>:</p>`;
 
-        // Display posts and replies
-        function displayPosts(posts, subgroup) {
-            if (!subgroup) {
-                postsContainer.innerHTML = `<p>Select a subgroup to view posts.</p>`;
-                return;
+        posts.forEach(post => {
+            let repliesHTML = '';
+            if (post.replies && post.replies.length > 0) {
+                repliesHTML = '<div class="replies">';
+                post.replies.forEach(r => {
+                    repliesHTML += `
+                        <div class="reply">
+                            <h5>${r.username} <span>${r.time}</span></h5>
+                            <p>${r.message}</p>
+                        </div>
+                    `;
+                });
+                repliesHTML += '</div>';
             }
 
-            if (posts.length === 0) {
-                postsContainer.innerHTML = `<p>Now displaying posts for <strong>${subgroup}</strong>. No posts yet!</p>`;
-                return;
-            }
+            postsContainer.insertAdjacentHTML('beforeend', `
+                <div class="post">
+                    <h4>${post.username} <span>${post.time}</span></h4>
+                    <p>${post.message}</p>
+                    ${repliesHTML}
+                    <form class="reply-form" data-post-id="${post.id}">
+                        <input type="text" name="username" placeholder="Your name" required>
+                        <input type="text" name="message" placeholder="Your reply" required>
+                        <button type="submit">Reply</button>
+                    </form>
+                </div>
+            `);
+        });
 
-            postsContainer.innerHTML = `<p>Now displaying posts for <strong>${subgroup}</strong>:</p>`;
+        // Add event listeners to each reply form
+        document.querySelectorAll('.reply-form').forEach(form => {
+            form.addEventListener('submit', handleReplySubmit);
+        });
+    }
 
-            posts.forEach(post => {
-                let repliesHTML = '';
-                if (post.replies && post.replies.length > 0) {
-                    repliesHTML = '<div class="replies">';
-                    post.replies.forEach(r => {
-                        repliesHTML += `
-                            <div class="reply">
-                                <h5>${r.username} <span>${r.time}</span></h5>
-                                <p>${r.message}</p>
-                            </div>
-                        `;
-                    });
-                    repliesHTML += '</div>';
-                }
+    async function saveNewPost(username, message, subgroup) {
+        const allData = await fetchCurrentData();
+        const posts = allData.posts || [];
+        const newPost = {
+            id: Date.now().toString(),
+            subgroup: subgroup,
+            username: username,
+            message: message,
+            time: new Date().toLocaleString(),
+            replies: []
+        };
+        posts.push(newPost);
+        allData.posts = posts;
+        await updateData(allData);
+    }
 
-                postsContainer.insertAdjacentHTML('beforeend', `
-                    <div class="post">
-                        <h4>${post.username} <span>${post.time}</span></h4>
-                        <p>${post.message}</p>
-                        ${repliesHTML}
-                        <form class="reply-form" data-post-id="${post.id}">
-                            <input type="text" name="username" placeholder="Your name" required>
-                            <input type="text" name="message" placeholder="Your reply" required>
-                            <button type="submit">Reply</button>
-                        </form>
-                    </div>
-                `);
-            });
+    async function handleReplySubmit(e) {
+        e.preventDefault();
+        const form = e.target;
+        const postId = form.getAttribute('data-post-id');
+        const username = form.querySelector('input[name="username"]').value.trim();
+        const replyMessage = form.querySelector('input[name="message"]').value.trim();
 
-            // Add event listeners to each reply form
-            document.querySelectorAll('.reply-form').forEach(form => {
-                form.addEventListener('submit', handleReplySubmit);
-            });
+        if (!username || !replyMessage) return;
+
+        const allData = await fetchCurrentData();
+        const posts = allData.posts || [];
+        const post = posts.find(p => p.id === postId);
+        if (!post) return;
+
+        const newReply = {
+            username,
+            message: replyMessage,
+            time: new Date().toLocaleString()
+        };
+
+        post.replies = post.replies || [];
+        post.replies.push(newReply);
+
+        await updateData(allData);
+
+        // Reload posts
+        const subgroup = subgroupSelect.value;
+        await loadPosts(subgroup);
+    }
+
+    subgroupSelect.addEventListener('change', async function() {
+        const selectedSubgroup = this.value;
+        formSubgroup.value = selectedSubgroup;
+
+        if (selectedSubgroup) {
+            await loadPosts(selectedSubgroup);
+        } else {
+            postsContainer.innerHTML = `<p>Select a subgroup to view posts.</p>`;
+        }
+    });
+
+    messageForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const username = document.getElementById('username').value.trim();
+        const message = document.getElementById('message').value.trim();
+        const subgroup = formSubgroup.value;
+
+        if (!subgroup) {
+            alert('Please select a subgroup first.');
+            return;
         }
 
-        // Save a new post
-        async function saveNewPost(username, message, subgroup) {
-            const allData = await fetchCurrentData();
-            const posts = allData.posts || [];
-            const newPost = {
-                id: Date.now().toString(), // Unique ID
-                subgroup: subgroup,
-                username: username,
-                message: message,
-                time: new Date().toLocaleString(),
-                replies: []
-            };
-            posts.push(newPost);
-            allData.posts = posts;
-            await updateData(allData);
-        }
-
-        // Handle posting a reply
-        async function handleReplySubmit(e) {
-            e.preventDefault();
-            const form = e.target;
-            const postId = form.getAttribute('data-post-id');
-            const username = form.querySelector('input[name="username"]').value.trim();
-            const replyMessage = form.querySelector('input[name="message"]').value.trim();
-
-            if (!username || !replyMessage) return;
-
-            const allData = await fetchCurrentData();
-            const posts = allData.posts || [];
-            const post = posts.find(p => p.id === postId);
-            if (!post) return;
-
-            const newReply = {
-                username,
-                message: replyMessage,
-                time: new Date().toLocaleString()
-            };
-
-            post.replies = post.replies || [];
-            post.replies.push(newReply);
-
-            await updateData(allData);
-
-            // Reload posts
-            const subgroup = subgroupSelect.value;
+        if (username && message) {
+            await saveNewPost(username, message, subgroup);
+            messageForm.reset();
             await loadPosts(subgroup);
         }
+    });
+</script>
 
-        // On subgroup change, load posts
-        subgroupSelect.addEventListener('change', async function() {
-            const selectedSubgroup = this.value;
-            formSubgroup.value = selectedSubgroup;
-
-            if (selectedSubgroup) {
-                await loadPosts(selectedSubgroup);
-            } else {
-                postsContainer.innerHTML = `<p>Select a subgroup to view posts.</p>`;
-            }
-        });
-
-        // On form submit for new post
-        messageForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const username = document.getElementById('username').value.trim();
-            const message = document.getElementById('message').value.trim();
-            const subgroup = formSubgroup.value;
-
-            if (!subgroup) {
-                alert('Please select a subgroup first.');
-                return;
-            }
-
-            if (username && message) {
-                await saveNewPost(username, message, subgroup);
-                messageForm.reset();
-                await loadPosts(subgroup);
-            }
-        });
-    </script>
 </body>
 </html>
