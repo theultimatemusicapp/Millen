@@ -14,7 +14,8 @@ body {
     padding: 1rem;
 }
 
-/* Header */
+
+/* Header & Navigation */
 .main-header {
     background-color: #333;
     color: #fff;
@@ -41,9 +42,20 @@ body {
     font-weight: 600;
 }
 
-.nav-links a.active {
-    border-bottom: 2px solid #ff9800;
+/* Logo Styles */
+.logo a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: #fff; /* White for "Music" */
 }
+
+.logo a span {
+    color: #ff9800; /* Orange for "Revolution" */
+}
+
+/* Additional sections and styles below... */
+
 
 /* Hero Section */
 .hero {
