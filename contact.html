@@ -2,52 +2,64 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contact Us - Music Revolution Web App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Music Revolution - We're here to help you connect and grow in the music industry. Reach out to us today!">
+    <title>Contact Us - Music Revolution</title>
 
-    <!-- Link to external CSS file -->
+    <!-- External CSS -->
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Font Awesome for Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header Section -->
-    <header>
-        <nav>
+    <header class="main-header">
+        <nav class="nav-container container">
             <div class="logo">
-                <a href="index.html">MusicRevolution</a>
+                <a href="index.html">Music<span>Revolution</span></a>
             </div>
-            <ul class="nav-links">
+            <ul class="nav-links" id="primary-navigation">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="venues.html">Venues</a></li>
                 <li><a href="resources.html">Resources</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="community.html">Community</a></li>
             </ul>
+            <button class="hamburger" aria-label="Toggle Navigation" aria-expanded="false" aria-controls="primary-navigation">
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+            </button>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
             <h1>Get in Touch with Us</h1>
-            <p>We're here to help you revolutionize your music journey. Whether you have questions, feedback, or want to collaborate, reach out to us!</p>
-            <!-- Optional: Add a call-to-action button -->
-            <!-- <a href="#contact-form" class="btn">Send a Message</a> -->
+            <p>We're here to help you revolutionize your music journey. Reach out to collaborate, share feedback, or ask questions!</p>
         </div>
     </section>
 
     <!-- Main Content Section -->
     <main>
         <!-- Contact Section -->
-        <section class="contact" id="contact-form">
+        <section class="contact container">
             <h2>Contact Us</h2>
-            <p>Have questions or want to get involved? We'd love to hear from you!</p>
+            <p>Have questions or want to get involved? Fill out the form below, and we'll get back to you as soon as possible.</p>
 
             <!-- Contact Form -->
-            <form action="https://formsubmit.co/carl@music-records.com.au" method="POST">
+            <form action="https://formsubmit.co/carl@music-records.com.au" method="POST" class="contact-form">
                 <!-- Honeypot to prevent spam -->
                 <input type="text" name="_honey" style="display:none">
-                <!-- Disable CAPTCHA (optional) -->
+                <!-- Disable CAPTCHA -->
                 <input type="hidden" name="_captcha" value="false">
-                <!-- Form Fields -->
+
                 <div class="form-group">
                     <label for="name">Name<span>*</span></label>
                     <input type="text" id="name" name="name" required placeholder="Your Name">
@@ -68,14 +80,34 @@
                     <textarea id="message" name="message" rows="5" required placeholder="Your message..."></textarea>
                 </div>
 
-                <button type="submit" class="btn">Send Message</button>
+                <button type="submit" class="btn btn-primary">Send Message</button>
             </form>
         </section>
     </main>
 
     <!-- Footer Section -->
     <footer>
-        <p>&copy; 2024 MusicRevolution. All rights reserved.</p>
+        <div class="container footer-flex">
+            <p>&copy; 2024 MusicRevolution. All rights reserved.</p>
+            <ul class="social-links">
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+            </ul>
+        </div>
     </footer>
+
+    <!-- JavaScript -->
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+            hamburger.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
