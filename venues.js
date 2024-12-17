@@ -1,4 +1,31 @@
+const venueList = document.getElementById('venueList');
+
 const venues = [
+    { name: "Sydney Opera House", capacity: "500", address: "Sydney, Australia" },
+    { name: "The Forum", capacity: "450", address: "Melbourne, Australia" },
+    { name: "Brixton Academy", capacity: "500", address: "London, UK" },
+    { name: "The Fillmore", capacity: "400", address: "San Francisco, US" }
+];
+
+// Display Venues
+function displayVenues() {
+    venueList.innerHTML = ""; // Clear previous list
+    venues.forEach(venue => {
+        const card = document.createElement("div");
+        card.className = "listing-card";
+        card.innerHTML = `
+            <h3>${venue.name}</h3>
+            <p><strong>Capacity:</strong> ${venue.capacity}</p>
+            <p><strong>Address:</strong> ${venue.address}</p>
+        `;
+        venueList.appendChild(card);
+    });
+}
+
+displayVenues();
+
+
+
   {
     name: "2001 Goodwill Games",
     city: "Brisbane",
