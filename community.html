@@ -2,45 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Community - Music Revolution Web App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Join the Music Revolution community! Engage in discussions, share your music, and collaborate with fellow artists and enthusiasts.">
+    <title>Community - Music Revolution</title>
 
-    <!-- Link to external CSS file -->
-    <link rel="stylesheet" href="styles.css">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css"> <!-- Global CSS -->
+    <link rel="stylesheet" href="style-community.css"> <!-- Page-specific CSS -->
+
+    <!-- Font Awesome for Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <!-- Header Section -->
-    <header>
-        <nav>
+    <header class="main-header">
+        <nav class="nav-container container">
             <div class="logo">
-                <a href="index.html">MusicRevolution</a>
+                <a href="index.html">Music<span>Revolution</span></a>
             </div>
-            <ul class="nav-links">
+            <ul class="nav-links" id="primary-navigation">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="venues.html">Venues</a></li>
                 <li><a href="resources.html">Resources</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="community.html">Community</a></li>
+                <li><a href="community.html" class="active">Community</a></li>
             </ul>
-            <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+            <button class="hamburger" aria-label="Toggle Navigation" aria-expanded="false" aria-controls="primary-navigation">
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+            </button>
         </nav>
     </header>
-    
+
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
             <h1>Join the Music Revolution Community</h1>
             <p>Connect, collaborate, and create with fellow music enthusiasts. Share your tracks, discuss industry trends, and find inspiration!</p>
         </div>
     </section>
-    
-    <!-- Main Content Section -->
-    <main>
+
+    <!-- Main Content -->
+    <main class="container">
         <!-- Forum Section -->
         <section class="forum">
             <h2>Music Revolution Forum</h2>
-            
+
             <!-- Subgroup Selection -->
             <div class="forum-controls">
                 <label for="subgroupSelect">Select Subgroup:</label>
@@ -53,46 +62,61 @@
                     <option value="Music Industry Insights">Music Industry Insights</option>
                 </select>
             </div>
-            
+
             <!-- Post Submission Form -->
             <div class="post-form">
                 <h3>Leave a Message</h3>
                 <form id="messageForm">
                     <input type="hidden" name="subgroup" id="formSubgroup" value="">
-                    
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" placeholder="Choose a username" required maxlength="50">
-                    
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
-                    
-                    <button type="submit">Post Message</button>
+
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" placeholder="Choose a username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" placeholder="Type your message here..." rows="5" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Post Message</button>
                 </form>
             </div>
-            
+
             <!-- Posts Display -->
             <div class="posts">
                 <h3>Posts</h3>
                 <div id="postsContainer">
-                    <!-- Posts will be dynamically loaded here -->
                     <p>Select a subgroup to view posts.</p>
                 </div>
             </div>
         </section>
     </main>
-    
-    <!-- Footer Section -->
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 MusicRevolution. All rights reserved.</p>
+        <div class="container footer-flex">
+            <p>&copy; 2024 MusicRevolution. All rights reserved.</p>
+            <ul class="social-links">
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+            </ul>
+        </div>
     </footer>
-    
-    <!-- JavaScript for Forum Functionality -->
+
+    <!-- JavaScript -->
     <script>
         // Toggle Hamburger Menu for Mobile
-        function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+            hamburger.setAttribute('aria-expanded', !expanded);
             navLinks.classList.toggle('active');
-        }
+        });
 
         // Forum Elements
         const subgroupSelect = document.getElementById('subgroupSelect');
@@ -100,20 +124,15 @@
         const messageForm = document.getElementById('messageForm');
         const postsContainer = document.getElementById('postsContainer');
 
-        // JSONBin.io Configuration
-        const JSONBIN_API_KEY = '$2a$10$6LoEm8m3gNY9xez62lZ7q.pdEORlYbQhqjyDQob5vPLfhC9ySQtzW'; // Your Public API Key
-        const JSONBIN_ID = '67602792e41b4d34e4664935'; // Your Bin ID   
-        const JSONBIN_URL = `https://api.jsonbin.io/v3/b/${JSONBIN_ID}/latest`;
-
-        // Handle Subgroup Selection
+        // Display Subgroup Posts
         subgroupSelect.addEventListener('change', function() {
             const selectedSubgroup = this.value;
             formSubgroup.value = selectedSubgroup;
 
-            if(selectedSubgroup) {
-                fetchPosts(selectedSubgroup);
+            if (selectedSubgroup) {
+                postsContainer.innerHTML = `<p>Now displaying posts for <strong>${selectedSubgroup}</strong>.</p>`;
             } else {
-                postsContainer.innerHTML = '<p>Select a subgroup to view posts.</p>';
+                postsContainer.innerHTML = `<p>Select a subgroup to view posts.</p>`;
             }
         });
 
@@ -124,137 +143,22 @@
             const message = document.getElementById('message').value.trim();
             const subgroup = formSubgroup.value;
 
-            if(!subgroup) {
-                alert('Please select a subgroup.');
+            if (!subgroup) {
+                alert('Please select a subgroup first.');
                 return;
             }
 
-            if(username === '' || message === '') {
-                alert('Please fill in all fields.');
-                return;
-            }
-
-            const newPost = {
-                username: escapeHtml(username),
-                message: escapeHtml(message),
-                timestamp: new Date().toLocaleString()
-            };
-
-            // Fetch existing posts from JSONBin
-            fetch(JSONBIN_URL, {
-                headers: {
-                    'X-Master-Key': JSONBIN_API_KEY
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.json();
-            })
-            .then(data => {
-                let postsData = data.record;
-                if(!postsData[subgroup]) {
-                    postsData[subgroup] = [];
-                }
-                postsData[subgroup].push(newPost);
-
-                // Update JSONBin with new posts
-                return fetch(JSONBIN_URL, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-Master-Key': JSONBIN_API_KEY
-                    },
-                    body: JSON.stringify(postsData)
-                });
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.json();
-            })
-            .then(data => {
-                // Clear form fields
+            if (username && message) {
+                const newPost = `
+                    <div class="post">
+                        <h4>${username} <span>${new Date().toLocaleString()}</span></h4>
+                        <p>${message}</p>
+                    </div>
+                `;
+                postsContainer.insertAdjacentHTML('beforeend', newPost);
                 messageForm.reset();
-                // Refresh posts display
-                fetchPosts(subgroup);
-                // Show success message
-                showTemporaryMessage('Your message has been posted successfully!');
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred while posting your message.');
-            });
+            }
         });
-
-        // Fetch and Display Posts
-        function fetchPosts(subgroup) {
-            fetch(JSONBIN_URL, {
-                headers: {
-                    'X-Master-Key': JSONBIN_API_KEY
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.json();
-            })
-            .then(data => {
-                const postsData = data.record;
-                const subgroupPosts = postsData[subgroup] || [];
-
-                if(subgroupPosts.length === 0) {
-                    postsContainer.innerHTML = '<p>No posts in this subgroup yet. Be the first to post!</p>';
-                    return;
-                }
-
-                let output = '';
-                // Sort posts by timestamp descending
-                subgroupPosts.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-
-                subgroupPosts.forEach(post => {
-                    output += `
-                        <div class="post">
-                            <h4>${post.username} <span>${post.timestamp}</span></h4>
-                            <p>${post.message}</p>
-                        </div>
-                    `;
-                });
-
-                postsContainer.innerHTML = output;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                postsContainer.innerHTML = '<p>Error loading posts.</p>';
-            });
-        }
-
-        // Function to escape HTML to prevent XSS
-        function escapeHtml(text) {
-            const map = {
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#039;'
-            };
-            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
-        }
-
-        // Function to show temporary messages
-        function showTemporaryMessage(message) {
-            const msgDiv = document.createElement('div');
-            msgDiv.className = 'temp-message';
-            msgDiv.textContent = message;
-            document.body.appendChild(msgDiv);
-            
-            setTimeout(() => {
-                msgDiv.remove();
-            }, 3000); // Message disappears after 3 seconds
-        }
     </script>
 </body>
 </html>
