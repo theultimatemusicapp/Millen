@@ -7,11 +7,12 @@ body {
     color: #333;
 }
 
-/* Header Section */
+/* Global and body styles here... */
+
+/* Header & Navigation */
 .main-header {
-    background-color: #000;
+    background-color: #333;
     color: #fff;
-    padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -23,21 +24,10 @@ body {
     align-items: center;
 }
 
-.logo a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 1.8rem;
-    font-weight: bold;
-}
-
-.logo span {
-    color: #ff6600;
-}
-
 .nav-links {
     display: flex;
-    gap: 1rem;
     list-style: none;
+    gap: 1rem;
 }
 
 .nav-links a {
@@ -45,6 +35,21 @@ body {
     color: #fff;
     font-weight: 600;
 }
+
+/* Logo Styles */
+.logo a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: #fff; /* White for "Music" */
+}
+
+.logo a span {
+    color: #ff9800; /* Orange for "Revolution" */
+}
+
+/* Additional sections and styles below... */
+
 
 .nav-links a:hover {
     color: #ff6600;
