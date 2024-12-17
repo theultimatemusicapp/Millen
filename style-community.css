@@ -1,0 +1,267 @@
+/* General Section Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+/* Header Section */
+.main-header {
+    background: #000;
+    color: #fff;
+    padding: 1rem 0;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+    color: #007BFF;
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.hamburger-bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    margin: 5px auto;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    background: url('hero-banner.jpg') no-repeat center center/cover;
+    color: #fff;
+    padding: 4rem 1rem;
+    text-align: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Forum Section */
+.forum {
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.forum h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.forum-controls {
+    margin: 1rem 0;
+    text-align: left;
+}
+
+.forum-controls label {
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+.forum-controls select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Form Styling */
+.post-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    background: #f9f9f9;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    resize: none;
+}
+
+.post-form button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    color: #fff;
+    background: #007BFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.post-form button:hover {
+    background: #0056b3;
+}
+
+/* Posts Display */
+.posts {
+    margin: 2rem auto;
+    text-align: left;
+    max-width: 800px;
+}
+
+.posts h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.posts .post {
+    border-bottom: 1px solid #ddd;
+    padding: 1rem 0;
+}
+
+.posts .post h4 {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.posts .post span {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    background: #333;
+    color: #fff;
+    margin-top: 2rem;
+}
+
+.footer-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.social-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+    margin: 1rem 0 0;
+}
+
+.social-links li a {
+    color: #fff;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.social-links li a:hover {
+    color: #007BFF;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #000;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .post-form,
+    .posts {
+        width: 100%;
+        padding: 1rem;
+    }
+}
