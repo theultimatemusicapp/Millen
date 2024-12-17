@@ -14,6 +14,9 @@
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Global Stylesheet (assuming styles.css for consistent logo/branding) -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Header Section -->
@@ -51,7 +54,7 @@
         <h2>Global Venue Directory</h2>
         <p>Browse venues that support live, original music with capacities ranging from small grassroots spaces to mid-sized halls.</p>
 
-        <!-- Dropdown Filters -->
+        <!-- Dropdown Filters for Venues -->
         <div class="filters">
             <select id="countrySelect">
                 <option value="">Select Country</option>
@@ -79,16 +82,26 @@
     <section class="radio-stations container">
         <h2>Global Radio Stations</h2>
         <p>Connect with radio stations worldwide to expand your music’s reach.</p>
-        <select id="radioCountrySelect">
-            <option value="">Select Country</option>
-            <option value="United States">United States</option>
-            <option value="United Kingdom">United Kingdom</option>
-            <option value="Germany">Germany</option>
-            <option value="France">France</option>
-            <option value="Australia">Australia</option>
-        </select>
+        <p><strong>Contact here to submit your music to local radio</strong></p>
+
+        <!-- Dropdown Filters for Radio -->
+        <div class="filters">
+            <select id="radioCountrySelect">
+                <option value="">Select Country</option>
+                <option value="Australia">Australia</option>
+                <!-- You can add more countries as you expand your radio station list -->
+            </select>
+            <select id="radioStateSelect" disabled>
+                <option value="">Select State/Province</option>
+            </select>
+            <select id="radioCitySelect" disabled>
+                <option value="">Select City</option>
+            </select>
+        </div>
+
+        <!-- Radio Listings -->
         <div id="radioList" class="listing-grid">
-            <p>Select a country to view radio stations.</p>
+            <p>Select a country, state, and city to view radio stations.</p>
         </div>
     </section>
 
@@ -101,5 +114,18 @@
 
     <!-- JavaScript -->
     <script src="venues.js"></script>
+    <script src="radio.js"></script>
+    <!-- Add a radioFunctionality.js or similar script to handle radio dropdowns and listings -->
+    <script src="radioFunctionality.js"></script>
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+            hamburger.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
