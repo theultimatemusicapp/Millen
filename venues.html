@@ -41,6 +41,26 @@
         <section class="venues container">
             <h2>Global Venue Directory</h2>
             <p>Explore venues that support local original music with capacities up to 500 people.</p>
+
+            <!-- Filters -->
+            <div class="filters">
+                <select id="countrySelect">
+                    <option value="">Select Country</option>
+                    <option value="Australia">Australia</option>
+                    <option value="United States">United States</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                </select>
+
+                <select id="stateSelect" disabled>
+                    <option value="">Select State</option>
+                </select>
+
+                <select id="citySelect" disabled>
+                    <option value="">Select City</option>
+                </select>
+            </div>
+
+            <!-- Venue Listings -->
             <div class="listing-list" id="venueList"></div>
         </section>
     </main>
@@ -50,7 +70,7 @@
         <p>&copy; 2024 MusicRevolution. All rights reserved.</p>
     </footer>
 
-    <!-- Link to JavaScript -->
+    <!-- JavaScript -->
     <script src="venues.js"></script>
 </body>
 </html>
