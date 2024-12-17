@@ -2,25 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Venue Directory - Music Revolution Web App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore local music venues and radio stations worldwide that support original music with capacities up to 500 people. Find venues and stations by country, state, and city.">
-    <meta name="keywords" content="Music Venues, Radio Stations, Local Music, Venue Directory, Live Music, Concert Venues, Radio Directory, Music Radio">
+    <meta name="description" content="Explore local music venues and radio stations worldwide that support original music.">
+    <title>Venue Directory - Music Revolution</title>
 
-    <!-- Link to external CSS file -->
+    <!-- External CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Header Section -->
-    <header>
-        <nav>
+    <header class="main-header">
+        <nav class="nav-container container">
             <div class="logo">
-                <a href="index.html">MusicRevolution</a>
+                <a href="index.html">Music<span>Revolution</span></a>
             </div>
-            <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
-            <ul class="nav-links" id="navLinks">
+            <ul class="nav-links" id="primary-navigation">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="venues.html">Venues</a></li>
+                <li><a href="venues.html" class="active">Venues</a></li>
                 <li><a href="resources.html">Resources</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="community.html">Community</a></li>
@@ -30,68 +28,20 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
             <h1>Find Your Perfect Venue & Radio Station</h1>
-            <p>Discover local music venues and radio stations worldwide that support original music. Filter by country, state, and city to find the ideal spot for your performances and broadcasts.</p>
+            <p>Discover local music venues and radio stations worldwide that support original music.</p>
         </div>
     </section>
 
     <!-- Main Content Section -->
     <main>
         <!-- Venue Directory Section -->
-        <section class="venues">
+        <section class="venues container">
             <h2>Global Venue Directory</h2>
-            <p>Explore venues that support local original music with capacities ranging from 20 to 500 people.</p>
-
-            <!-- Filters -->
-            <div class="filters">
-                <select id="countrySelect">
-                    <option value="">Select Country</option>
-                    <option value="Australia">Australia</option>
-                    <option value="United States">United States</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="Germany">Germany</option>
-                </select>
-
-                <select id="stateSelect" disabled>
-                    <option value="">Select State/Province</option>
-                </select>
-
-                <select id="citySelect" disabled>
-                    <option value="">Select City</option>
-                </select>
-            </div>
-
-            <!-- Venue Listings -->
-            <div class="listing-list" id="venueList">
-                <!-- Venue Cards will be injected here -->
-            </div>
-        </section>
-
-        <!-- Radio Stations Section -->
-        <section class="radio-stations">
-            <h2>Global Radio Stations Directory</h2>
-            <p>Discover radio stations worldwide that support original music. Filter by country to find the perfect station for your broadcasts.</p>
-
-            <!-- Filters -->
-            <div class="filters">
-                <select id="radioCountrySelect">
-                    <option value="">Select Country</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="Germany">Germany</option>
-                    <option value="Austria">Austria</option>
-                    <option value="France">France</option>
-                    <option value="Netherlands">Netherlands</option>
-                    <option value="Spain">Spain</option>
-                    <option value="Italy">Italy</option>
-                    <option value="Belgium">Belgium</option>
-                </select>
-            </div>
-
-            <!-- Radio Stations Listings -->
-            <div class="listing-list" id="radioList">
-                <!-- Radio Station Cards will be injected here -->
-            </div>
+            <p>Explore venues that support local original music with capacities up to 500 people.</p>
+            <div class="listing-list" id="venueList"></div>
         </section>
     </main>
 
@@ -100,343 +50,7 @@
         <p>&copy; 2024 MusicRevolution. All rights reserved.</p>
     </footer>
 
-    <!-- External JavaScript Files -->
+    <!-- Link to JavaScript -->
     <script src="venues.js"></script>
-    <!-- If you have a similar external script for radio stations, include it here -->
-    <!-- <script src="radioStations.js"></script> -->
-
-    <!-- JavaScript for Filters and Listing Display -->
-    <script>
-    // Toggle Hamburger Menu
-    function toggleMenu() {
-        const navLinks = document.getElementById('navLinks');
-        navLinks.classList.toggle('active');
-    }
-
-    // Venue Filters and Display
-    const countrySelect = document.getElementById('countrySelect');
-    const stateSelect = document.getElementById('stateSelect');
-    const citySelect = document.getElementById('citySelect');
-    const venueList = document.getElementById('venueList');
-
-    const states = {
-        "Australia": ["New South Wales", "Victoria", "Queensland", "Western Australia", "South Australia", "Tasmania", "Northern Territory"],
-        "United States": ["California", "New York", "Illinois", "Texas", "Florida", "Arizona", "Nevada", "Massachusetts"],
-        "United Kingdom": ["England", "Scotland", "Wales", "Northern Ireland"],
-        "Germany": ["Berlin", "Bavaria", "Hesse", "Saxony", "North Rhine-Westphalia"]
-    };
-
-    const cities = {
-        "New South Wales": ["Sydney", "Newcastle", "Wollongong", "Central Coast", "Albury"],
-        "Victoria": ["Melbourne", "Geelong", "Ballarat", "Bendigo", "Shepparton"],
-        "Queensland": ["Brisbane", "Gold Coast", "Cairns", "Townsville", "Toowoomba"],
-        "Western Australia": ["Perth", "Fremantle", "Bunbury", "Geraldton", "Albany"],
-        "South Australia": ["Adelaide", "Mount Gambier", "Whyalla", "Port Augusta", "Murray Bridge"],
-        "Tasmania": ["Hobart", "Launceston", "Devonport", "Burnie", "Ulverstone"],
-        "Northern Territory": ["Darwin", "Alice Springs", "Katherine", "Nhulunbuy", "Yulara"],
-        "California": ["Los Angeles", "San Francisco", "San Diego", "San Jose", "Sacramento"],
-        "New York": ["New York City", "Buffalo", "Rochester", "Syracuse", "Albany"],
-        "Illinois": ["Chicago", "Springfield", "Naperville", "Peoria", "Rockford"],
-        "Texas": ["Houston", "Austin", "Dallas", "San Antonio", "Fort Worth"],
-        "Florida": ["Miami", "Orlando", "Tampa", "Jacksonville", "Tallahassee"],
-        "Arizona": ["Phoenix", "Tucson", "Mesa", "Chandler", "Glendale"],
-        "Nevada": ["Las Vegas", "Reno", "Henderson", "Carson City", "North Las Vegas"],
-        "Massachusetts": ["Boston", "Worcester", "Springfield", "Cambridge", "Lowell"],
-        "England": ["London", "Manchester", "Bristol", "Liverpool", "Leeds"],
-        "Scotland": ["Edinburgh", "Glasgow", "Aberdeen", "Dundee", "Inverness"],
-        "Wales": ["Cardiff", "Swansea", "Newport", "Bangor", "Wrexham"],
-        "Northern Ireland": ["Belfast", "Derry", "Lisburn", "Newry", "Armagh"],
-        "Berlin": ["Berlin"],
-        "Bavaria": ["Munich", "Nuremberg", "Augsburg", "Regensburg", "Ingolstadt"],
-        "Hesse": ["Frankfurt", "Darmstadt", "Wiesbaden", "Kassel", "Offenbach"],
-        "Saxony": ["Dresden", "Leipzig", "Chemnitz", "Zwickau", "Plauen"],
-        "North Rhine-Westphalia": ["Cologne", "Düsseldorf", "Dortmund", "Essen", "Bonn"]
-    };
-
-    // Event Listeners for Venue Filters
-    countrySelect.addEventListener('change', function() {
-        const selectedCountry = this.value;
-        stateSelect.innerHTML = '<option value="">Select State/Province</option>';
-        citySelect.innerHTML = '<option value="">Select City</option>';
-        citySelect.disabled = true;
-
-        if(selectedCountry) {
-            states[selectedCountry].forEach(state => {
-                const option = document.createElement('option');
-                option.value = state;
-                option.textContent = state;
-                stateSelect.appendChild(option);
-            });
-            stateSelect.disabled = false;
-        } else {
-            stateSelect.disabled = true;
-            citySelect.disabled = true;
-            displayVenues([]);
-        }
-    });
-
-    stateSelect.addEventListener('change', function() {
-        const selectedState = this.value;
-        citySelect.innerHTML = '<option value="">Select City</option>';
-
-        if(selectedState) {
-            cities[selectedState].forEach(city => {
-                const option = document.createElement('option');
-                option.value = city;
-                option.textContent = city;
-                citySelect.appendChild(option);
-            });
-            citySelect.disabled = false;
-        } else {
-            citySelect.disabled = true;
-            displayVenues([]);
-        }
-    });
-
-    citySelect.addEventListener('change', function() {
-        const selectedCountry = countrySelect.value;
-        const selectedState = stateSelect.value;
-        const selectedCity = this.value;
-
-        if(selectedCity) {
-            const filteredVenues = venues.filter(venue => 
-                venue.country === selectedCountry && 
-                venue.state === selectedState && 
-                venue.city === selectedCity
-            );
-            displayVenues(filteredVenues);
-        } else {
-            displayVenues([]);
-        }
-    });
-
-    // Function to Display Venues
-    function displayVenues(venuesToDisplay) {
-        venueList.innerHTML = '';
-        if(venuesToDisplay.length === 0) {
-            venueList.innerHTML = '<p>No venues found for the selected criteria.</p>';
-            return;
-        }
-
-        venuesToDisplay.forEach(venue => {
-            const venueCard = document.createElement('div');
-            venueCard.classList.add('listing-card');
-
-            const venueName = document.createElement('h3');
-            venueName.textContent = venue.name;
-            venueCard.appendChild(venueName);
-
-            const venueCapacity = document.createElement('p');
-            venueCapacity.innerHTML = `<strong>Capacity:</strong> ${venue.capacity}`;
-            venueCard.appendChild(venueCapacity);
-
-            const venueAddress = document.createElement('p');
-            venueAddress.innerHTML = `<strong>Address:</strong> ${venue.address}`;
-            venueCard.appendChild(venueAddress);
-
-            const venueWebsite = document.createElement('p');
-            venueWebsite.innerHTML = `<strong>Website:</strong> <a href="${venue.website}" target="_blank">${venue.website}</a>`;
-            venueCard.appendChild(venueWebsite);
-
-            const venueEmail = document.createElement('p');
-            venueEmail.innerHTML = `<strong>Email:</strong> <a href="mailto:${venue.email}">${venue.email}</a>`;
-            venueCard.appendChild(venueEmail);
-
-            venueList.appendChild(venueCard);
-        });
-    }
-
-    // Radio Stations Filters and Display
-    const radioCountrySelect = document.getElementById('radioCountrySelect');
-    const radioList = document.getElementById('radioList');
-
-    // Assuming radioStations are still hardcoded in the HTML script
-    const radioStations = [
-        {
-            country: "United Kingdom",
-            name: "BBC Radio 6 Music",
-            frequency: "Online",
-            location: "United Kingdom",
-            email: "6music@bbc.co.uk",
-            phone: "+44 03700 100 600",
-            website: "https://www.bbc.co.uk/6music"
-        },
-        {
-            country: "United Kingdom",
-            name: "NME Radio",
-            frequency: "Online",
-            location: "United Kingdom",
-            email: "radio@nme.com",
-            phone: "N/A",
-            website: "https://www.nme.com/radio"
-        },
-        {
-            country: "United Kingdom",
-            name: "Radio X 104.9 FM",
-            frequency: "104.9 FM",
-            location: "London, UK",
-            email: "contactus@radiox.co.uk",
-            phone: "+44 0330 333 149",
-            website: "https://www.radiox.co.uk"
-        },
-        {
-            country: "Germany",
-            name: "FluxFM 100.6 FM",
-            frequency: "100.6 FM",
-            location: "Berlin, Germany",
-            email: "info@fluxfm.de",
-            phone: "+49 30 2000 4160",
-            website: "https://www.fluxfm.de"
-        },
-        {
-            country: "Austria",
-            name: "FM4 103.8 FM",
-            frequency: "103.8 FM",
-            location: "Vienna, Austria",
-            email: "fm4@orf.at",
-            phone: "+43 1 501010",
-            website: "https://fm4.orf.at"
-        },
-        {
-            country: "France",
-            name: "Radio Nova",
-            frequency: "101.5 FM",
-            location: "Paris, France",
-            email: "contact@novaplanet.com",
-            phone: "+33 1 5333222",
-            website: "https://www.novaplanet.com"
-        },
-        {
-            country: "Netherlands",
-            name: "3FM 96.8 FM",
-            frequency: "96.8 FM",
-            location: "Hilversum, Netherlands",
-            email: "info@3fm.nl",
-            phone: "+31 35 677 777",
-            website: "https://www.3fm.nl"
-        },
-        {
-            country: "Germany",
-            name: "Radio Eins",
-            frequency: "95.8 FM",
-            location: "Berlin, Germany",
-            email: "info@radioeins.de",
-            phone: "+49 30 9799337711",
-            website: "https://www.radioeins.de"
-        },
-        {
-            country: "Germany",
-            name: "Radio Fritz",
-            frequency: "102.6 FM",
-            location: "Potsdam, Germany",
-            email: "fritz@rbb-online.de",
-            phone: "+49 30 9799333000",
-            website: "https://www.fritz.de"
-        },
-        {
-            country: "Spain",
-            name: "Radio 3",
-            frequency: "93.2 FM",
-            location: "Barcelona, Spain",
-            email: "radio3@rtve.es",
-            phone: "+34 91 346 7300",
-            website: "https://www.rtve.es/radio3"
-        },
-        {
-            country: "Italy",
-            name: "Radio 105",
-            frequency: "105.0 FM",
-            location: "Milan, Italy",
-            email: "info@105.net",
-            phone: "+39 02 655 1111",
-            website: "https://www.105.net"
-        },
-        {
-            country: "Italy",
-            name: "Radio Deejay",
-            frequency: "97.0 FM",
-            location: "Milan, Italy",
-            email: "info@deejay.it",
-            phone: "+39 02 342 9100",
-            website: "https://www.deejay.it"
-        },
-        {
-            country: "Belgium",
-            name: "Radio 2",
-            frequency: "88.8 FM",
-            location: "Brussels, Belgium",
-            email: "radio2@vrt.be",
-            phone: "+32 2 7413111",
-            website: "https://www.radio2.be"
-        },
-        {
-            country: "Belgium",
-            name: "Radio 1",
-            frequency: "98.8 FM",
-            location: "Brussels, Belgium",
-            email: "radio1@vrt.be",
-            phone: "+32 2 7413111",
-            website: "https://www.radio1.be"
-        },
-        {
-            country: "Germany",
-            name: "Radio X",
-            frequency: "97.7 FM",
-            location: "Frankfurt, Germany",
-            email: "info@radiox.de",
-            phone: "+49 69 29971222",
-            website: "https://www.radiox.de"
-        },
-    ];
-
-    radioCountrySelect.addEventListener('change', function() {
-        const selectedCountry = this.value;
-        if(selectedCountry) {
-            const filteredStations = radioStations.filter(station => station.country === selectedCountry);
-            displayRadioStations(filteredStations);
-        } else {
-            displayRadioStations([]);
-        }
-    });
-
-    function displayRadioStations(stationsToDisplay) {
-        radioList.innerHTML = '';
-        if(stationsToDisplay.length === 0) {
-            radioList.innerHTML = '<p>No radio stations found for the selected country.</p>';
-            return;
-        }
-
-        stationsToDisplay.forEach(station => {
-            const stationCard = document.createElement('div');
-            stationCard.classList.add('listing-card');
-
-            const stationName = document.createElement('h3');
-            stationName.textContent = station.name;
-            stationCard.appendChild(stationName);
-
-            const stationFrequency = document.createElement('p');
-            stationFrequency.innerHTML = `<strong>Frequency:</strong> ${station.frequency}`;
-            stationCard.appendChild(stationFrequency);
-
-            const stationLocation = document.createElement('p');
-            stationLocation.innerHTML = `<strong>Location:</strong> ${station.location}`;
-            stationCard.appendChild(stationLocation);
-
-            const stationWebsite = document.createElement('p');
-            stationWebsite.innerHTML = `<strong>Website:</strong> <a href="${station.website}" target="_blank">${station.website}</a>`;
-            stationCard.appendChild(stationWebsite);
-
-            const stationEmail = document.createElement('p');
-            stationEmail.innerHTML = `<strong>Email:</strong> <a href="mailto:${station.email}">${station.email}</a>`;
-            stationCard.appendChild(stationEmail);
-
-            const stationPhone = document.createElement('p');
-            stationPhone.innerHTML = `<strong>Phone:</strong> ${station.phone}`;
-            stationCard.appendChild(stationPhone);
-
-            radioList.appendChild(stationCard);
-        });
-    }
-    </script>
 </body>
 </html>
