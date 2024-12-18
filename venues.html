@@ -49,76 +49,19 @@
         </div>
     </section>
 
-    <!-- Venues Directory Section -->
-    <section class="venues container">
-        <h2>Global Venue Directory</h2>
-        <p>Browse venues that support live, original music with capacities ranging from small grassroots spaces to mid-sized halls.</p>
-
-        <!-- Dropdown Filters for Venues -->
-        <div class="filters">
-            <select id="countrySelect">
-                <option value="">Select Country</option>
-                <option value="Australia">Australia</option>
-                <option value="United States">United States</option>
-                <option value="United Kingdom">United Kingdom</option>
-                <option value="Germany">Germany</option>
-                <option value="Canada">Canada</option>
-            </select>
-            <select id="stateSelect" disabled>
-                <option value="">Select State/Province</option>
-            </select>
-            <select id="citySelect" disabled>
-                <option value="">Select City</option>
-            </select>
-        </div>
-
-        <!-- Venue Listings -->
-        <div id="venueList" class="listing-grid">
-            <p>Select a country, state, and city to view venues.</p>
-        </div>
-    </section>
-
     <!-- Australian Bands Section -->
-    <section class="bands container">
-        <h2>Australian Bands</h2>
-        <p>Discover Australian bands and their contributions to the music scene.</p>
+    <section class="bands-section container">
+        <h2>Australian Bands Directory</h2>
+        <p>Select a band to explore their details.</p>
 
-        <!-- Dropdown for Bands -->
         <div class="filters">
             <select id="bandsDropdown">
                 <option value="">Select a Band</option>
             </select>
         </div>
 
-        <div id="bandInfo" class="listing-grid">
-            <p>Select a band to see more details.</p>
-        </div>
-    </section>
-
-    <!-- Radio Station Directory -->
-    <section class="radio-stations container">
-        <h2>Global Radio Stations</h2>
-        <p>Connect with radio stations worldwide to expand your music’s reach.</p>
-        <p><strong>Contact here to submit your music to local radio</strong></p>
-
-        <!-- Dropdown Filters for Radio -->
-        <div class="filters">
-            <select id="radioCountrySelect">
-                <option value="">Select Country</option>
-                <option value="Australia">Australia</option>
-                <!-- Add more countries as needed -->
-            </select>
-            <select id="radioStateSelect" disabled>
-                <option value="">Select State/Province</option>
-            </select>
-            <select id="radioCitySelect" disabled>
-                <option value="">Select City</option>
-            </select>
-        </div>
-
-        <!-- Radio Listings -->
-        <div id="radioList" class="listing-grid">
-            <p>Select a country, state, and city to view radio stations.</p>
+        <div id="bandDetails" class="band-details">
+            <p>Select a band from the dropdown to view details.</p>
         </div>
     </section>
 
@@ -130,38 +73,34 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="venues.js"></script>
-    <script src="radio.js"></script>
-    <script src="radioFunctionality.js"></script>
     <script src="bands_list.js"></script>
     <script>
-        // Populate Bands Dropdown
-        const bandsDropdown = document.getElementById('bandsDropdown');
-        const bandInfo = document.getElementById('bandInfo');
+        document.addEventListener('DOMContentLoaded', () => {
+            const bandsDropdown = document.getElementById('bandsDropdown');
+            const bandDetails = document.getElementById('bandDetails');
 
-        function populateBandsDropdown(bands) {
-            bands.forEach(band => {
+            // Sort bands alphabetically
+            const sortedBands = bands.sort((a, b) => a.name.localeCompare(b.name));
+
+            // Populate the dropdown with band names
+            sortedBands.forEach(band => {
                 const option = document.createElement('option');
                 option.value = band.name;
                 option.textContent = band.name;
                 bandsDropdown.appendChild(option);
             });
-        }
 
-        function displayBandInfo(name) {
-            if (!name) {
-                bandInfo.innerHTML = '<p>Select a band to see more details.</p>';
-                return;
-            }
-            bandInfo.innerHTML = `<p>Band Name: ${name}</p>`;
-        }
-
-        bandsDropdown.addEventListener('change', (e) => {
-            displayBandInfo(e.target.value);
+            // Event listener for dropdown selection
+            bandsDropdown.addEventListener('change', () => {
+                const selectedBand = bandsDropdown.value;
+                if (selectedBand) {
+                    const band = sortedBands.find(b => b.name === selectedBand);
+                    bandDetails.innerHTML = `<p><strong>Band Name:</strong> ${band.name}</p>`;
+                } else {
+                    bandDetails.innerHTML = '<p>Select a band from the dropdown to view details.</p>';
+                }
+            });
         });
-
-        // Assume `bands` is available in bands_list.js
-        populateBandsDropdown(bands);
     </script>
 </body>
 </html>
