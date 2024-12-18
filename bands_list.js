@@ -1,4 +1,4 @@
-const bandsList = [
+export const bandsList = [
   { name: "Royel Otis", website: "https://www.royelotis.com" },
   { name: "The Belair Lip Bombs", website: "https://thebelairlipbombs.bandcamp.com" },
   { name: "South Summit", website: "https://southsummitband.com" },
