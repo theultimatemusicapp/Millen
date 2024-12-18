@@ -78,6 +78,23 @@
         </div>
     </section>
 
+    <!-- Australian Bands Section -->
+    <section class="bands container">
+        <h2>Australian Bands</h2>
+        <p>Discover Australian bands and their contributions to the music scene.</p>
+
+        <!-- Dropdown for Bands -->
+        <div class="filters">
+            <select id="bandsDropdown">
+                <option value="">Select a Band</option>
+            </select>
+        </div>
+
+        <div id="bandInfo" class="listing-grid">
+            <p>Select a band to see more details.</p>
+        </div>
+    </section>
+
     <!-- Radio Station Directory -->
     <section class="radio-stations container">
         <h2>Global Radio Stations</h2>
@@ -116,15 +133,35 @@
     <script src="venues.js"></script>
     <script src="radio.js"></script>
     <script src="radioFunctionality.js"></script>
+    <script src="bands_list.js"></script>
     <script>
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
+        // Populate Bands Dropdown
+        const bandsDropdown = document.getElementById('bandsDropdown');
+        const bandInfo = document.getElementById('bandInfo');
 
-        hamburger.addEventListener('click', () => {
-            const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
-            hamburger.setAttribute('aria-expanded', !expanded);
-            navLinks.classList.toggle('active');
+        function populateBandsDropdown(bands) {
+            bands.forEach(band => {
+                const option = document.createElement('option');
+                option.value = band.name;
+                option.textContent = band.name;
+                bandsDropdown.appendChild(option);
+            });
+        }
+
+        function displayBandInfo(name) {
+            if (!name) {
+                bandInfo.innerHTML = '<p>Select a band to see more details.</p>';
+                return;
+            }
+            bandInfo.innerHTML = `<p>Band Name: ${name}</p>`;
+        }
+
+        bandsDropdown.addEventListener('change', (e) => {
+            displayBandInfo(e.target.value);
         });
+
+        // Assume `bands` is available in bands_list.js
+        populateBandsDropdown(bands);
     </script>
 </body>
 </html>
