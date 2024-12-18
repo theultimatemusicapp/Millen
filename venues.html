@@ -126,11 +126,9 @@
             navLinks.classList.toggle('active');
         });
     </script>
-<script src="bands_list.js" type="module"></script>
-<script>
-  import bandsList from './bands_list.js';
+<script type="module">
+  import { bandsList } from './bands_list.js';
 
-  // Function to dynamically load bands into your HTML
   function displayBands() {
     const venueList = document.getElementById('venueList');
     venueList.innerHTML = ''; // Clear any existing content
@@ -143,7 +141,6 @@
     });
   }
 
-  // Call the function on page load
   document.addEventListener('DOMContentLoaded', displayBands);
 </script>
 
