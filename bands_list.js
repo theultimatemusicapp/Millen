@@ -168,4 +168,7 @@ const bandsList = [
   { name: "Sleepmakeswaves", website: "https://sleepmakeswaves.com" },
   { name: "Helm", website: "https://helmband.com" },
   { name: "Closure in Moscow", website: "https://closureinmoscow.com" },
+  
+];
+
 module.exports = bandsList;
