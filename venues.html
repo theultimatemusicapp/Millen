@@ -139,16 +139,18 @@
         const bandSelect = document.getElementById('bandSelect');
         const bandDetails = document.getElementById('bandDetails');
 
-        // Assuming `bands` is defined in `bands_list.js`
-        bands.sort((a, b) => a.name.localeCompare(b.name)); // Alphabetize
+        // Ensure bands are sorted alphabetically
+        bands.sort();
 
+        // Populate dropdown with bands
         bands.forEach(band => {
             const option = document.createElement('option');
-            option.value = band.name;
-            option.textContent = band.name;
+            option.value = band;
+            option.textContent = band;
             bandSelect.appendChild(option);
         });
 
+        // Display selected band
         bandSelect.addEventListener('change', () => {
             const selectedBand = bandSelect.value;
             if (selectedBand) {
