@@ -1,10 +1,107 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore global music venues and radio stations to connect your music with the right audience.">
+    <title>Venues & Radio Directory - Music Revolution</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="venues-style.css">
+
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Global Stylesheet for consistent logo/branding -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="main-header">
+        <nav class="nav-container container">
+            <div class="logo">
+                <a href="index.html">Music<span>Revolution</span></a>
+            </div>
+            <ul class="nav-links" id="primary-navigation">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="venues.html" class="active">Venues</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="community.html">Community</a></li>
+            </ul>
+            <button class="hamburger" aria-label="Toggle Navigation" aria-expanded="false" aria-controls="primary-navigation">
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
+            <h1>Explore Music Venues & Radio Stations</h1>
+            <p>Find the perfect venues to perform and radio stations to broadcast your sound worldwide.</p>
+        </div>
+    </section>
+
+    <!-- Venues Directory Section -->
+    <section class="venues container">
+        <h2>Global Venue Directory</h2>
+        <p>Browse venues that support live, original music with capacities ranging from small grassroots spaces to mid-sized halls.</p>
+
+        <!-- Dropdown Filters for Venues -->
+        <div class="filters">
+            <select id="countrySelect">
+                <option value="">Select Country</option>
+                <option value="Australia">Australia</option>
+                <option value="United States">United States</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="Germany">Germany</option>
+                <option value="Canada">Canada</option>
+            </select>
+            <select id="stateSelect" disabled>
+                <option value="">Select State/Province</option>
+            </select>
+            <select id="citySelect" disabled>
+                <option value="">Select City</option>
             </select>
         </div>
 
-        <!-- Band Details Section -->
-        <div id="bandDetails">
-            <p>Select a band to view details.</p>
+        <!-- Venue Listings -->
+        <div id="venueList" class="listing-grid">
+            <p>Select a country, state, and city to view venues.</p>
+        </div>
+    </section>
+
+    <!-- Radio Station Directory -->
+    <section class="radio-stations container">
+        <h2>Global Radio Stations</h2>
+        <p>Connect with radio stations worldwide to expand your music’s reach.</p>
+        <p><strong>Contact here to submit your music to local radio</strong></p>
+
+        <!-- Dropdown Filters for Radio -->
+        <div class="filters">
+            <select id="radioCountrySelect">
+                <option value="">Select Country</option>
+                <option value="Australia">Australia</option>
+                <!-- Add more countries as needed -->
+            </select>
+            <select id="radioStateSelect" disabled>
+                <option value="">Select State/Province</option>
+            </select>
+            <select id="radioCitySelect" disabled>
+                <option value="">Select City</option>
+            </select>
+        </div>
+
+        <!-- Radio Listings -->
+        <div id="radioList" class="listing-grid">
+            <p>Select a country, state, and city to view radio stations.</p>
         </div>
     </section>
 
@@ -19,32 +116,7 @@
     <script src="venues.js"></script>
     <script src="radio.js"></script>
     <script src="radioFunctionality.js"></script>
-    <script src="bands_list.js"></script>
     <script>
-        // Populate Bands Dropdown
-        const bandSelect = document.getElementById('bandSelect');
-        const bandDetails = document.getElementById('bandDetails');
-
-        // Ensure bands are alphabetized
-        const validBands = bands.filter(band => band && band.trim().length > 0).sort();
-
-        validBands.forEach(band => {
-            const option = document.createElement('option');
-            option.value = band;
-            option.textContent = band;
-            bandSelect.appendChild(option);
-        });
-
-        bandSelect.addEventListener('change', () => {
-            const selectedBand = bandSelect.value;
-            if (selectedBand) {
-                bandDetails.innerHTML = `<h3>${selectedBand}</h3>`;
-            } else {
-                bandDetails.innerHTML = '<p>Select a band to view details.</p>';
-            }
-        });
-
-        // Hamburger Menu
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
 
@@ -56,3 +128,5 @@
     </script>
 </body>
 </html>
+
+
