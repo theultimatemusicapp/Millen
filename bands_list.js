@@ -1131,7 +1131,7 @@ const bands = [
     "LET",
     "Richard",
     "Glasvegas",
-    ""Friday"",
+    "Friday",
     "Bradford",
     "BUNGALOWS",
     "A",
