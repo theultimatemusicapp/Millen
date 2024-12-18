@@ -1,5 +1,3 @@
-// venues.js
-
 const venues = [
     // MELBOURNE VENUES (Australia, Victoria, Melbourne)
     {
@@ -173,9 +171,6 @@ const venues = [
         website: "https://www.retreathotelbrunswick.com.au/",
         phone: "(03) 9380 4090"
     },
-    // ... Add all remaining Melbourne venues in the same format ...
-    // Due to the length, we assume you've added all from your list above similarly.
-    // Make sure each one has country, state, city, name, address, website, and phone.
 
     // SYDNEY VENUES (Australia, New South Wales, Sydney)
     {
@@ -280,7 +275,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Cronulla",
         name: "The Brass Monkey (Cronulla)",
         address: "115A Cronulla St, Cronulla NSW 2230",
         website: "https://brassmonkey.com.au/",
@@ -289,7 +284,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Marrickville",
         name: "Lazybones Lounge",
         address: "294 Marrickville Rd, Marrickville NSW 2204",
         website: "https://lazyboneslounge.com.au/",
@@ -298,7 +293,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Marrickville",
         name: "The Red Rattler Theatre",
         address: "6 Faversham St, Marrickville NSW 2204",
         website: "https://www.redrattler.org/",
@@ -307,7 +302,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Surry Hills",
         name: "The Gaelic Club",
         address: "64 Devonshire St, Surry Hills NSW 2010",
         website: "https://gaelicclub.com/",
@@ -316,7 +311,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Petersham",
         name: "The Oxford Tavern",
         address: "1 New Canterbury Rd, Petersham NSW 2049",
         website: "https://www.theoxfordtavern.com.au/",
@@ -325,7 +320,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Newtown",
         name: "Waywards (at The Bank Hotel)",
         address: "324 King St, Newtown NSW 2042",
         website: "https://waywards.com.au/",
@@ -334,7 +329,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Enmore",
         name: "The Duke of Enmore",
         address: "148 Enmore Rd, Enmore NSW 2042",
         website: "https://dukeofenmore.com.au/",
@@ -343,7 +338,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Erskineville",
         name: "MoshPit Bar",
         address: "642 King St, Erskineville NSW 2043",
         website: "https://moshpitbar.com.au/",
@@ -352,7 +347,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Chippendale",
         name: "The Lord Gladstone",
         address: "115 Regent St, Chippendale NSW 2008",
         website: "https://thelordgladstone.com.au/",
@@ -361,7 +356,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Camperdown",
         name: "The Lady Hampshire",
         address: "91 Parramatta Rd, Camperdown NSW 2050",
         website: "https://theladyhampshire.com.au/",
@@ -370,7 +365,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Camperdown",
         name: "The Newsagency",
         address: "74-76 Pyrmont Bridge Rd, Camperdown NSW 2050",
         website: "https://thenewsagencyvenue.com/",
@@ -379,7 +374,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Surry Hills",
         name: "Low 302",
         address: "302 Crown St, Surry Hills NSW 2010",
         website: "https://www.low302.com.au/",
@@ -388,7 +383,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Circular Quay",
         name: "Mary’s Underground (formerly The Basement)",
         address: "7 Macquarie Pl, Circular Quay NSW 2000",
         website: "https://marysunderground.com/",
@@ -397,7 +392,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Marrickville",
         name: "Camelot Lounge",
         address: "19 Marrickville Rd, Marrickville NSW 2204",
         website: "https://camelotlounge.com/",
@@ -406,7 +401,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Newtown",
         name: "The Union Hotel, Newtown",
         address: "576 King St, Newtown NSW 2042",
         website: "https://www.unionnewtown.com.au/",
@@ -415,7 +410,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Marrickville",
         name: "The Great Club",
         address: "160-164 Livingstone Rd, Marrickville NSW 2204",
         website: "https://www.thegreatclub.com.au/",
@@ -424,7 +419,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Redfern",
         name: "Hustle & Flow Bar",
         address: "105 Regent St, Redfern NSW 2016",
         website: "https://hustleandflowbar.com/",
@@ -433,7 +428,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Redfern",
         name: "The Dock",
         address: "182 Redfern St, Redfern NSW 2016",
         website: "https://www.facebook.com/TheDockBar/",
@@ -442,7 +437,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Newtown",
         name: "The Midnight Special",
         address: "44 Enmore Rd, Newtown NSW 2042",
         website: "https://www.facebook.com/TheMidnightSpecialNewtown/",
@@ -451,7 +446,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Marrickville",
         name: "Django Bar (at Camelot Lounge)",
         address: "19 Marrickville Rd, Marrickville NSW 2204",
         website: "https://camelotlounge.com/",
@@ -460,7 +455,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Rozelle",
         name: "The Bridge Hotel (Rozelle)",
         address: "119 Victoria Rd, Rozelle NSW 2039",
         website: "https://bridgehotel.com.au/",
@@ -469,7 +464,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Redfern",
         name: "The Bearded Tit",
         address: "183 Regent St, Redfern NSW 2016",
         website: "https://thebeardedtit.com/",
@@ -478,7 +473,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Surry Hills",
         name: "The Cricketers Arms Hotel",
         address: "106 Fitzroy St, Surry Hills NSW 2010",
         website: "https://www.cricketersarmshotel.com/",
@@ -487,7 +482,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Chippendale",
         name: "Knox Street Bar",
         address: "21 Shepherd St, Chippendale NSW 2008",
         website: "https://www.facebook.com/knoxstreetbar/",
@@ -496,7 +491,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Marrickville",
         name: "Gasoline Pony",
         address: "115 Marrickville Rd, Marrickville NSW 2204",
         website: "https://www.facebook.com/thegasolinepony/",
@@ -505,7 +500,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Newtown",
         name: "Boogie Mountain (Above The Marlborough Hotel)",
         address: "145 King St, Newtown NSW 2042",
         website: "https://www.marlboroughhotel.com.au/boogie-mountain/",
@@ -514,7 +509,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Leichhardt",
         name: "Crowbar Sydney (formerly Bald Faced Stag)",
         address: "345 Parramatta Rd, Leichhardt NSW 2040",
         website: "https://crowbarsyd.com/",
@@ -523,7 +518,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Newtown",
         name: "The Botany View Hotel",
         address: "597 King St, Newtown NSW 2042",
         website: "https://botanyviewhotel.com/",
@@ -532,7 +527,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Alexandria",
         name: "The Lord Raglan Hotel",
         address: "12 Henderson Rd, Alexandria NSW 2015",
         website: "https://www.lordraglan.com.au/",
@@ -541,7 +536,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Darlinghurst",
         name: "The Burdekin Hotel",
         address: "2 Oxford St, Darlinghurst NSW 2010",
         website: "https://burdekinhotel.com/",
@@ -550,7 +545,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Manly",
         name: "The Old Manly Boatshed",
         address: "35-37 The Corso, Manly NSW 2095",
         website: "https://www.oldmanlyboatshed.com.au/",
@@ -559,7 +554,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Chippendale",
         name: "The Rose Hotel",
         address: "52-54 Cleveland St, Chippendale NSW 2008",
         website: "https://therosehotel.com.au/",
@@ -568,7 +563,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Newtown",
         name: "Kelly’s on King",
         address: "285 King St, Newtown NSW 2042",
         website: "https://www.kellysonking.com/",
@@ -577,7 +572,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Redfern",
         name: "The Redfern",
         address: "135 Redfern St, Redfern NSW 2016",
         website: "https://theredfern.com.au/",
@@ -586,7 +581,7 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Alexandria",
         name: "Yulli’s Brews",
         address: "75A Burrows Rd, Alexandria NSW 2015",
         website: "https://www.yullisbrews.com.au/",
@@ -595,27 +590,25 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Balmain",
         name: "Union Hotel (Balmain)",
         address: "90 Beattie St, Balmain NSW 2041",
         website: "https://unionbalmain.com.au/",
         phone: "(02) 9810 1323"
     },
-    // Instead of The Record Crate, we use Public House Petersham (PHP)
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Petersham",
         name: "Public House Petersham (PHP)",
         address: "292 Stanmore Rd, Petersham NSW 2049",
         website: "https://www.publichousepetersham.com.au/",
         phone: "(02) 9568 3703"
     },
-    // Instead of Chippendale Hotel (if closed), we use Stanmore Hotel
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Stanmore",
         name: "Stanmore Hotel",
         address: "97-99 Parramatta Rd, Stanmore NSW 2048",
         website: "https://www.thestanmorehotel.com.au/",
@@ -624,11 +617,283 @@ const venues = [
     {
         country: "Australia",
         state: "New South Wales",
-        city: "Sydney",
+        city: "Paddington",
         name: "The Captain Cook Hotel (Paddington)",
         address: "162 Flinders St, Paddington NSW 2021",
         website: "https://www.captaincookhotel.com.au/",
         phone: "(02) 9331 4949"
+    },
+
+    // PERTH VENUES (Australia, Western Australia)
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Northbridge",
+        name: "The Bird",
+        address: "181 William St, Northbridge WA 6003",
+        website: "https://www.williamstreetbird.com/",
+        phone: "(08) 6102 7323, info@williamstreetbird.com"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "North Fremantle",
+        name: "Mojos Bar",
+        address: "237 Queen Victoria St, North Fremantle WA 6159",
+        website: "https://mojosbar.com.au/",
+        phone: "info@mojosbar.com.au"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "North Perth",
+        name: "Rosemount Hotel",
+        address: "459 Fitzgerald St, North Perth WA 6006",
+        website: "https://www.rosemounthotel.com.au/",
+        phone: "(08) 9328 7062, info@rosemounthotel.com.au"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Perth",
+        name: "The Ellington Jazz Club",
+        address: "191 Beaufort St, Perth WA 6000",
+        website: "https://www.ellingtonjazz.com.au/",
+        phone: "(08) 9228 1088, info@ellingtonjazz.com.au"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Fremantle",
+        name: "The Aardvark",
+        address: "Basement of The Norfolk Hotel, 47 South Terrace, Fremantle WA 6160",
+        website: "https://www.theaardvarkbar.com/",
+        phone: "hello@theaardvarkbar.com"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Perth",
+        name: "Amplifier Capitol",
+        address: "383 Murray St, Perth WA 6000",
+        website: "https://www.amplifiercapitol.com.au/",
+        phone: "(08) 9226 0500, info@amplifiercapitol.com.au"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Northbridge",
+        name: "Jack Rabbit Slim’s",
+        address: "133 Aberdeen St, Northbridge WA 6003",
+        website: "https://www.jackrabbitslims.net/",
+        phone: "info@jackrabbitslims.net"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Perth",
+        name: "The Sewing Room",
+        address: "Basement, Wolf Lane, 317 Murray St, Perth WA 6000",
+        website: "https://thesewingroom.com.au/",
+        phone: "info@thesewingroom.com.au"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "North Perth",
+        name: "The Charles Hotel (Perth Blues Club)",
+        address: "509 Charles St, North Perth WA 6006",
+        website: "https://www.charleshotel.com.au/",
+        phone: "(08) 9444 1051, info@charleshotel.com.au"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Maylands",
+        name: "Lyric’s Underground",
+        address: "22 Lyric Ln, Maylands WA 6051",
+        website: "https://www.lyricsunderground.com.au/",
+        phone: "info@lyricsunderground.com.au"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Northbridge",
+        name: "The Rechabite",
+        address: "224 William St, Northbridge WA 6003",
+        website: "https://www.therechabite.com.au/",
+        phone: "hello@therechabite.com.au"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Fremantle",
+        name: "Clancy’s Fish Pub Fremantle",
+        address: "51 Cantonment St, Fremantle WA 6160",
+        website: "https://clancysfishpub.com.au/venue/fremantle/",
+        phone: "(08) 9335 1351, freo@clancysfishpub.com.au"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Applecross",
+        name: "Clancy’s Fish Pub Canning Bridge",
+        address: "903 Canning Hwy, Applecross WA 6153",
+        website: "https://clancysfishpub.com.au/venue/canning-bridge/",
+        phone: "(08) 9364 7322, cb@clancysfishpub.com.au"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Fremantle",
+        name: "Freo.Social",
+        address: "Parry St & William St, Fremantle WA 6160",
+        website: "https://freo.social/",
+        phone: "info@freo.social"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Perth",
+        name: "Badlands Bar",
+        address: "1/3 Aberdeen St, Perth WA 6000",
+        website: "https://badlands.bar/",
+        phone: "info@badlands.bar"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Fremantle",
+        name: "The Newport Hotel",
+        address: "2 South Terrace, Fremantle WA 6160",
+        website: "https://www.thenewport.com/",
+        phone: "(08) 9335 2428, info@thenewport.com"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Scarborough",
+        name: "The Indi Bar (at Indian Ocean Hotel)",
+        address: "335 Scarborough Beach Rd, Scarborough WA 6019",
+        website: "https://www.facebook.com/TheIndiBar/",
+        phone: "(08) 9245 3733"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Highgate",
+        name: "Si Paradiso",
+        address: "1/446 Beaufort St, Highgate WA 6003",
+        website: "https://www.siparadiso.com/",
+        phone: "hello@siparadiso.com"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Scarborough",
+        name: "El Grotto",
+        address: "5/148 The Esplanade, Scarborough WA 6019",
+        website: "https://www.elgrotto.com.au/",
+        phone: "hello@elgrotto.com.au"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Inglewood",
+        name: "Milk Bar (at The Civic Hotel)",
+        address: "981 Beaufort St, Inglewood WA 6052",
+        website: "https://milkbarperth.com/",
+        phone: "bookings@milkbarperth.com"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Mosman Park",
+        name: "Rodney’s Bait n Tackle",
+        address: "211 Johnston St, Mosman Park WA 6012",
+        website: "https://www.rodneysbar.com.au/",
+        phone: "(08) 9284 2507, rodneysbar@gmail.com"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Northbridge",
+        name: "Convenients",
+        address: "35 Lake St, Northbridge WA 6003",
+        website: "https://www.instagram.com/convenients_/",
+        phone: "convenientsbar@gmail.com"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Perth",
+        name: "Lucy’s Love Shack",
+        address: "Basement, 104 Murray St, Perth WA 6000",
+        website: "https://www.lucysloveshack.com/",
+        phone: "bookings@lucysloveshack.com"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Northbridge",
+        name: "Lynott’s Lounge",
+        address: "290 William St, Northbridge WA 6003",
+        website: "https://www.lynottslounge.com/",
+        phone: "hello@lynottslounge.com"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Scarborough",
+        name: "Indian Ocean Hotel",
+        address: "23 Hastings St, Scarborough WA 6019",
+        website: "https://www.indianoceanhotel.com.au/",
+        phone: "(08) 9245 1200, stay@indianoceanhotel.com.au"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Mount Lawley",
+        name: "Astor Theatre",
+        address: "659 Beaufort St, Mount Lawley WA 6050",
+        website: "https://www.astortheatreperth.com/",
+        phone: "(08) 9370 1777, info@astortheatreperth.com"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Fremantle",
+        name: "Bar Orient",
+        address: "39 High St, Fremantle WA 6160",
+        website: "https://www.barorient.com.au/",
+        phone: "(08) 9335 6333, info@barorient.com.au"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Mount Hawthorn",
+        name: "Paddington Ale House (The Paddo)",
+        address: "141 Scarborough Beach Rd, Mount Hawthorn WA 6016",
+        website: "https://www.paddingtonalehouse.com.au/",
+        phone: "(08) 9444 0399, admin@paddingtonalehouse.com.au"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "Subiaco",
+        name: "The Corner Gallery",
+        address: "263 Hay St, Subiaco WA 6008",
+        website: "https://thecornergallery.com/",
+        phone: "hello@thecornergallery.com"
+    },
+    {
+        country: "Australia",
+        state: "Western Australia",
+        city: "East Fremantle",
+        name: "Duke of George",
+        address: "135 George St, East Fremantle WA 6158",
+        website: "https://www.dukeofgeorge.com.au/",
+        phone: "(08) 9339 7950, info@dukeofgeorge.com.au"
     }
 ];
 
