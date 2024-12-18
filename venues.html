@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore global music venues and radio stations to connect your music with the right audience.">
-    <title>Venues & Radio Directory - Music Revolution</title>
+    <meta name="description" content="Explore global music venues, radio stations, and bands to connect your music with the right audience.">
+    <title>Venues, Radio, & Bands Directory - Music Revolution</title>
 
     <!-- External CSS -->
     <link rel="stylesheet" href="venues-style.css">
@@ -44,24 +44,81 @@
     <section class="hero">
         <div class="hero-overlay"></div>
         <div class="hero-content container">
-            <h1>Explore Music Venues & Radio Stations</h1>
-            <p>Find the perfect venues to perform and radio stations to broadcast your sound worldwide.</p>
+            <h1>Explore Music Venues, Radio Stations & Bands</h1>
+            <p>Find the perfect venues to perform, radio stations to broadcast, and bands to connect with worldwide.</p>
         </div>
     </section>
 
-    <!-- Australian Bands Section -->
-    <section class="bands-section container">
-        <h2>Australian Bands Directory</h2>
-        <p>Select a band to explore their details.</p>
+    <!-- Venues Directory Section -->
+    <section class="venues container">
+        <h2>Global Venue Directory</h2>
+        <p>Browse venues that support live, original music with capacities ranging from small grassroots spaces to mid-sized halls.</p>
 
+        <!-- Dropdown Filters for Venues -->
         <div class="filters">
-            <select id="bandsDropdown">
+            <select id="countrySelect">
+                <option value="">Select Country</option>
+                <option value="Australia">Australia</option>
+                <option value="United States">United States</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="Germany">Germany</option>
+                <option value="Canada">Canada</option>
+            </select>
+            <select id="stateSelect" disabled>
+                <option value="">Select State/Province</option>
+            </select>
+            <select id="citySelect" disabled>
+                <option value="">Select City</option>
+            </select>
+        </div>
+
+        <!-- Venue Listings -->
+        <div id="venueList" class="listing-grid">
+            <p>Select a country, state, and city to view venues.</p>
+        </div>
+    </section>
+
+    <!-- Radio Station Directory -->
+    <section class="radio-stations container">
+        <h2>Global Radio Stations</h2>
+        <p>Connect with radio stations worldwide to expand your music’s reach.</p>
+
+        <!-- Dropdown Filters for Radio -->
+        <div class="filters">
+            <select id="radioCountrySelect">
+                <option value="">Select Country</option>
+                <option value="Australia">Australia</option>
+                <!-- Add more countries as needed -->
+            </select>
+            <select id="radioStateSelect" disabled>
+                <option value="">Select State/Province</option>
+            </select>
+            <select id="radioCitySelect" disabled>
+                <option value="">Select City</option>
+            </select>
+        </div>
+
+        <!-- Radio Listings -->
+        <div id="radioList" class="listing-grid">
+            <p>Select a country, state, and city to view radio stations.</p>
+        </div>
+    </section>
+
+    <!-- Bands Directory Section -->
+    <section class="bands container">
+        <h2>Australian Bands Directory</h2>
+        <p>Explore a list of amazing Australian bands making waves in the music scene.</p>
+
+        <!-- Dropdown for Bands -->
+        <div class="filters">
+            <select id="bandSelect">
                 <option value="">Select a Band</option>
             </select>
         </div>
 
-        <div id="bandDetails" class="band-details">
-            <p>Select a band from the dropdown to view details.</p>
+        <!-- Band Details Section -->
+        <div id="bandDetails">
+            <p>Select a band to view details.</p>
         </div>
     </section>
 
@@ -73,33 +130,42 @@
     </footer>
 
     <!-- JavaScript -->
+    <script src="venues.js"></script>
+    <script src="radio.js"></script>
+    <script src="radioFunctionality.js"></script>
     <script src="bands_list.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const bandsDropdown = document.getElementById('bandsDropdown');
-            const bandDetails = document.getElementById('bandDetails');
+        // Populate Bands Dropdown
+        const bandSelect = document.getElementById('bandSelect');
+        const bandDetails = document.getElementById('bandDetails');
 
-            // Sort bands alphabetically
-            const sortedBands = bands.sort((a, b) => a.name.localeCompare(b.name));
+        // Assuming `bands` is defined in `bands_list.js`
+        bands.sort((a, b) => a.name.localeCompare(b.name)); // Alphabetize
 
-            // Populate the dropdown with band names
-            sortedBands.forEach(band => {
-                const option = document.createElement('option');
-                option.value = band.name;
-                option.textContent = band.name;
-                bandsDropdown.appendChild(option);
-            });
+        bands.forEach(band => {
+            const option = document.createElement('option');
+            option.value = band.name;
+            option.textContent = band.name;
+            bandSelect.appendChild(option);
+        });
 
-            // Event listener for dropdown selection
-            bandsDropdown.addEventListener('change', () => {
-                const selectedBand = bandsDropdown.value;
-                if (selectedBand) {
-                    const band = sortedBands.find(b => b.name === selectedBand);
-                    bandDetails.innerHTML = `<p><strong>Band Name:</strong> ${band.name}</p>`;
-                } else {
-                    bandDetails.innerHTML = '<p>Select a band from the dropdown to view details.</p>';
-                }
-            });
+        bandSelect.addEventListener('change', () => {
+            const selectedBand = bandSelect.value;
+            if (selectedBand) {
+                bandDetails.innerHTML = `<h3>${selectedBand}</h3>`;
+            } else {
+                bandDetails.innerHTML = '<p>Select a band to view details.</p>';
+            }
+        });
+
+        // Hamburger Menu
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+            hamburger.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
         });
     </script>
 </body>
