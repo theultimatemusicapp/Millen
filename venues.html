@@ -126,6 +126,28 @@
             navLinks.classList.toggle('active');
         });
     </script>
+<script src="bands_list.js" type="module"></script>
+<script>
+  import bandsList from './bands_list.js';
+
+  // Function to dynamically load bands into your HTML
+  function displayBands() {
+    const venueList = document.getElementById('venueList');
+    venueList.innerHTML = ''; // Clear any existing content
+
+    bandsList.forEach((band) => {
+      const bandItem = document.createElement('div');
+      bandItem.classList.add('band-item');
+      bandItem.innerHTML = `<a href="${band.website}" target="_blank">${band.name}</a>`;
+      venueList.appendChild(bandItem);
+    });
+  }
+
+  // Call the function on page load
+  document.addEventListener('DOMContentLoaded', displayBands);
+</script>
+
+    
 </body>
 </html>
 
