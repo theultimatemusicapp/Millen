@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health and Fitness</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #0284c7;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #0369a1;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+        }
+        nav a:hover {
+            background-color: #0284c7;
+            border-radius: 5px;
+        }
+        .tab {
+            display: none;
+            padding: 20px;
+        }
+        .tab.active {
+            display: block;
+        }
+        footer {
+            background-color: #0369a1;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Health and Fitness</h1>
+    <p>Your ultimate guide to a healthier, fitter life.</p>
+</header>
+
+<nav>
+    <a href="#" onclick="showTab('cardio')">Cardiovascular Health</a>
+    <a href="#" onclick="showTab('strength')">Strength Training</a>
+    <a href="#" onclick="showTab('flexibility')">Flexibility & Mobility</a>
+    <a href="#" onclick="showTab('nutrition')">Nutrition</a>
+    <a href="#" onclick="showTab('mental')">Mental Health</a>
+    <a href="#" onclick="showTab('sleep')">Sleep & Recovery</a>
+    <a href="#" onclick="showTab('functional')">Functional Fitness</a>
+    <a href="#" onclick="showTab('hydration')">Hydration</a>
+    <a href="#" onclick="showTab('bodycomp')">Body Composition</a>
+    <a href="#" onclick="showTab('aging')">Aging & Fitness</a>
+</nav>
+
+<div id="cardio" class="tab">
+    <h2>Cardiovascular Health</h2>
+    <ul>
+        <li><strong>Importance of Cardiovascular Exercise:</strong> Activities like running, cycling, and swimming improve heart health and endurance.</li>
+        <li><strong>Best Practices for Cardio Workouts:</strong> Design effective routines focusing on frequency, intensity, and duration.</li>
+        <li><strong>Monitoring Heart Rate During Exercise:</strong> Learn about target heart rate zones and tracking progress.</li>
+    </ul>
+</div>
+
+<div id="strength" class="tab">
+    <h2>Strength Training</h2>
+    <ul>
+        <li><strong>Benefits of Strength Training:</strong> Build muscle, increase metabolism, and support joint health.</li>
+        <li><strong>Designing a Strength Routine:</strong> Explore split workouts, full-body routines, and proper techniques.</li>
+        <li><strong>Strength Training for Beginners:</strong> Start safely with tips for selecting weights and avoiding mistakes.</li>
+    </ul>
+</div>
+
+<div id="flexibility" class="tab">
+    <h2>Flexibility and Mobility</h2>
+    <ul>
+        <li><strong>Importance of Stretching:</strong> Prevent injuries and enhance movement through regular stretching.</li>
+        <li><strong>Mobility Drills for Everyday Life:</strong> Improve joint health and functional movement.</li>
+    </ul>
+</div>
+
+<div id="nutrition" class="tab">
+    <h2>Nutrition</h2>
+    <ul>
+        <li><strong>Role of Nutrition in Fitness:</strong> Balanced eating fuels performance and recovery.</li>
+        <li><strong>Meal Planning for Fitness Goals:</strong> Create plans for weight loss, muscle gain, or general health.</li>
+    </ul>
+</div>
+
+<div id="mental" class="tab">
+    <h2>Mental Health and Stress Management</h2>
+    <ul>
+        <li><strong>Exercise and Mental Health:</strong> Reduce stress and improve mood through physical activity.</li>
+        <li><strong>Mindfulness in Fitness:</strong> Integrate meditation and mindfulness into your routines.</li>
+    </ul>
+</div>
+
+<div id="sleep" class="tab">
+    <h2>Sleep and Recovery</h2>
+    <ul>
+        <li><strong>Importance of Sleep for Fitness:</strong> Sleep impacts performance and recovery.</li>
+        <li><strong>Active Recovery Techniques:</strong> Use low-intensity exercises, yoga, and stretching for better recovery.</li>
+    </ul>
+</div>
+
+<div id="functional" class="tab">
+    <h2>Functional Fitness</h2>
+    <ul>
+        <li><strong>What is Functional Fitness?</strong> Exercises that mimic everyday movements for improved balance and strength.</li>
+        <li><strong>Benefits of Functional Workouts:</strong> Reduce injury risks and improve real-world strength.</li>
+    </ul>
+</div>
+
+<div id="hydration" class="tab">
+    <h2>Hydration</h2>
+    <ul>
+        <li><strong>Importance of Hydration:</strong> Stay hydrated for energy, performance, and health.</li>
+        <li><strong>Hydration Tips for Active People:</strong> Advice on water intake, electrolytes, and timing.</li>
+    </ul>
+</div>
+
+<div id="bodycomp" class="tab">
+    <h2>Body Composition and Weight Management</h2>
+    <ul>
+        <li><strong>Understanding Body Composition:</strong> Explore the role of muscle, fat, and bone density.</li>
+        <li><strong>Sustainable Weight Management:</strong> Combine diet, exercise, and lifestyle changes for results.</li>
+    </ul>
+</div>
+
+<div id="aging" class="tab">
+    <h2>Aging and Fitness</h2>
+    <ul>
+        <li><strong>Fitness Routines for Different Ages:</strong> Tailored advice for youth, adults, and seniors.</li>
+        <li><strong>Adapting Workouts as You Age:</strong> Maintain strength, balance, and endurance.</li>
+    </ul>
+</div>
+
+<footer>
+    <p>&copy; 2024 Health and Fitness. All rights reserved.</p>
+</footer>
+
+<script>
+    function showTab(tabId) {
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => tab.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+    }
+</script>
+
+</body>
+</html>
