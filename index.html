@@ -10,9 +10,6 @@
     <!-- External CSS -->
     <link rel="stylesheet" href="index-style.css">
 
-    <!-- Chatbot CSS -->
-    <link rel="stylesheet" href="Responsive-AI-Chatbot/style.css">
-
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
@@ -104,19 +101,6 @@
         </div>
     </section>
 
-    <!-- Chatbot Section -->
-    <div id="chatbot-toggler">
-        <span>💬</span>
-    </div>
-    <div id="chatbot-container">
-        <div class="chat-header">Chat with Us!</div>
-        <div class="chat-body"></div>
-        <div class="chat-footer">
-            <textarea class="message-input" placeholder="Type your message..."></textarea>
-            <button id="send-message">Send</button>
-        </div>
-    </div>
-
     <!-- Call to Action Section -->
     <section class="cta">
         <div class="container cta-center">
@@ -134,61 +118,21 @@
                 <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                 <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                 <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                <li><a href="#"><i class="fab fa-linkedin-in"></i></li>
+                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
             </ul>
         </div>
     </footer>
 
     <!-- JavaScript -->
     <script>
-        // Hamburger toggle for navigation
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
 
-        if (hamburger) {
-            hamburger.addEventListener('click', () => {
-                const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
-                hamburger.setAttribute('aria-expanded', !expanded);
-                navLinks.classList.toggle('active');
-            });
-        }
-
-        // Chatbot functionality
-        const chatbotToggler = document.querySelector("#chatbot-toggler");
-        const chatbotContainer = document.querySelector("#chatbot-container");
-        const chatBody = document.querySelector(".chat-body");
-        const messageInput = document.querySelector(".message-input");
-        const sendMessage = document.querySelector("#send-message");
-
-        if (chatbotToggler && chatbotContainer) {
-            chatbotToggler.addEventListener("click", () => {
-                const isVisible = chatbotContainer.style.display === "block";
-                chatbotContainer.style.display = isVisible ? "none" : "block";
-            });
-        }
-
-        if (sendMessage && chatBody && messageInput) {
-            sendMessage.addEventListener("click", () => {
-                const userMessage = messageInput.value.trim();
-                if (!userMessage) return;
-
-                const userMessageElement = document.createElement("div");
-                userMessageElement.className = "message user-message";
-                userMessageElement.innerText = userMessage;
-
-                chatBody.appendChild(userMessageElement);
-                messageInput.value = "";
-                chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
-
-                setTimeout(() => {
-                    const botMessageElement = document.createElement("div");
-                    botMessageElement.className = "message bot-message";
-                    botMessageElement.innerText = "Hello! How can I help you?";
-                    chatBody.appendChild(botMessageElement);
-                    chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
-                }, 1000);
-            });
-        }
+        hamburger.addEventListener('click', () => {
+            const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+            hamburger.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('active');
+        });
     </script>
 </body>
 </html>
