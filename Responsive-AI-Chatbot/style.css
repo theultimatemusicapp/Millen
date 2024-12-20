@@ -1,61 +1,35 @@
-/* Importing Google Fonts - Inter */
-@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
-
-/* Scope styles to the chatbot container */
 #chatbot-container {
+  display: none; /* Initially hidden */
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 400px;
-  background: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  width: 300px;
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
   overflow: hidden;
-  display: none;
-  flex-direction: column;
 }
 
-/* Chatbot toggle button */
-#chatbot-toggler {
-  position: fixed;
-  bottom: 30px;
-  right: 35px;
-  border: none;
-  height: 50px;
-  width: 50px;
-  display: flex;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: #00abb1;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
-}
-
-#chatbot-toggler span {
-  color: #fff;
-}
-
-/* Chat popup */
-#chatbot-container .chat-header {
-  background: #00abb1;
-  color: #fff;
-  padding: 10px;
-  font-size: 1.2em;
-  text-align: center;
-}
-
-#chatbot-container .chat-body {
-  padding: 10px;
-  height: 300px;
+.chat-body {
+  max-height: 300px;
   overflow-y: auto;
-  background: #f9f9f9;
+  padding: 10px;
 }
 
-#chatbot-container .chat-footer {
-  padding: 10px;
-  background: #ececec;
-  display: flex;
-  align-items: center;
+.message {
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.user-message {
+  background: #00abb1;
+  color: white;
+  align-self: flex-end;
+}
+
+.bot-message {
+  background: #f1f1f1;
+  color: black;
 }
