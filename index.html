@@ -13,6 +13,8 @@
     <!-- Chatbot CSS -->
     <link rel="stylesheet" href="Responsive-AI-Chatbot/style.css">
 
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -49,21 +51,6 @@
         </div>
     </section>
 
-    <!-- Chatbot Section -->
-    <div id="chatbot-toggler">
-        <span>💬</span>
-    </div>
-    <div id="chatbot-container">
-        <div class="chat-header">Chat with Us!</div>
-        <div class="chat-body">
-            <p>Welcome to our chatbot!</p>
-        </div>
-        <div class="chat-footer">
-            <input type="text" placeholder="Type a message..." style="flex: 1; padding: 5px;">
-            <button>Send</button>
-        </div>
-    </div>
-
     <!-- Core Goal Section -->
     <section id="core-goal" class="core-goal-section container">
         <h2>Our Core Goal</h2>
@@ -87,6 +74,58 @@
         <a href="resources.html" class="btn btn-secondary">Explore Resources</a>
     </section>
 
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Our Features</h2>
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fas fa-link"></i></div>
+                    <h3>Direct Connections</h3>
+                    <p>Eliminate middlemen and connect directly for gigs and collaborations.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fas fa-globe"></i></div>
+                    <h3>Global Venue Directory</h3>
+                    <p>Discover venues worldwide that support original music.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fas fa-users"></i></div>
+                    <h3>Band Profiles</h3>
+                    <p>Showcase your music and grow your audience with customizable profiles.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fas fa-comments"></i></div>
+                    <h3>Community Forums</h3>
+                    <p>Collaborate, share advice, and engage with fellow artists and venues.</p>
+                </div>
+            </div>
+            <p class="feedback-note">What features would you find most useful? We would love your feedback.</p>
+        </div>
+    </section>
+
+    <!-- Chatbot Section -->
+    <div id="chatbot-toggler">
+        <span>💬</span>
+    </div>
+    <div id="chatbot-container">
+        <div class="chat-header">Chat with Us!</div>
+        <div class="chat-body"></div>
+        <div class="chat-footer">
+            <textarea class="message-input" placeholder="Type your message..."></textarea>
+            <button id="send-message">Send</button>
+        </div>
+    </div>
+
+    <!-- Call to Action Section -->
+    <section class="cta">
+        <div class="container cta-center">
+            <h2>Join the Movement</h2>
+            <p>Explore tools, connect with venues, and take your music career to the next level.</p>
+            <a href="contact.html" class="btn btn-primary">Get Started</a>
+        </div>
+    </section>
+
     <!-- Footer Section -->
     <footer>
         <div class="container footer-flex">
@@ -95,24 +134,61 @@
                 <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                 <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                 <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                <li><a href="#"><i class="fab fa-linkedin-in"></i></li>
             </ul>
         </div>
     </footer>
 
     <!-- JavaScript -->
     <script>
+        // Hamburger toggle for navigation
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
 
-        hamburger.addEventListener('click', () => {
-            const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
-            hamburger.setAttribute('aria-expanded', !expanded);
-            navLinks.classList.toggle('active');
-        });
-    </script>
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+                hamburger.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('active');
+            });
+        }
 
-    <!-- Chatbot JavaScript -->
-    <script src="Responsive-AI-Chatbot/script.js" defer></script>
+        // Chatbot functionality
+        const chatbotToggler = document.querySelector("#chatbot-toggler");
+        const chatbotContainer = document.querySelector("#chatbot-container");
+        const chatBody = document.querySelector(".chat-body");
+        const messageInput = document.querySelector(".message-input");
+        const sendMessage = document.querySelector("#send-message");
+
+        if (chatbotToggler && chatbotContainer) {
+            chatbotToggler.addEventListener("click", () => {
+                const isVisible = chatbotContainer.style.display === "block";
+                chatbotContainer.style.display = isVisible ? "none" : "block";
+            });
+        }
+
+        if (sendMessage && chatBody && messageInput) {
+            sendMessage.addEventListener("click", () => {
+                const userMessage = messageInput.value.trim();
+                if (!userMessage) return;
+
+                const userMessageElement = document.createElement("div");
+                userMessageElement.className = "message user-message";
+                userMessageElement.innerText = userMessage;
+
+                chatBody.appendChild(userMessageElement);
+                messageInput.value = "";
+                chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+
+                setTimeout(() => {
+                    const botMessageElement = document.createElement("div");
+                    botMessageElement.className = "message bot-message";
+                    botMessageElement.innerText = "Hello! How can I help you?";
+                    chatBody.appendChild(botMessageElement);
+                    chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+                }, 1000);
+            });
+        }
+    </script>
 </body>
 </html>
