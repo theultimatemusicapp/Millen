@@ -102,11 +102,13 @@
     <!-- JavaScript -->
     <script src="venues-data.js"></script> <!-- External file for venues and radio data -->
     <script>
+        // Selectors for venues
         const countrySelect = document.getElementById('countrySelect');
         const stateSelect = document.getElementById('stateSelect');
         const citySelect = document.getElementById('citySelect');
         const venueList = document.getElementById('venueList');
 
+        // Selectors for radio stations
         const radioCountrySelect = document.getElementById('radioCountrySelect');
         const radioStateSelect = document.getElementById('radioStateSelect');
         const radioCitySelect = document.getElementById('radioCitySelect');
@@ -128,15 +130,17 @@
             return [...new Set(filtered.map(v => v[key]))].sort();
         }
 
-        // Display venues or radio stations
+        // Display listings (for venues and radio stations)
         function displayListings(data, container, country, state, city) {
-            const filtered = data.filter(v => 
-                v.country === country && v.state === state && v.city === city
+            const filtered = data.filter(item =>
+                item.country === country && item.state === state && item.city === city
             );
+
             if (filtered.length === 0) {
                 container.innerHTML = '<p>No entries found for this location.</p>';
                 return;
             }
+
             container.innerHTML = filtered.map(item => `
                 <div class="listing-card">
                     <h3>${item.name}</h3>
@@ -147,7 +151,7 @@
             `).join('');
         }
 
-        // Event Listeners for Venues
+        // Initialize dropdowns
         document.addEventListener('DOMContentLoaded', () => {
             const venueCountries = getUniqueValues(venues, 'country');
             populateDropdown(countrySelect, venueCountries, 'Select Country');
@@ -156,6 +160,7 @@
             populateDropdown(radioCountrySelect, radioCountries, 'Select Country');
         });
 
+        // Venue dropdown logic
         countrySelect.addEventListener('change', () => {
             const selectedCountry = countrySelect.value;
             if (selectedCountry) {
@@ -200,7 +205,7 @@
             }
         });
 
-        // Event Listeners for Radio Stations
+        // Radio station dropdown logic
         radioCountrySelect.addEventListener('change', () => {
             const selectedCountry = radioCountrySelect.value;
             if (selectedCountry) {
