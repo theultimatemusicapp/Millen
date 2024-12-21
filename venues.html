@@ -58,11 +58,6 @@
         <div class="filters">
             <select id="countrySelect">
                 <option value="">Select Country</option>
-                <option value="Australia">Australia</option>
-                <option value="United States">United States</option>
-                <option value="United Kingdom">United Kingdom</option>
-                <option value="Germany">Germany</option>
-                <option value="Canada">Canada</option>
             </select>
             <select id="stateSelect" disabled>
                 <option value="">Select State/Province</option>
@@ -78,33 +73,6 @@
         </div>
     </section>
 
-    <!-- Radio Station Directory -->
-    <section class="radio-stations container">
-        <h2>Global Radio Stations</h2>
-        <p>Connect with radio stations worldwide to expand your music’s reach.</p>
-        <p><strong>Contact here to submit your music to local radio</strong></p>
-
-        <!-- Dropdown Filters for Radio -->
-        <div class="filters">
-            <select id="radioCountrySelect">
-                <option value="">Select Country</option>
-                <option value="Australia">Australia</option>
-                <!-- Add more countries as needed -->
-            </select>
-            <select id="radioStateSelect" disabled>
-                <option value="">Select State/Province</option>
-            </select>
-            <select id="radioCitySelect" disabled>
-                <option value="">Select City</option>
-            </select>
-        </div>
-
-        <!-- Radio Listings -->
-        <div id="radioList" class="listing-grid">
-            <p>Select a country, state, and city to view radio stations.</p>
-        </div>
-    </section>
-
     <!-- Footer Section -->
     <footer>
         <div class="container footer-flex">
@@ -114,49 +82,109 @@
 
     <!-- JavaScript -->
     <script src="venues.js"></script>
-    <script src="radio.js"></script>
-    <script src="radioFunctionality.js"></script>
     <script>
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
+        const countrySelect = document.getElementById('countrySelect');
+        const stateSelect = document.getElementById('stateSelect');
+        const citySelect = document.getElementById('citySelect');
+        const venueList = document.getElementById('venueList');
 
-        hamburger.addEventListener('click', () => {
-            const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
-            hamburger.setAttribute('aria-expanded', !expanded);
-            navLinks.classList.toggle('active');
+        // Functions to populate dropdowns and display venues
+        function getUniqueValues(key, filterObj = {}) {
+            let filtered = venues;
+            if (filterObj.country) {
+                filtered = filtered.filter(v => v.country === filterObj.country);
+            }
+            if (filterObj.state) {
+                filtered = filtered.filter(v => v.state === filterObj.state);
+            }
+            const unique = [...new Set(filtered.map(v => v[key]))];
+            unique.sort();
+            return unique;
+        }
+
+        function populateSelect(selectElement, items, defaultText) {
+            let options = `<option value="">${defaultText}</option>`;
+            items.forEach(item => {
+                options += `<option value="${item}">${item}</option>`;
+            });
+            selectElement.innerHTML = options;
+        }
+
+        function displayVenues(country, state, city) {
+            const filteredVenues = venues.filter(v => 
+                v.country === country && v.state === state && v.city === city
+            );
+
+            if (filteredVenues.length === 0) {
+                venueList.innerHTML = '<p>No venues found for this location.</p>';
+                return;
+            }
+
+            let html = '';
+            filteredVenues.forEach(venue => {
+                html += `
+                    <div class="venue-card">
+                        <h3>${venue.name}</h3>
+                        <p><strong>Address:</strong> ${venue.address}</p>
+                        <p><strong>Website:</strong> <a href="${venue.website}" target="_blank">${venue.website}</a></p>
+                        <p><strong>Phone:</strong> ${venue.phone}</p>
+                    </div>
+                `;
+            });
+
+            venueList.innerHTML = html;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const countries = getUniqueValues('country');
+            populateSelect(countrySelect, countries, 'Select Country');
+            stateSelect.disabled = true;
+            citySelect.disabled = true;
+        });
+
+        countrySelect.addEventListener('change', () => {
+            const selectedCountry = countrySelect.value;
+            if (selectedCountry) {
+                const states = getUniqueValues('state', { country: selectedCountry });
+                populateSelect(stateSelect, states, 'Select State/Province');
+                stateSelect.disabled = false;
+                citySelect.disabled = true;
+                citySelect.innerHTML = '<option value="">Select City</option>';
+                venueList.innerHTML = '<p>Select a state and city to view venues.</p>';
+            } else {
+                stateSelect.innerHTML = '<option value="">Select State/Province</option>';
+                citySelect.innerHTML = '<option value="">Select City</option>';
+                stateSelect.disabled = true;
+                citySelect.disabled = true;
+                venueList.innerHTML = '<p>Select a country, state, and city to view venues.</p>';
+            }
+        });
+
+        stateSelect.addEventListener('change', () => {
+            const selectedCountry = countrySelect.value;
+            const selectedState = stateSelect.value;
+            if (selectedState) {
+                const cities = getUniqueValues('city', { country: selectedCountry, state: selectedState });
+                populateSelect(citySelect, cities, 'Select City');
+                citySelect.disabled = false;
+                venueList.innerHTML = '<p>Select a city to view venues.</p>';
+            } else {
+                citySelect.innerHTML = '<option value="">Select City</option>';
+                citySelect.disabled = true;
+                venueList.innerHTML = '<p>Select a state and city to view venues.</p>';
+            }
+        });
+
+        citySelect.addEventListener('change', () => {
+            const selectedCountry = countrySelect.value;
+            const selectedState = stateSelect.value;
+            const selectedCity = citySelect.value;
+            if (selectedCity) {
+                displayVenues(selectedCountry, selectedState, selectedCity);
+            } else {
+                venueList.innerHTML = '<p>Select a city to view venues.</p>';
+            }
         });
     </script>
-<script type="module">
-  import { bandsList } from './bands_list.js';
-
-  function displayBands() {
-    const venueList = document.getElementById('venueList');
-    venueList.innerHTML = ''; // Clear any existing content
-
-    bandsList.forEach((band) => {
-      const bandItem = document.createElement('div');
-      bandItem.classList.add('band-item');
-      bandItem.innerHTML = `<a href="${band.website}" target="_blank">${band.name}</a>`;
-      venueList.appendChild(bandItem);
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', displayBands);
-</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6483721386563068"
-     crossorigin="anonymous"></script>
-<!-- Footer_SmallAd -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-6483721386563068"
-     data-ad-slot="4287413188"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-    
 </body>
 </html>
-
-
