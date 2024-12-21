@@ -1024,38 +1024,72 @@ const venues = [
     },
 ];
 
-// Get references to the dropdown elements and the venue list container
-const countrySelect = document.getElementById('countrySelect');
-const stateSelect = document.getElementById('stateSelect');
-const citySelect = document.getElementById('citySelect');
-const venueList = document.getElementById('venueList');
+// SELECTORS
+const countrySelect = document.getElementById("countrySelect");
+const stateSelect = document.getElementById("stateSelect");
+const citySelect = document.getElementById("citySelect");
+const venueList = document.getElementById("venueList");
 
-// Functions to populate dropdowns and display venues
-function getUniqueValues(key, filterObj = {}) {
-    let filtered = venues;
-    if (filterObj.country) {
-        filtered = filtered.filter(v => v.country === filterObj.country);
-    }
-    if (filterObj.state) {
-        filtered = filtered.filter(v => v.state === filterObj.state);
-    }
-    const unique = [...new Set(filtered.map(v => v[key]))];
-    unique.sort();
-    return unique;
+// FUNCTION TO POPULATE DROPDOWNS
+function populateSelect(selectElement, items, defaultText) {
+    selectElement.innerHTML = `<option value="">${defaultText}</option>`;
+    items.forEach(item => {
+        selectElement.innerHTML += `<option value="${item}">${item}</option>`;
+    });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const countries = getUniqueValues('country');
-    populateSelect(countrySelect, countries, 'Select Country');
+// FUNCTION TO GET UNIQUE VALUES FOR DROPDOWNS
+function getUniqueValues(data, key, filters = {}) {
+    let filteredData = data;
+
+    // Apply filters (country, state)
+    if (filters.country) {
+        filteredData = filteredData.filter(v => v.country === filters.country);
+    }
+    if (filters.state) {
+        filteredData = filteredData.filter(v => v.state === filters.state);
+    }
+
+    // Extract and return unique sorted values for the given key
+    return [...new Set(filteredData.map(v => v[key]))].sort();
+}
+
+// FUNCTION TO DISPLAY VENUES
+function displayVenues(country, state, city) {
+    const filteredVenues = venues.filter(v => 
+        v.country === country && v.state === state && v.city === city
+    );
+
+    if (filteredVenues.length === 0) {
+        venueList.innerHTML = '<p>No venues found for this location.</p>';
+        return;
+    }
+
+    venueList.innerHTML = filteredVenues.map(venue => `
+        <div class="venue-card">
+            <h3>${venue.name}</h3>
+            <p><strong>Address:</strong> ${venue.address}</p>
+            <p><strong>Website:</strong> <a href="${venue.website}" target="_blank">${venue.website}</a></p>
+            <p><strong>Phone:</strong> ${venue.phone}</p>
+        </div>
+    `).join("");
+}
+
+// INITIALIZE DROPDOWNS ON PAGE LOAD
+document.addEventListener("DOMContentLoaded", () => {
+    const countries = getUniqueValues(venues, "country");
+    populateSelect(countrySelect, countries, "Select Country");
     stateSelect.disabled = true;
     citySelect.disabled = true;
 });
 
-countrySelect.addEventListener('change', () => {
+// COUNTRY SELECT EVENT LISTENER
+countrySelect.addEventListener("change", () => {
     const selectedCountry = countrySelect.value;
+
     if (selectedCountry) {
-        const states = getUniqueValues('state', { country: selectedCountry });
-        populateSelect(stateSelect, states, 'Select State/Province');
+        const states = getUniqueValues(venues, "state", { country: selectedCountry });
+        populateSelect(stateSelect, states, "Select State/Province");
         stateSelect.disabled = false;
         citySelect.disabled = true;
         citySelect.innerHTML = '<option value="">Select City</option>';
@@ -1069,12 +1103,14 @@ countrySelect.addEventListener('change', () => {
     }
 });
 
-stateSelect.addEventListener('change', () => {
+// STATE SELECT EVENT LISTENER
+stateSelect.addEventListener("change", () => {
     const selectedCountry = countrySelect.value;
     const selectedState = stateSelect.value;
+
     if (selectedState) {
-        const cities = getUniqueValues('city', { country: selectedCountry, state: selectedState });
-        populateSelect(citySelect, cities, 'Select City');
+        const cities = getUniqueValues(venues, "city", { country: selectedCountry, state: selectedState });
+        populateSelect(citySelect, cities, "Select City");
         citySelect.disabled = false;
         venueList.innerHTML = '<p>Select a city to view venues.</p>';
     } else {
@@ -1084,46 +1120,15 @@ stateSelect.addEventListener('change', () => {
     }
 });
 
-citySelect.addEventListener('change', () => {
+// CITY SELECT EVENT LISTENER
+citySelect.addEventListener("change", () => {
     const selectedCountry = countrySelect.value;
     const selectedState = stateSelect.value;
     const selectedCity = citySelect.value;
+
     if (selectedCity) {
         displayVenues(selectedCountry, selectedState, selectedCity);
     } else {
         venueList.innerHTML = '<p>Select a city to view venues.</p>';
     }
 });
-
-function populateSelect(selectElement, items, defaultText) {
-    let options = `<option value="">${defaultText}</option>`;
-    items.forEach(item => {
-        options += `<option value="${item}">${item}</option>`;
-    });
-    selectElement.innerHTML = options;
-}
-
-function displayVenues(country, state, city) {
-    const filteredVenues = venues.filter(v => 
-        v.country === country && v.state === state && v.city === city
-    );
-
-    if (filteredVenues.length === 0) {
-        venueList.innerHTML = '<p>No venues found for this location.</p>';
-        return;
-    }
-
-    let html = '';
-    filteredVenues.forEach(venue => {
-        html += `
-            <div class="venue-card">
-                <h3>${venue.name}</h3>
-                <p><strong>Address:</strong> ${venue.address}</p>
-                <p><strong>Website:</strong> <a href="${venue.website}" target="_blank">${venue.website}</a></p>
-                <p><strong>Phone:</strong> ${venue.phone}</p>
-            </div>
-        `;
-    });
-
-    venueList.innerHTML = html;
-}
