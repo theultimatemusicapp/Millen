@@ -895,6 +895,133 @@ const venues = [
         website: "https://www.dukeofgeorge.com.au/",
         phone: "(08) 9339 7950, info@dukeofgeorge.com.au"
     }
+     // BERLIN VENUES (Germany, Berlin)
+    {
+        country: "Germany",
+        state: "Berlin",
+        city: "Berlin",
+        name: "SO36",
+        address: "Oranienstraße 190, 10999 Berlin",
+        website: "https://www.so36.de/",
+        phone: "030 61101313"
+    },
+    {
+        country: "Germany",
+        state: "Berlin",
+        city: "Berlin",
+        name: "Berghain Kantine",
+        address: "Am Wriezener Bahnhof, 10243 Berlin",
+        website: "https://berghain.berlin/de/kantine",
+        phone: "Not publicly listed"
+    },
+    {
+        country: "Germany",
+        state: "Berlin",
+        city: "Berlin",
+        name: "Lido",
+        address: "Cuvrystraße 7, 10997 Berlin",
+        website: "https://www.lido-berlin.de/",
+        phone: "030 69566840"
+    },
+    {
+        country: "Germany",
+        state: "Berlin",
+        city: "Berlin",
+        name: "Sage Club",
+        address: "Köpenicker Str. 76, 10179 Berlin",
+        website: "https://www.sage-club.de/",
+        phone: "030 278909955"
+    },
+    {
+        country: "Germany",
+        state: "Berlin",
+        city: "Berlin",
+        name: "Astra Kulturhaus",
+        address: "Revaler Str. 99, 10245 Berlin",
+        website: "https://www.astra-berlin.de/",
+        phone: "030 609166630"
+    },
+    {
+        country: "Germany",
+        state: "Berlin",
+        city: "Berlin",
+        name: "Kesselhaus & Maschinenhaus",
+        address: "Schönhauser Allee 36, 10435 Berlin",
+        website: "https://www.kesselhaus-berlin.de/",
+        phone: "030 44315151"
+    },
+    {
+        country: "Germany",
+        state: "Berlin",
+        city: "Berlin",
+        name: "Monarch",
+        address: "Skalitzer Str. 134, 10999 Berlin",
+        website: "https://www.monarch.berlin/",
+        phone: "Not publicly listed"
+    },
+    {
+        country: "Germany",
+        state: "Berlin",
+        city: "Berlin",
+        name: "Prachtwerk",
+        address: "Ganghoferstraße 2, 12043 Berlin",
+        website: "https://prachtwerkberlin.com/",
+        phone: "Not publicly listed"
+    },
+    {
+        country: "Germany",
+        state: "Berlin",
+        city: "Berlin",
+        name: "Cassiopeia",
+        address: "Revaler Str. 99, 10245 Berlin",
+        website: "https://cassiopeia-berlin.de/",
+        phone: "Not publicly listed"
+    },
+    {
+        country: "Germany",
+        state: "Berlin",
+        city: "Berlin",
+        name: "Frannz Club",
+        address: "Schönhauser Allee 36, 10435 Berlin",
+        website: "https://frannz.de/",
+        phone: "030 780089790"
+    },
+    {
+        country: "Germany",
+        state: "Berlin",
+        city: "Berlin",
+        name: "Yaam",
+        address: "An der Schillingbrücke, 10243 Berlin",
+        website: "https://www.yaam.de/",
+        phone: "030 6151351"
+    },
+    {
+        country: "Germany",
+        state: "Berlin",
+        city: "Berlin",
+        name: "Badehaus Szimpla Musiksalon",
+        address: "Revaler Str. 99, 10245 Berlin",
+        website: "https://badehaus-berlin.com/",
+        phone: "Not publicly listed"
+    },
+    {
+        country: "Germany",
+        state: "Berlin",
+        city: "Berlin",
+        name: "Gretchen Club",
+        address: "Obentrautstraße 19-21, 10963 Berlin",
+        website: "https://www.gretchen-club.de/",
+        phone: "030 25922702"
+    },
+    {
+        country: "Germany",
+        state: "Berlin",
+        city: "Berlin",
+        name: "Hangar 49",
+        address: "Holzmarktstraße 15-18, 10179 Berlin",
+        website: "https://www.hangar49.de/",
+        phone: "030 59069928"
+    },
 ];
 
 // Get references to the dropdown elements and the venue list container
