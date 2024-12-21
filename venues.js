@@ -894,7 +894,7 @@ const venues = [
         address: "135 George St, East Fremantle WA 6158",
         website: "https://www.dukeofgeorge.com.au/",
         phone: "(08) 9339 7950, info@dukeofgeorge.com.au"
-    }
+    },
      // BERLIN VENUES (Germany, Berlin)
     {
         country: "Germany",
