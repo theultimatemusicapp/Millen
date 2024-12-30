@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Business Valuation Tool</title>
+    <!-- Include Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Inline CSS -->
+    <style>
+        /* Container Styling */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Section Styling */
+        .section {
+            margin-bottom: 25px;
+        }
+
+        /* Form Group Styling */
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            flex: 1 1 20%;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group select {
+            flex: 1 1 30%;
+            padding: 10px;
+            margin-right: 10px;
+            margin-bottom: 5px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-group .help-text {
+            flex: 1 1 45%;
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .form-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .form-group label,
+            .form-group input,
+            .form-group select,
+            .form-group .help-text {
+                flex: 1 1 100%;
+                margin-right: 0;
+            }
+        }
+
+        /* Button Styling */
+        button {
+            padding: 14px 24px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Result Display Styling */
+        .result {
+            margin-top: 25px;
+            font-size: 1.6em;
+            color: #333;
+            background-color: #e7f3fe;
+            padding: 15px;
+            border-left: 6px solid #2196F3;
+            border-radius: 4px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Charts Section Styling */
+        .chartsContainer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .chartBox {
+            flex: 1 1 calc(33% - 20px);
+            min-width: 300px;
+            margin-bottom: 30px;
+        }
+
+        .chartBox canvas {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h2, h3 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+        }
+
+        input[type="number"], select, input[type="text"], input[type="email"] {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="business valuation, online business valuation, business valuation tool, calculate business value, business valuation calculator" />
+    <meta name="description" content="Calculate the value of your business using our comprehensive online Business Valuation Tool. Compare your business metrics with industry averages and get detailed insights." />
+    <link rel="canonical" href="https://www.yourwebsite.com/business-valuation-tool" />
+</head>
+<body>
+    <div class="container">
+        <h2>Business Valuation Tool</h2>
+        
+        <!-- Valuation Method Selection -->
+        <div class="section">
+            <div class="form-group">
+                <label for="valuationMethod">Select Valuation Method:</label>
+                <select id="valuationMethod" onchange="showMethodFields()">
+                    <option value="multiplier">Multiplier Method - Based on industry multipliers.</option>
+                    <option value="income">Income-Based Valuation - Focuses on total revenue.</option>
+                    <option value="earnings">Earnings-Based Valuation - Focuses on net profit.</option>
+                </select>
+                <span class="help-text">Choose a valuation method that suits your business model.</span>
+            </div>
+        </div>
+
+        <!-- Common Input Fields -->
+        <div class="section" id="commonFields">
+            <!-- Owner Salary -->
+            <div class="form-group">
+                <label for="ownerSalary">Owner Salary ($):</label>
+                <input type="number" id="ownerSalary" placeholder="e.g., 80000" min="0" required>
+                <span class="help-text">Enter the total annual salary you pay yourself as the owner.</span>
+            </div>
+
+            <!-- Average Staff Salary -->
+            <div class="form-group">
+                <label for="averageSalary">Average Staff Salary ($):</label>
+                <input type="number" id="averageSalary" placeholder="e.g., 50000" min="0" required>
+                <span class="help-text">Provide the average annual salary of your staff members.</span>
+            </div>
+
+            <!-- Number of Staff -->
+            <div class="form-group">
+                <label for="staffNumber">Number of Staff:</label>
+                <input type="number" id="staffNumber" placeholder="e.g., 10" min="0" required>
+                <span class="help-text">Indicate the total number of staff employed in your business.</span>
+            </div>
+
+            <!-- Operating Expenses -->
+            <div class="form-group">
+                <label for="expenses">Annual Operating Expenses ($):</label>
+                <input type="number" id="expenses" placeholder="e.g., 50000" min="0" required>
+                <span class="help-text">Include all annual expenses excluding salaries and debt repayments.</span>
+            </div>
+
+            <!-- Debt -->
+            <div class="form-group">
+                <label for="debt">Total Debt ($):</label>
+                <input type="number" id="debt" placeholder="e.g., 20000" min="0" required>
+                <span class="help-text">Total outstanding debts or liabilities of your business.</span>
+            </div>
+
+            <!-- Scalability -->
+            <div class="form-group">
+                <label for="scalability">Scalability (1-10):</label>
+                <input type="number" id="scalability" placeholder="e.g., 7" min="1" max="10" required>
+                <span class="help-text">Rate how easily your business can scale up operations (1 = Not scalable, 10 = Highly scalable).</span>
+            </div>
+
+            <!-- Growth Rate -->
+            <div class="form-group">
+                <label for="growthRate">Growth Rate (%):</label>
+                <input type="number" id="growthRate" placeholder="e.g., 5" min="0" required>
+                <span class="help-text">Average annual growth rate of your business revenue.</span>
+            </div>
+
+            <!-- Years Operating -->
+            <div class="form-group">
+                <label for="yearsOperating">Years Operating:</label>
+                <input type="number" id="yearsOperating" placeholder="e.g., 5" min="0" required>
+                <span class="help-text">Number of years your business has been in operation.</span>
+            </div>
+
+            <!-- AI Replaceability -->
+            <div class="form-group">
+                <label for="aiReplaceable">Can Staff be Replaced by AI?</label>
+                <select id="aiReplaceable" onchange="toggleAIReplacement()" required>
+                    <option value="">--Select--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+                <span class="help-text">Select 'Yes' if some roles could be automated using AI technologies.</span>
+            </div>
+        </div>
+
+        <!-- AI Replacement Detail (Conditional) -->
+        <div class="section hidden" id="aiReplacementSection">
+            <div class="form-group">
+                <label for="aiReplaceCount">How many staff can be replaced by AI?</label>
+                <input type="number" id="aiReplaceCount" placeholder="e.g., 2" min="0">
+                <span class="help-text">Specify the number of positions that could be automated.</span>
+            </div>
+        </div>
+
+        <!-- Industry Selection (Available in all methods) -->
+        <div class="section" id="industryFields">
+            <div class="form-group">
+                <label for="industry">Select Industry:</label>
+                <select id="industry">
+                    <option value="">--Select Industry--</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Retail">Retail</option>
+                    <option value="Hospitality">Hospitality</option>
+                    <option value="Media">Media</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Construction">Construction</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Real Estate">Real Estate</option>
+                    <option value="Education">Education</option>
+                    <option value="Transportation">Transportation</option>
+                    <option value="Agriculture">Agriculture</option>
+                    <option value="Manufacturing">Manufacturing</option>
+                    <option value="Legal">Legal</option>
+                    <option value="Energy">Energy</option>
+                    <option value="Arts & Entertainment">Arts & Entertainment</option>
+                    <option value="Other">Other</option>
+                </select>
+                <span class="help-text">Choose your industry for accurate valuation and comparisons.</span>
+            </div>
+        </div>
+
+        <!-- Earnings-Based Valuation Specific Fields -->
+        <div class="section hidden" id="earningsFields">
+            <div class="form-group">
+                <label for="assets">Total Assets ($):</label>
+                <input type="number" id="assets" placeholder="e.g., 300000" min="0" required>
+                <span class="help-text">Enter the total value of all assets owned by your business.</span>
+            </div>
+        </div>
+
+        <!-- Future Revenue Forecast Section -->
+        <div class="section">
+            <h3>Future Revenue Forecast</h3>
+            <div class="form-group">
+                <label for="projectedRevenue">Projected Revenue for Next Year ($):</label>
+                <input type="number" id="projectedRevenue" placeholder="e.g., 150000" min="0" required>
+                <span class="help-text">Estimate your expected revenue for the next fiscal year.</span>
+            </div>
+
+            <div class="form-group">
+                <label for="expectedGrowthRate">Expected Annual Growth Rate (%):</label>
+                <input type="number" id="expectedGrowthRate" placeholder="e.g., 10" min="0" required>
+                <span class="help-text">Anticipated percentage growth in revenue year over year.</span>
+            </div>
+        </div>
+
+        <!-- Intellectual Property (IP) Section -->
+        <div class="section">
+            <div class="form-group">
+                <label for="hasIP">Do you have any Intellectual Property (IP)?</label>
+                <select id="hasIP" onchange="toggleIPFields()" required>
+                    <option value="">--Select--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+                <span class="help-text">Select 'Yes' if your business owns any patents, trademarks, or proprietary technologies.</span>
+            </div>
+        </div>
+
+        <!-- IP Specific Fields -->
+        <div class="section hidden" id="ipFields">
+            <div class="form-group">
+                <label for="ipValue">What do you think your IP is worth "realistically" ($):</label>
+                <input type="number" id="ipValue" placeholder="e.g., 50000" min="0">
+                <span class="help-text">Provide a realistic valuation of your IP assets.</span>
+            </div>
+
+            <div class="form-group">
+                <label for="ipUnique">Is the IP completely unique or a variation of another idea?</label>
+                <select id="ipUnique">
+                    <option value="">--Select--</option>
+                    <option value="unique">Completely Unique</option>
+                    <option value="variation">Variation of Another Idea</option>
+                </select>
+                <span class="help-text">Specify the uniqueness of your IP to adjust its valuation impact.</span>
+            </div>
+        </div>
+
+        <!-- Calculate and Export Buttons -->
+        <button onclick="calculateValuation()">Calculate Valuation</button>
+        <button onclick="exportResults()">Export Results</button>
+
+        <!-- Result Display -->
+        <div class="result hidden" id="valuationResult"></div>
+
+        <!-- Charts Display Section -->
+        <div class="section hidden" id="chartsSection">
+            <div class="chartsContainer">
+                <!-- Valuation Comparison Chart -->
+                <div class="chartBox">
+                    <canvas id="valuationChart"></canvas>
+                </div>
+                <!-- Staff Comparison Chart -->
+                <div class="chartBox">
+                    <canvas id="staffChart"></canvas>
+                </div>
+                <!-- Income Comparison Chart -->
+                <div class="chartBox">
+                    <canvas id="incomeChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Industry Multipliers based on Australian Market Trends
+        const industryMultipliers = {
+            "Technology": 5.5,
+            "Retail": 2.5,
+            "Hospitality": 2.5,
+            "Media": 3.75,
+            "Marketing": 4.25,
+            "Construction": 2.75,
+            "Healthcare": 4.0,
+            "Finance": 4.25,
+            "Real Estate": 4.25,
+            "Education": 4.0,
+            "Transportation": 3.5,
+            "Agriculture": 2.25,
+            "Manufacturing": 3.5,
+            "Legal": 5.5,
+            "Energy": 4.5,
+            "Arts & Entertainment": 2.75,
+            "Other": 1.0
+        };
+
+        // AI Replaceability Factors (Savings Percentage)
+        const aiReplaceability = {
+            "Technology": 0.2,
+            "Retail": 0.75,
+            "Hospitality": 0.8,
+            "Media": 0.3,
+            "Marketing": 0.3,
+            "Construction": 0.5,
+            "Healthcare": 0.2,
+            "Finance": 0.4,
+            "Real Estate": 0.4,
+            "Education": 0.2,
+            "Transportation": 0.6,
+            "Agriculture": 0.5,
+            "Manufacturing": 0.6,
+            "Legal": 0.1,
+            "Energy": 0.4,
+            "Arts & Entertainment": 0.5,
+            "Other": 0.0
+        };
+
+        // Staff Value Multiplier based on Industry
+        const staffValueMultiplier = {
+            "Technology": 4.0,
+            "Retail": 1.5,
+            "Hospitality": 1.0,
+            "Media": 2.75,
+            "Marketing": 3.0,
+            "Construction": 2.0,
+            "Healthcare": 2.5,
+            "Finance": 3.0,
+            "Real Estate": 3.0,
+            "Education": 2.75,
+            "Transportation": 2.5,
+            "Agriculture": 1.75,
+            "Manufacturing": 2.5,
+            "Legal": 4.5,
+            "Energy": 3.5,
+            "Arts & Entertainment": 2.0,
+            "Other": 1.0
+        };
+
+        // Hypothetical Average Financial Data per Industry
+        const industryAverages = {
+            "Technology": { income: 150000, expenses: 80000, debt: 30000, staff: 20 },
+            "Retail": { income: 100000, expenses: 60000, debt: 20000, staff: 15 },
+            "Hospitality": { income: 120000, expenses: 70000, debt: 25000, staff: 40 },
+            "Media": { income: 130000, expenses: 72000, debt: 26000, staff: 20 },
+            "Marketing": { income: 115000, expenses: 68000, debt: 23000, staff: 20 },
+            "Construction": { income: 130000, expenses: 70000, debt: 30000, staff: 20 },
+            "Healthcare": { income: 140000, expenses: 75000, debt: 35000, staff: 25 },
+            "Finance": { income: 200000, expenses: 90000, debt: 40000, staff: 30 },
+            "Real Estate": { income: 160000, expenses: 80000, debt: 32000, staff: 25 },
+            "Education": { income: 105000, expenses: 60000, debt: 21000, staff: 15 },
+            "Transportation": { income: 125000, expenses: 70000, debt: 27000, staff: 30 },
+            "Agriculture": { income: 95000, expenses: 55000, debt: 18000, staff: 10 },
+            "Manufacturing": { income: 140000, expenses: 75000, debt: 35000, staff: 25 },
+            "Legal": { income: 180000, expenses: 85000, debt: 38000, staff: 20 },
+            "Energy": { income: 170000, expenses: 82000, debt: 36000, staff: 22 },
+            "Arts & Entertainment": { income: 90000, expenses: 50000, debt: 15000, staff: 15 },
+            "Other": { income: 100000, expenses: 60000, debt: 20000, staff: 10 }
+        };
+
+        // Show Method Fields
+        function showMethodFields() {
+            const method = document.getElementById('valuationMethod').value;
+            const earningsSection = document.getElementById('earningsFields');
+
+            // Hide specific sections initially
+            earningsSection.classList.add('hidden');
+
+            if (method === 'earnings') {
+                earningsSection.classList.remove('hidden');
+            }
+
+            clearValuationResult();
+        }
+
+        // Toggle AI Replacement Section
+        function toggleAIReplacement() {
+            const aiReplaceable = document.getElementById('aiReplaceable').value;
+            const aiReplacementSection = document.getElementById('aiReplacementSection');
+
+            if (aiReplaceable === 'yes') {
+                aiReplacementSection.classList.remove('hidden');
+            } else {
+                aiReplacementSection.classList.add('hidden');
+            }
+
+            clearValuationResult();
+        }
+
+        // Toggle IP Fields
+        function toggleIPFields() {
+            const hasIP = document.getElementById('hasIP').value;
+            const ipFields = document.getElementById('ipFields');
+
+            if (hasIP === 'yes') {
+                ipFields.classList.remove('hidden');
+            } else {
+                ipFields.classList.add('hidden');
+            }
+
+            clearValuationResult();
+        }
+
+        // Clear Valuation Result and Charts
+        function clearValuationResult() {
+            const resultDiv = document.getElementById('valuationResult');
+            resultDiv.classList.add('hidden');
+            resultDiv.innerHTML = '';
+
+            const chartsSection = document.getElementById('chartsSection');
+            chartsSection.classList.add('hidden');
+            chartsSection.innerHTML = `
+                <div class="chartsContainer">
+                    <div class="chartBox">
+                        <canvas id="valuationChart"></canvas>
+                    </div>
+                    <div class="chartBox">
+                        <canvas id="staffChart"></canvas>
+                    </div>
+                    <div class="chartBox">
+                        <canvas id="incomeChart"></canvas>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Calculate Valuation Based on Selected Method and Inputs
+        function calculateValuation() {
+            const method = document.getElementById('valuationMethod').value;
+
+            // Common Inputs
+            const ownerSalary = parseFloat(document.getElementById('ownerSalary').value) || 0;
+            const averageSalary = parseFloat(document.getElementById('averageSalary').value) || 0;
+            const staffNumber = parseInt(document.getElementById('staffNumber').value) || 0;
+            const expenses = parseFloat(document.getElementById('expenses').value) || 0;
+            const debt = parseFloat(document.getElementById('debt').value) || 0;
+            const scalability = parseInt(document.getElementById('scalability').value) || 0;
+            const growthRate = parseFloat(document.getElementById('growthRate').value) || 0;
+            const yearsOperating = parseInt(document.getElementById('yearsOperating').value) || 0;
+            const aiReplaceable = document.getElementById('aiReplaceable').value;
+            const aiReplaceCount = parseInt(document.getElementById('aiReplaceCount').value) || 0;
+
+            const industry = document.getElementById('industry').value || "Other";
+            if (industry === "") {
+                alert("Please select an industry.");
+                return;
+            }
+
+            // Future Revenue Forecast Inputs
+            const projectedRevenue = parseFloat(document.getElementById('projectedRevenue').value) || 0;
+            const expectedGrowthRate = parseFloat(document.getElementById('expectedGrowthRate').value) || 0;
+
+            let assets = 0;
+            if (method === 'earnings') {
+                assets = parseFloat(document.getElementById('assets').value) || 0;
+                if (assets === 0) {
+                    alert("Please enter a valid assets value.");
+                    return;
+                }
+            }
+
+            // Get industry multiplier
+            const multiplier = industryMultipliers[industry] || 1.0;
+
+            // Staff Value Calculation
+            let staffMultiplier = staffValueMultiplier[industry] || 1.0;
+            let staffValue = staffNumber * averageSalary * staffMultiplier;
+
+            // AI Savings Calculation
+            let aiSavings = 0;
+            if (aiReplaceable === 'yes') {
+                const aiFactor = aiReplaceability[industry] || 0;
+                aiSavings = aiReplaceCount * averageSalary * aiFactor;
+            }
+
+            // Growth Adjustment
+            const growthAdjustment = (growthRate / 100) * (projectedRevenue || 0);
+
+            // Longevity Adjustment
+            let longevityMultiplier = 1;
+            if (yearsOperating <= 2) {
+                longevityMultiplier = 0.8; // Startup phase
+            } else if (yearsOperating <= 5) {
+                longevityMultiplier = 1.0; // Established
+            } else {
+                longevityMultiplier = 1.2; // Mature and stable
+            }
+
+            // IP Valuation
+            let ipValue = 0;
+            let ipAdjustedValue = 0;
+            const hasIP = document.getElementById('hasIP').value;
+            if (hasIP === 'yes') {
+                ipValue = parseFloat(document.getElementById('ipValue').value) || 0;
+                const ipUnique = document.getElementById('ipUnique').value;
+
+                if (ipUnique === "") {
+                    alert("Please specify if the IP is completely unique or a variation.");
+                    return;
+                }
+
+                if (ipUnique === 'unique') {
+                    ipAdjustedValue = ipValue; // Full value added
+                } else if (ipUnique === 'variation') {
+                    ipAdjustedValue = ipValue * 0.5; // 50% of value added
+                }
+            }
+
+            // Calculate Valuation Per Method
+            let valuation = 0;
+
+            // Calculate net income
+            const netIncome = projectedRevenue - expenses - debt - ownerSalary - (averageSalary * staffNumber);
+
+            // Calculate gross profit (Assuming projectedRevenue - expenses - staff salaries)
+            const grossProfit = projectedRevenue - expenses - (averageSalary * staffNumber); // Adjust accordingly
+
+            let discretionaryEarnings = 0;
+            let adjustedEBITDA = 0;
+
+            if (method === 'multiplier') {
+                valuation = netIncome * multiplier * (scalability / 10) * longevityMultiplier;
+                valuation += aiSavings;
+
+                discretionaryEarnings = netIncome - aiSavings;
+                adjustedEBITDA = netIncome;
+            }
+            else if (method === 'income') {
+                valuation = netIncome * (scalability / 10);
+                valuation += staffValue;
+                valuation += growthAdjustment;
+                valuation += aiSavings;
+                valuation *= longevityMultiplier;
+
+                discretionaryEarnings = netIncome - aiSavings;
+                adjustedEBITDA = netIncome + staffValue;
+            }
+            else if (method === 'earnings') {
+                const netEarnings = netIncome;
+                valuation = netEarnings * (scalability / 10);
+                valuation += (assets - debt);
+                valuation += staffValue;
+                valuation += growthAdjustment;
+                valuation += aiSavings;
+                valuation *= longevityMultiplier;
+
+                discretionaryEarnings = netEarnings - aiSavings;
+                adjustedEBITDA = netEarnings + staffValue;
+            }
+
+            // Add IP Adjusted Value
+            valuation += ipAdjustedValue;
+
+            // Calculate Industry Average Valuation
+            const industryData = industryAverages[industry] || industryAverages["Other"];
+            const industryNetIncome = industryData.income - industryData.expenses - industryData.debt;
+            const industryAverageValuation = (industryNetIncome) * multiplier * (scalability / 10); // Simplified average
+
+            // Calculate Valuation Ranges
+            const valuationRange3Year = valuation * 1.1; // Example: 10% higher for growth
+            const valuationRangeWeighted = valuation * 0.9; // Example: 10% lower for conservative estimate
+            const valuationRangeTrailing12 = valuation * 1.0; // Current valuation
+
+            // Display Result with Detailed Metrics
+            const resultDiv = document.getElementById('valuationResult');
+            resultDiv.classList.remove('hidden');
+            resultDiv.innerHTML = `
+                <h3>Business Valuation Result</h3>
+                <table>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Value ($)</th>
+                    </tr>
+                    <tr>
+                        <td>Gross Profit</td>
+                        <td>${grossProfit.toFixed(2)}</td>
+                    </tr>
+                    <tr>
+                        <td>Net Income before Tax</td>
+                        <td>${netIncome.toFixed(2)}</td>
+                    </tr>
+                    <tr>
+                        <td>Discretionary Earnings</td>
+                        <td>${discretionaryEarnings.toFixed(2)}</td>
+                    </tr>
+                    <tr>
+                        <td>Adjusted EBITDA</td>
+                        <td>${adjustedEBITDA.toFixed(2)}</td>
+                    </tr>
+                    <tr>
+                        <td>Industry Average Valuation</td>
+                        <td>${industryAverageValuation.toFixed(2)}</td>
+                    </tr>
+                    <tr>
+                        <td>Estimated Business Valuation</td>
+                        <td><strong>${valuation.toFixed(2)}</strong></td>
+                    </tr>
+                </table>
+                
+                <h3>Valuation Ranges</h3>
+                <table>
+                    <tr>
+                        <th>Scenario</th>
+                        <th>Valuation ($)</th>
+                    </tr>
+                    <tr>
+                        <td>3 Year Average</td>
+                        <td>${valuationRange3Year.toFixed(2)}</td>
+                    </tr>
+                    <tr>
+                        <td>Weighted Average</td>
+                        <td>${valuationRangeWeighted.toFixed(2)}</td>
+                    </tr>
+                    <tr>
+                        <td>Trailing 12 Months</td>
+                        <td>${valuationRangeTrailing12.toFixed(2)}</td>
+                    </tr>
+                </table>
+            `;
+
+            // Show the charts section
+            const chartsSection = document.getElementById('chartsSection');
+            chartsSection.classList.remove('hidden');
+
+            // Prepare Data for Charts
+            const userStaff = staffNumber;
+            const industryStaff = industryData.staff || 10;
+
+            const userIncome = projectedRevenue;
+            const industryIncome = industryData.income;
+
+            // Render the Comparison Charts
+            renderValuationChart(valuation, industry, industryAverageValuation);
+            renderStaffChart(userStaff, industry, industryStaff);
+            renderIncomeChart(userIncome, industry, industryIncome);
+
+            // Update Contact Form Fields (if you have a contact form)
+            // document.getElementById('contactIndustry').value = industry;
+            // document.getElementById('contactSales').value = projectedRevenue;
+        }
+
+        // Chart rendering functions
+        function renderValuationChart(userValuation, industry, industryAverageValuation) {
+            const ctx = document.getElementById('valuationChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Your Business', `${industry} Industry Average`],
+                    datasets: [{
+                        label: 'Business Valuation ($)',
+                        data: [userValuation, industryAverageValuation],
+                        backgroundColor: ['#4CAF50', '#2196F3']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Business Valuation Comparison'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderStaffChart(userStaff, industry, industryStaff) {
+            const ctx = document.getElementById('staffChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Your Staff', `${industry} Industry Staff`],
+                    datasets: [{
+                        label: 'Number of Staff',
+                        data: [userStaff, industryStaff],
+                        backgroundColor: ['#FF6384', '#36A2EB']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Staff Comparison'
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderIncomeChart(userIncome, industry, industryIncome) {
+            const ctx = document.getElementById('incomeChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Your Business', `${industry} Industry Average`],
+                    datasets: [{
+                        label: 'Projected Revenue ($)',
+                        data: [userIncome, industryIncome],
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Revenue Comparison'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        // Export Results as PDF (Optional)
+        function exportResults() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.setFontSize(18);
+            doc.text("Business Valuation Report", 14, 22);
+
+            doc.setFontSize(12);
+            const resultContent = document.getElementById('valuationResult').innerText.split('\n');
+            let y = 30;
+            resultContent.forEach(line => {
+                doc.text(line, 14, y);
+                y += 10;
+            });
+
+            doc.save("valuation-report.pdf");
+        }
+
+        // Initialize Fields Based on Default Selection
+        window.onload = function() {
+            showMethodFields();
+        };
+    </script>
+</body>
+</html>
