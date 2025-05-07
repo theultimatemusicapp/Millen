@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Craig Adams | Luxury Real Estate Photography | Melbourne</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, .logo {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 90vh;
+        }
+        
+        .gallery-item {
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar {
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar.scrolled .nav-link {
+            color: #333;
+        }
+        
+        .navbar.scrolled .logo {
+            color: #333;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #b38b6d;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .contact-form input, .contact-form textarea {
+            border-bottom: 1px solid #ccc;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-bottom: 1px solid #b38b6d;
+        }
+        
+        .portfolio-overlay {
+            background: rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar fixed w-full z-50 py-4 px-6 md:px-12 lg:px-24">
+        <div class="flex justify-between items-center">
+            <a href="#" class="logo text-2xl font-bold text-white">Craig Adams</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-white">Home</a>
+                <a href="#portfolio" class="nav-link text-white">Portfolio</a>
+                <a href="#services" class="nav-link text-white">Services</a>
+                <a href="#about" class="nav-link text-white">About</a>
+                <a href="#testimonials" class="nav-link text-white">Testimonials</a>
+                <a href="#contact" class="nav-link text-white">Contact</a>
+            </div>
+            <button class="md:hidden text-white">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero flex items-center justify-center text-white relative">
+        <div class="text-center px-6 md:px-12 lg:px-24">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">Craig Adams</h1>
+            <h2 class="text-xl md:text-2xl lg:text-3xl mb-8">Luxury Real Estate Photography in Melbourne</h2>
+            <p class="max-w-2xl mx-auto text-lg mb-10">Capturing the essence of high-end properties through stunning imagery that elevates your listings and attracts discerning buyers.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contact" class="bg-[#b38b6d] hover:bg-[#9a755a] text-white px-8 py-3 rounded-full font-medium transition">Book a Session</a>
+                <a href="#portfolio" class="border-2 border-white hover:bg-white hover:text-black text-white px-8 py-3 rounded-full font-medium transition">View Portfolio</a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#portfolio" class="text-white text-2xl"><i class="fas fa-chevron-down"></i></a>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 px-6 md:px-12 lg:px-24 bg-gray-50">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Featured Portfolio</h2>
+            <p class="max-w-2xl mx-auto text-gray-600">Explore my latest work capturing Melbourne's most prestigious properties</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Portfolio Item 1 -->
+            <div class="portfolio-item relative overflow-hidden rounded-lg">
+                <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Luxury Home" class="w-full h-80 object-cover">
+                <div class="portfolio-overlay absolute inset-0 flex items-center justify-center flex-col text-white p-6">
+                    <h3 class="text-2xl font-bold mb-2">Toorak Mansion</h3>
+                    <p class="text-center">Architectural photography showcasing this $12M property</p>
+                    <a href="#" class="mt-4 border border-white px-4 py-2 rounded-full hover:bg-white hover:text-black transition">View More</a>
+                </div>
+            </div>
+            
+            <!-- Portfolio Item 2 -->
+            <div class="portfolio-item relative overflow-hidden rounded-lg">
+                <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Modern Apartment" class="w-full h-80 object-cover">
+                <div class="portfolio-overlay absolute inset-0 flex items-center justify-center flex-col text-white p-6">
+                    <h3 class="text-2xl font-bold mb-2">South Yarra Penthouse</h3>
+                    <p class="text-center">Interior photography of this $5.8M luxury apartment</p>
+                    <a href="#" class="mt-4 border border-white px-4 py-2 rounded-full hover:bg-white hover:text-black transition">View More</a>
+                </div>
+            </div>
+            
+            <!-- Portfolio Item 3 -->
+            <div class="portfolio-item relative overflow-hidden rounded-lg">
+                <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Waterfront Property" class="w-full h-80 object-cover">
+                <div class="portfolio-overlay absolute inset-0 flex items-center justify-center flex-col text-white p-6">
+                    <h3 class="text-2xl font-bold mb-2">Brighton Waterfront</h3>
+                    <p class="text-center">Sunset photography of this $9.5M beachfront estate</p>
+                    <a href="#" class="mt-4 border border-white px-4 py-2 rounded-full hover:bg-white hover:text-black transition">View More</a>
+                </div>
+            </div>
+            
+            <!-- Portfolio Item 4 -->
+            <div class="portfolio-item relative overflow-hidden rounded-lg">
+                <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Country Estate" class="w-full h-80 object-cover">
+                <div class="portfolio-overlay absolute inset-0 flex items-center justify-center flex-col text-white p-6">
+                    <h3 class="text-2xl font-bold mb-2">Mornington Peninsula Estate</h3>
+                    <p class="text-center">Aerial and interior photography of this $15M property</p>
+                    <a href="#" class="mt-4 border border-white px-4 py-2 rounded-full hover:bg-white hover:text-black transition">View More</a>
+                </div>
+            </div>
+            
+            <!-- Portfolio Item 5 -->
+            <div class="portfolio-item relative overflow-hidden rounded-lg">
+                <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Modern Villa" class="w-full h-80 object-cover">
+                <div class="portfolio-overlay absolute inset-0 flex items-center justify-center flex-col text-white p-6">
+                    <h3 class="text-2xl font-bold mb-2">Kew Contemporary</h3>
+                    <p class="text-center">Architectural photography of this award-winning $7.2M home</p>
+                    <a href="#" class="mt-4 border border-white px-4 py-2 rounded-full hover:bg-white hover:text-black transition">View More</a>
+                </div>
+            </div>
+            
+            <!-- Portfolio Item 6 -->
+            <div class="portfolio-item relative overflow-hidden rounded-lg">
+                <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Luxury Apartment" class="w-full h-80 object-cover">
+                <div class="portfolio-overlay absolute inset-0 flex items-center justify-center flex-col text-white p-6">
+                    <h3 class="text-2xl font-bold mb-2">St Kilda Road Residence</h3>
+                    <p class="text-center">Lifestyle photography of this $4.5M designer apartment</p>
+                    <a href="#" class="mt-4 border border-white px-4 py-2 rounded-full hover:bg-white hover:text-black transition">View More</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="#" class="inline-block border-2 border-[#b38b6d] text-[#b38b6d] hover:bg-[#b38b6d] hover:text-white px-8 py-3 rounded-full font-medium transition">View Full Portfolio</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 px-6 md:px-12 lg:px-24 bg-white">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Professional Services</h2>
+            <p class="max-w-2xl mx-auto text-gray-600">Comprehensive photography solutions tailored for luxury real estate</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Service 1 -->
+            <div class="service-card bg-white p-8 rounded-lg shadow-md">
+                <div class="text-[#b38b6d] text-4xl mb-4">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Architectural Photography</h3>
+                <p class="text-gray-600 mb-4">Showcase the unique design and features of your property with professional architectural photography that highlights every detail.</p>
+                <ul class="space-y-2 mb-6">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-[#b38b6d] mt-1 mr-2"></i>
+                        <span>Exterior and interior shots</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-[#b38b6d] mt-1 mr-2"></i>
+                        <span>Golden hour photography</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-[#b38b6d] mt-1 mr-2"></i>
+                        <span>Professional lighting setup</span>
+                    </li>
+                </ul>
+                <a href="#" class="text-[#b38b6d] font-medium hover:underline">Learn more →</a>
+            </div>
+            
+            <!-- Service 2 -->
+            <div class="service-card bg-white p-8 rounded-lg shadow-md">
+                <div class="text-[#b38b6d] text-4xl mb-4">
+                    <i class="fas fa-video"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Virtual Tours & Videography</h3>
+                <p class="text-gray-600 mb-4">Immersive 360° virtual tours and cinematic property videos that bring your listings to life for potential buyers.</p>
+                <ul class="space-y-2 mb-6">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-[#b38b6d] mt-1 mr-2"></i>
+                        <span>4K cinematic videos</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-[#b38b6d] mt-1 mr-2"></i>
+                        <span>Matterport 3D tours</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-[#b38b6d] mt-1 mr-2"></i>
+                        <span>Drone footage included</span>
+                    </li>
+                </ul>
+                <a href="#" class="text-[#b38b6d] font-medium hover:underline">Learn more →</a>
+            </div>
+            
+            <!-- Service 3 -->
+            <div class="service-card bg-white p-8 rounded-lg shadow-md">
+                <div class="text-[#b38b6d] text-4xl mb-4">
+                    <i class="fas fa-drone-alt"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Aerial Photography</h3>
+                <p class="text-gray-600 mb-4">Stunning aerial perspectives that showcase your property's location, size, and surrounding amenities from breathtaking angles.</p>
+                <ul class="space-y-2 mb-6">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-[#b38b6d] mt-1 mr-2"></i>
+                        <span>Licensed drone operator</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-[#b38b6d] mt-1 mr-2"></i>
+                        <span>High-resolution images</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-[#b38b6d] mt-1 mr-2"></i>
+                        <span>Panoramic neighborhood shots</span>
+                    </li>
+                </ul>
+                <a href="#" class="text-[#b38b6d] font-medium hover:underline">Learn more →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 md:px-12 lg:px-24 bg-gray-50">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+            <div class="lg:w-1/2">
+                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Craig Adams" class="rounded-lg shadow-xl w-full">
+            </div>
+            <div class="lg:w-1/2">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">About Craig Adams</h2>
+                <p class="text-lg mb-6">With over 12 years of experience specializing in luxury real estate photography, I bring a unique artistic vision and technical expertise to every property I photograph.</p>
+                <p class="mb-6">Based in Melbourne, I've worked with the city's top real estate agencies and developers, helping them showcase their premium listings in the best possible light. My work has been featured in prestigious publications like Domain, The Age Property, and Luxury List.</p>
+                <p class="mb-8">What sets me apart is my ability to understand the unique selling points of each property and create images that not only document but elevate the space, telling a compelling visual story that resonates with high-end buyers.</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="flex items-center">
+                        <div class="bg-[#b38b6d] text-white p-3 rounded-full mr-4">
+                            <i class="fas fa-medal text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">12+ Years</h4>
+                            <p class="text-sm text-gray-600">Experience</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="bg-[#b38b6d] text-white p-3 rounded-full mr-4">
+                            <i class="fas fa-home text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">500+</h4>
+                            <p class="text-sm text-gray-600">Properties Shot</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="bg-[#b38b6d] text-white p-3 rounded-full mr-4">
+                            <i class="fas fa-camera text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">$2B+</h4>
+                            <p class="text-sm text-gray-600">In Property Sales</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="bg-[#b38b6d] text-white p-3 rounded-full mr-4">
+                            <i class="fas fa-award text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">5 Awards</h4>
+                            <p class="text-sm text-gray-600">Industry Recognition</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 px-6 md:px-12 lg:px-24 bg-white">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Client Testimonials</h2>
+            <p class="max-w-2xl mx-auto text-gray-600">What Melbourne's top real estate professionals say about my work</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card p-8 rounded-lg shadow-md relative">
+                <div class="absolute -top-5 -left-5 bg-[#b38b6d] text-white rounded-full w-12 h-12 flex items-center justify-center">
+                    <i class="fas fa-quote-left text-xl"></i>
+                </div>
+                <p class="mb-6 italic">"Craig's photography transformed our listing. The images captured the essence of the property so perfectly that we had multiple offers within the first week. His attention to detail and understanding of light is exceptional."</p>
+                <div class="flex items-center">
+                    <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Sarah Johnson" class="w-12 h-12 rounded-full mr-4">
+                    <div>
+                        <h4 class="font-bold">Sarah Johnson</h4>
+                        <p class="text-sm text-gray-600">Director, Luxe Properties</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card p-8 rounded-lg shadow-md relative">
+                <div class="absolute -top-5 -left-5 bg-[#b38b6d] text-white rounded-full w-12 h-12 flex items-center justify-center">
+                    <i class="fas fa-quote-left text-xl"></i>
+                </div>
+                <p class="mb-6 italic">"Working with Craig is always a pleasure. His professionalism and creative eye consistently deliver results that exceed our expectations. The virtual tours he creates have become a key selling point for our premium listings."</p>
+                <div class="flex items-center">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen" class="w-12 h-12 rounded-full mr-4">
+                    <div>
+                        <h4 class="font-bold">Michael Chen</h4>
+                        <p class="text-sm text-gray-600">Principal, Elite Realty</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card p-8 rounded-lg shadow-md relative">
+                <div class="absolute -top-5 -left-5 bg-[#b38b6d] text-white rounded-full w-12 h-12 flex items-center justify-center">
+                    <i class="fas fa-quote-left text-xl"></i>
+                </div>
+                <p class="mb-6 italic">"Craig's ability to showcase properties in their best light is unmatched. His images don't just show a house - they tell a story of luxury living. We've seen a significant increase in inquiries since using his services."</p>
+                <div class="flex items-center">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emma Wilson" class="w-12 h-12 rounded-full mr-4">
+                    <div>
+                        <h4 class="font-bold">Emma Wilson</h4>
+                        <p class="text-sm text-gray-600">Senior Agent, Prestige Homes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section class="py-16 px-6 md:px-12 lg:px-24 bg-gray-
+</html>
