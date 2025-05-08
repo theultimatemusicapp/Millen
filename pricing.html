@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Craig Adams Real Estate Photography - Pricing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #e74c3c;
+            --accent: #3498db;
+            --light: #ecf0f1;
+            --dark: #1a252f;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .pricing-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background-color: var(--secondary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+        }
+        
+        .feature-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+        
+        .feature-list li:before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: var(--secondary);
+            bottom: -10px;
+            left: 25%;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="container mx-auto px-4 py-16">
+        <!-- Header Section -->
+        <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Craig Adams</h1>
+            <h2 class="text-2xl md:text-3xl font-semibold text-gray-600 mb-6">Premium Real Estate Photography</h2>
+            <div class="w-24 h-1 bg-red-500 mx-auto mb-8"></div>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Capturing the essence of properties with stunning photography that sells. Serving the real estate community with professional imagery since 2010.
+            </p>
+        </div>
+        
+        <!-- Pricing Section -->
+        <div class="py-12">
+            <h2 class="text-3xl font-bold text-center mb-4 section-title">Our Photography Packages</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+                Choose the perfect package for your property. All packages include professional editing and quick turnaround.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Basic Package -->
+                <div class="pricing-card bg-white relative">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Essential</h3>
+                        <p class="text-gray-600 mb-6">Perfect for small properties and quick listings</p>
+                        <div class="text-4xl font-bold text-gray-800 mb-6">
+                            $199<span class="text-lg font-normal">/session</span>
+                        </div>
+                        <ul class="feature-list mb-8">
+                            <li>15 High-Resolution Photos</li>
+                            <li>Basic Photo Editing</li>
+                            <li>24-Hour Delivery</li>
+                            <li>Single Property Location</li>
+                            <li>Virtual Tour (1 scan)</li>
+                        </ul>
+                        <button class="btn-primary w-full py-3 text-white font-semibold rounded-lg">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Popular Package -->
+                <div class="pricing-card bg-white relative">
+<div class="p-8">
+          <h3 class="text-2xl font-bold text-gray-800 mb-2">Professional</h3>
+                        <p class="text-gray-600 mb-6">Ideal for standard residential properties</p>
+                        <div class="text-4xl font-bold text-gray-800 mb-6">
+                            $299<span class="text-lg font-normal">/session</span>
+                        </div>
+                        <ul class="feature-list mb-8">
+                            <li>25 High-Resolution Photos</li>
+                            <li>Advanced Editing & Enhancement</li>
+                            <li>Twilight Photography (1 exterior)</li>
+                            <li>Same-Day Delivery</li>
+                            <li>Virtual Tour (3 scans)</li>
+                            <li>Social Media Preview Images</li>
+                        </ul>
+                        <button class="btn-secondary w-full py-3 text-white font-semibold rounded-lg">
+                            Book Now
+                        </button>
+                  </div>
+              </div>
+                
+                <!-- Premium Package -->
+                <div class="pricing-card bg-white relative">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Premium</h3>
+                        <p class="text-gray-600 mb-6">For luxury properties and commercial listings</p>
+                        <div class="text-4xl font-bold text-gray-800 mb-6">
+                            $499<span class="text-lg font-normal">/session</span>
+                        </div>
+                        <ul class="feature-list mb-8">
+                            <li>40+ High-Resolution Photos</li>
+                            <li>Premium Editing & Retouching</li>
+                            <li>Twilight Photography (all exteriors)</li>
+                            <li>3-Hour Rush Delivery Available</li>
+                            <li>Full Virtual Tour (5+ scans)</li>
+                            <li>Aerial Drone Photography</li>
+                            <li>Floor Plan Included</li>
+                            <li>Priority Scheduling</li>
+                        </ul>
+                        <button class="btn-primary w-full py-3 text-white font-semibold rounded-lg">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Add-Ons Section -->
+        <div class="py-12 bg-gray-50 rounded-xl px-8">
+            <center><h2 class="text-3xl font-bold text-center mb-4 section-title">Additional Services</h2></center>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+                Enhance your listing with these premium add-ons
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-blue-500 text-2xl mb-4">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Video Walkthrough</h3>
+                    <p class="text-gray-600 text-sm">Cinematic property video</p>
+                    <div class="text-xl font-bold mt-4">$800</div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-blue-500 text-2xl mb-4">
+                        <i class="fas fa-drone-alt"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Aerial Drone</h3>
+                    <p class="text-gray-600 text-sm">Stunning overhead shots</p>
+                    <div class="text-xl font-bold mt-4">$400</div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-blue-500 text-2xl mb-4">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Floor Plan</h3>
+                    <p class="text-gray-600 text-sm">Professional measured floor plan</p>
+                    <div class="text-xl font-bold mt-4">$300</div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-blue-500 text-2xl mb-4">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Rush Delivery</h3>
+                    <p class="text-gray-600 text-sm">3-hour turnaround</p>
+                    <div class="text-xl font-bold mt-4">$275</div>
+                </div>
+            </div>
+      </div>
+        
+        <!-- Testimonial Section -->
+        <div class="py-16">
+            <h2 class="text-3xl font-bold text-center mb-12 section-title">What Our Clients Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-white p-8 rounded-xl shadow-sm">
+                  <div class="text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6">"Craig Took photos of my butt. "</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 mr-4 overflow-hidden">
+                          <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Sarah J." class="w-full h-full object-cover">
+                      </div>
+                      <div>
+                        <h4 class="font-bold">Sarah Johnson</h4>
+                          <p class="text-sm text-gray-500">Former, Onlyfans model</p>
+                        </div>
+                  </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-sm">
+                  <div class="text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6">"Craig Tried to fuck me in the butt... but it's okay. Becaue you know... its craig.."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 mr-4 overflow-hidden">
+                          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael T." class="w-full h-full object-cover">
+                      </div>
+                        <div>
+                            <h4 class="font-bold">Carl Tomich</h4>
+                            <p class="text-sm text-gray-500">God</p>
+                      </div>
+                  </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-sm">
+                  <div class="text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6">"That Fucker won't walk me more&nbsp; &nbsp; ."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 mr-4 overflow-hidden">
+                          <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Lisa M." class="w-full h-full object-cover">
+                      </div>
+                        <div>
+                            <h4 class="font-bold">Luna</h4>
+                            <p class="text-sm text-gray-500">Dog</p>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CTA Section -->
+      <div class="py-16 bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl text-center px-8">
+            <h2 class="text-3xl font-bold text-white mb-6">Ready to Showcase Your Property?</h2>
+        <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">Elevate your listing with professional real estate photography that captures attention and sells properties faster.</p>
+        <button class="bg-white text-blue-600 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors"></button>
+        <a href="craigadams.html#contact">Contact Craig Today&nbsp;</a> <a href="craigadams.html#contact">&nbsp; </a></div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold mb-2">Craig Adams</h3>
+                    <p class="text-gray-400">Professional Real Estate Photography</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-facebook-f text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Craig Adams Real Estate Photography. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
